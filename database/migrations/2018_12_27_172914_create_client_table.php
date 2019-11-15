@@ -14,7 +14,7 @@ class CreateClientTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->nullable();
@@ -22,7 +22,7 @@ class CreateClientTable extends Migration
             $table->string('DNI')->nullable();
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->date('birthdate')->nullable();
-            $table->unsignedInteger('gender_id');
+            $table->unsignedBigInteger('gender_id');
             $table->timestamps();
 
            $table->foreign('gender_id')->references('id')->on('genders');

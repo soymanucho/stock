@@ -9,6 +9,6 @@ class PaymentType extends Model
 {
   public function sales()
  {
-     return $this->hasMany(Sale::class, 'PaymentType_id');
+     return $this->hasMany(Sale::class, 'payment_type_id');
  }
 }

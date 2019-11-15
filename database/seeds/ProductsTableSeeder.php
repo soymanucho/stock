@@ -19,15 +19,13 @@ use Carbon\Carbon;
         foreach (range(1,20) as $index)
         {
             DB::table('products')->insert([
+                'name' => $faker->word(),
                 'code' => $faker->lexify('?????????????'),
                 'price' => $faker->randomFloat(2,100,1500),
-                'size' => rand(0,20),
                 'description' => $faker->sentence(6,true),
                 'category_id' =>  rand(1,5),
                 'brand_id' =>  rand(1,12),
                 'stock' =>  rand(1,10),
-
-
             ]);
         }
     }

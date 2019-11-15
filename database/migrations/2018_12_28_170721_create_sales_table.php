@@ -14,13 +14,15 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('client_id');
-            $table->unsignedInteger('payment_type_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('payment_type_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
            $table->foreign('client_id')->references('id')->on('clients');
            $table->foreign('payment_type_id')->references('id')->on('payment_types');
+           $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

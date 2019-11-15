@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSaleDetailsTable extends Migration
+class CreateOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,18 @@ class CreateSaleDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_sale', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('sale_id');
-            $table->unsignedBigInteger('product_id');
+            $table->bigInteger('order_id')->unsigned()->nullable();
+            $table->bigInteger('product_id')->unsigned()->nullable();
             $table->float('price');
-            $table->integer('amount');
+            $table->integer('ordered_amount');
             $table->integer('accepted_amount');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('sale_id')->references('id')->on('sales');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
-
-
-
-
-
     }
 
     /**
@@ -39,6 +34,6 @@ class CreateSaleDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sale');
+        Schema::dropIfExists('order_details');
     }
 }

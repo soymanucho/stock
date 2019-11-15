@@ -18,7 +18,8 @@ class SalesTableSeeder extends Seeder
       {
 	        DB::table('sales')->insert([
 	            'client_id' => rand(1,20),
-	            'paymentType_id' => rand(1,5),
+	            'user_id' => 1,
+	            'payment_type_id' => rand(1,5),
               'created_at' => Carbon::now()->subDays(rand(1,31))->format('Y-m-d H:i:s'),
 
 	        ]);
