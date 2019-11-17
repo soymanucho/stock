@@ -24,6 +24,7 @@ class CreateClientTable extends Migration
             $table->date('birthdate')->nullable();
             $table->unsignedBigInteger('gender_id');
             $table->timestamps();
+            $table->softDeletes();
 
            $table->foreign('gender_id')->references('id')->on('genders');
            $table->foreign('address_id')->references('id')->on('addresses');

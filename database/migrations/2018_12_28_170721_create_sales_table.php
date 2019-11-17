@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('payment_type_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
 
            $table->foreign('client_id')->references('id')->on('clients');
            $table->foreign('payment_type_id')->references('id')->on('payment_types');

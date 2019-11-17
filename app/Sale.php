@@ -3,23 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Facades\DB;
+
 use App\PaymentType;
 use App\Client;
 use App\Product;
 
-
 class Sale extends Model
 {
+  use SoftDeletes;
+  protected $dates = ['created_at','updated_at','deleted_at'];
+
   public function paymentType()
   {
-      return $this->belongsTo(PaymentType::class,'payment_type_id');
+    return $this->belongsTo(PaymentType::class,'payment_type_id');
   }
 
   public function client()
   {
-      return $this->belongsTo(Client::class,'client_id');
+    return $this->belongsTo(Client::class,'client_id');
   }
 
   public function products()

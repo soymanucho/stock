@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
           $table->timestamps();
           $table->unsignedBigInteger('category_id');
           $table->unsignedBigInteger('brand_id');;
+          $table->softDeletes();
 
           $table->foreign('category_id')->references('id')->on('categories');
           $table->foreign('brand_id')->references('id')->on('brands');

@@ -21,6 +21,7 @@ class CreateSaleDetailsTable extends Migration
             $table->integer('amount');
             $table->integer('accepted_amount');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('sale_id')->references('id')->on('sales');

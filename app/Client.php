@@ -2,19 +2,25 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Facades\DB;
+
 use App\Gender;
 use App\Sale;
 use App\Address;
+
 class Client extends Model
 {
-protected $fillable = ['firstname','lastname','phone','address_id','dni','birthdate','gender_id','email'];
+  use SoftDeletes;
+  protected $dates = ['created_at','updated_at','deleted_at'];
+  
+  protected $fillable = ['firstname','lastname','phone','address_id','dni','birthdate','gender_id','email'];
 
-public static function totalAmountOfClients(){
-   return  DB::table('clients')->count();
-}
+  public static function totalAmountOfClients(){
+     return  DB::table('clients')->count();
+  }
 
   public function gender()
   {

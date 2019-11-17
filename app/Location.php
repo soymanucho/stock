@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 use App\Province;
-use App\Adress;
+use App\Address;
 
 class Location extends Model
 {
-
   use SoftDeletes;
   protected $dates = ['created_at','updated_at','deleted_at'];
 
@@ -22,7 +22,7 @@ class Location extends Model
 
   public function adresses()
   {
-    return $this->hasMany(Adress::class);
+    return $this->hasMany(Address::class);
   }
 
 }

@@ -19,6 +19,7 @@ class CreateSuppliersTable extends Migration
             $table->string('email');
             $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('address_id')->references('id')->on('addresses');
         });

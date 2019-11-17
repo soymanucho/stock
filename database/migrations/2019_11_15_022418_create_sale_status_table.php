@@ -18,6 +18,7 @@ class CreateSaleStatusTable extends Migration
             $table->unsignedBigInteger('sale_id')->nullable();
             $table->unsignedBigInteger('status_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('sale_id')->references('id')->on('sales');
             $table->foreign('status_id')->references('id')->on('statuses');

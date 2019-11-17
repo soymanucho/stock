@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->float('total_price');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
