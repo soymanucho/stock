@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 use App\PaymentType;
 use App\Client;
+use App\Status;
 use App\Product;
 
 class Sale extends Model
 {
   use SoftDeletes;
+
   protected $dates = ['created_at','updated_at','deleted_at'];
+
+  protected $fillable = ['client_id','payment_type_id','user_id'];
 
   public function paymentType()
   {
@@ -28,11 +32,21 @@ class Sale extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class)->withPivot('amount', 'price')->withTimestamps();
+    return $this->belongsToMany(Product::class)->withPivot('amount','accepted_amount', 'price')->withTimestamps();
+  }
+
+  public function statuses()
+  {
+    return $this->belongsToMany(Status::class)->withTimestamps();
+  }
+
+  public function latestStatus()
+  {
+    return $this->belongsToMany(Status::class)->latest();
   }
 
   public function totalAmount()
   {
-    return $total = DB::table('product_sale')->where('sale_id', $this->id)->sum(DB::raw('amount * price'));
+    return $total = DB::table('product_sale')->where('sale_id', $this->id)->sum(DB::raw('accepted_amount * price'));
   }
 }

@@ -11,6 +11,7 @@ use App\Address;
 class Location extends Model
 {
   use SoftDeletes;
+  
   protected $dates = ['created_at','updated_at','deleted_at'];
 
   protected $fillable = ['name','province_id'];

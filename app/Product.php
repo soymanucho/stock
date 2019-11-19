@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\DB;
 use App\Sale;
 use App\Brand;
 use App\Category;
+use App\Order;
 use App\ProductGender;
 
 class Product extends Model
 {
   use SoftDeletes;
+  
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['code','price','size','description','stock','category_id','brand_id'];
+  protected $fillable = ['code','name','price','description','stock','category_id','brand_id'];
 
   public static function valueOfStock()
   {
@@ -34,9 +36,19 @@ class Product extends Model
     return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
   }
 
+  public function orders()
+  {
+    return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id');
+  }
+
   public function timesSold()
   {
     return  DB::table('product_sale')->where('product_id', $this->id)->count();
+  }
+
+  public function timesOrdered()
+  {
+    return  DB::table('order_product')->where('product_id', $this->id)->count();
   }
 
   public function brand()
@@ -48,6 +60,5 @@ class Product extends Model
   {
     return $this->belongsTo(Category::class,'category_id');
   }
-
 
 }

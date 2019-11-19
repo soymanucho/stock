@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Product;
+use App\Sale;
 
-class Brand extends Model
+class Status extends Model
 {
   use SoftDeletes;
 
@@ -15,8 +15,9 @@ class Brand extends Model
 
   protected $fillable = ['name'];
 
-  public function products()
- {
-     return $this->hasMany(Product::class, 'brand_id');
- }
+  public function sales()
+  {
+    return $this->belongsToMany(Sale::class)->withTimestamps();
+  }
+
 }

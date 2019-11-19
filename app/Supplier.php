@@ -5,18 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Product;
-
-class Brand extends Model
+class Supplier extends Model
 {
   use SoftDeletes;
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['name'];
+  protected $fillable = ['name','email','address_id'];
 
-  public function products()
- {
-     return $this->hasMany(Product::class, 'brand_id');
- }
+  public function address()
+  {
+    return $this->belongsTo(Address::class);
+  }
+
 }
