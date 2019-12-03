@@ -33,14 +33,15 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
-			<a href="../full/index.html" class="d-inline-block">
-				<img src="{{ asset('/img/logo_light.png') }}" alt="">
+			<a href="{!! route('home') !!}" class="d-inline-block">
+				<img src="{{ asset('/img/logo2.png') }}" alt="">
 			</a>
 		</div>
 
+
 		<div class="d-md-none">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
-				<i class="icon-tree5"></i>
+				<i class="icon-arrow-down52"></i>
 			</button>
 			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
 				<i class="icon-paragraph-justify3"></i>
@@ -60,36 +61,36 @@
 
 				<li class="nav-item">
 					<a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
-						<i class="icon-transmission"></i>
+						<i class="icon-list-unordered"></i>
 					</a>
 				</li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a href="#" class="navbar-nav-link">
-						Text link
+					<a href="{!! route('home') !!}" class="navbar-nav-link">
+						Inicio
 					</a>
 				</li>
 
-				<li class="nav-item dropdown">
+				{{-- <li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link">
 						<i class="icon-bell2"></i>
 						<span class="d-md-none ml-2">Notifications</span>
 						<span class="badge badge-mark border-white ml-auto ml-md-0"></span>
 					</a>
-				</li>
+				</li> --}}
 
 				@guest
 					<li class="nav-item">
 						<a href="{{ route('login') }}" class="navbar-nav-link">
-							Login
+							Iniciar sesión
 						</a>
 					</li>
 					@if (Route::has('register'))
 						<li class="nav-item">
 							<a href="{{ route('register') }}" class="navbar-nav-link">
-								Register
+								Registrarme
 							</a>
 						</li>
 					@endif
@@ -102,11 +103,11 @@
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-							<a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
-							<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
+							<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Mi perfil</a>
+							{{-- <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a> --}}
+							{{-- <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a> --}}
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+							{{-- <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a> --}}
 							<a class="dropdown-item" href="{{ route('logout') }}"
 								 onclick="event.preventDefault();
 															 document.getElementById('logout-form').submit();">
@@ -137,7 +138,7 @@
 				<a href="#" class="sidebar-mobile-main-toggle">
 					<i class="icon-arrow-left8"></i>
 				</a>
-				Navigation
+				Navegación
 				<a href="#" class="sidebar-mobile-expand">
 					<i class="icon-screen-full"></i>
 					<i class="icon-screen-normal"></i>
@@ -158,81 +159,28 @@
 							</div>
 
 							<div class="media-body">
-								<div class="media-title font-weight-semibold">Victoria Baker</div>
+								<div class="media-title font-weight-semibold">
+									@auth
+										{{Auth::user()->name}}
+									@endauth
+								</div>
 								<div class="font-size-xs opacity-50">
-									<i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
+									<i class="icon-mail5 font-size-sm"></i> &nbsp;
+									@auth
+										{{Auth::user()->email}}
+									@endauth
 								</div>
 							</div>
 
 							<div class="ml-3 align-self-center">
-								<a href="#" class="text-white"><i class="icon-cog3"></i></a>
+								{{-- <a href="#" class="text-white"><i class="icon-cog3"></i></a> --}}
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /user menu -->
 
-
-				<!-- Main navigation -->
-				<div class="card card-sidebar-mobile">
-					<ul class="nav nav-sidebar" data-nav-type="accordion">
-
-						<!-- Main -->
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
-						<li class="nav-item">
-							<a href="../full/index.html" class="nav-link">
-								<i class="icon-home4"></i>
-								<span>Dashboard</span>
-							</a>
-						</li>
-						<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
-							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>Starter kit</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
-								<li class="nav-item"><a href="../seed/layout_nav_horizontal.html" class="nav-link">Horizontal navigation</a></li>
-								<li class="nav-item"><a href="../seed/sidebar_none.html" class="nav-link">No sidebar</a></li>
-								<li class="nav-item"><a href="../seed/sidebar_main.html" class="nav-link">1 sidebar</a></li>
-								<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
-									<a href="#" class="nav-link">2 sidebars</a>
-									<ul class="nav nav-group-sub">
-										<li class="nav-item"><a href="../seed/sidebar_secondary.html" class="nav-link active">Secondary sidebar</a></li>
-										<li class="nav-item"><a href="../seed/sidebar_right.html" class="nav-link">Right sidebar</a></li>
-									</ul>
-								</li>
-								<li class="nav-item nav-item-submenu">
-									<a href="#" class="nav-link">3 sidebars</a>
-									<ul class="nav nav-group-sub">
-										<li class="nav-item"><a href="../seed/sidebar_right_hidden.html" class="nav-link">Right sidebar hidden</a></li>
-										<li class="nav-item"><a href="../seed/sidebar_right_visible.html" class="nav-link">Right sidebar visible</a></li>
-									</ul>
-								</li>
-								<li class="nav-item nav-item-submenu">
-									<a href="#" class="nav-link">Content sidebars</a>
-									<ul class="nav nav-group-sub">
-										<li class="nav-item"><a href="../seed/sidebar_content_left.html" class="nav-link">Left sidebar</a></li>
-										<li class="nav-item"><a href="../seed/sidebar_content_right.html" class="nav-link">Right sidebar</a></li>
-									</ul>
-								</li>
-								<li class="nav-item"><a href="../seed/layout_boxed.html" class="nav-link">Boxed layout</a></li>
-								<li class="nav-item-divider"></li>
-								<li class="nav-item"><a href="../seed/navbar_fixed_main.html" class="nav-link">Fixed main navbar</a></li>
-								<li class="nav-item"><a href="../seed/navbar_fixed_secondary.html" class="nav-link">Fixed secondary navbar</a></li>
-								<li class="nav-item"><a href="../seed/navbar_fixed_both.html" class="nav-link">Both navbars fixed</a></li>
-								<li class="nav-item"><a href="../seed/layout_fixed.html" class="nav-link">Fixed layout</a></li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a href="../full/changelog.html" class="nav-link">
-								<i class="icon-list-unordered"></i>
-								<span>Changelog</span>
-								<span class="badge bg-blue-400 align-self-center ml-auto">2.0</span>
-							</a>
-						</li>
-						<!-- /main -->
-
-					</ul>
-				</div>
-				<!-- /main navigation -->
+				@yield('main-sidebar')
 
 			</div>
 			<!-- /sidebar content -->
@@ -257,137 +205,14 @@
 			</div>
 			<!-- /sidebar mobile toggler -->
 
-
 			<!-- Sidebar content -->
 			<div class="sidebar-content">
-
-				<!-- Sidebar search -->
-				<div class="card">
-					<div class="card-header bg-transparent header-elements-inline">
-						<span class="text-uppercase font-size-sm font-weight-semibold">Search</span>
-						<div class="header-elements">
-							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-	                		</div>
-                		</div>
-					</div>
-
-					<div class="card-body">
-						<form action="#">
-							<div class="form-group-feedback form-group-feedback-right">
-								<input type="search" class="form-control" placeholder="Search">
-								<div class="form-control-feedback">
-									<i class="icon-search4 font-size-base text-muted"></i>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- /sidebar search -->
-
-
-				<!-- Sub navigation -->
-				<div class="card mb-2">
-					<div class="card-header bg-transparent header-elements-inline">
-						<span class="text-uppercase font-size-sm font-weight-semibold">Navigation</span>
-						<div class="header-elements">
-							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-	                		</div>
-                		</div>
-					</div>
-
-					<div class="card-body p-0">
-						<ul class="nav nav-sidebar" data-nav-type="accordion">
-							<li class="nav-item-header">Category title</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link"><i class="icon-googleplus5"></i> Link</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link"><i class="icon-portfolio"></i> Another link</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									<i class="icon-user-plus"></i>
-									Link with badge
-									<span class="badge bg-primary badge-pill ml-auto">2</span>
-								</a>
-							</li>
-							<li class="nav-item-divider"></li>
-							<li class="nav-item nav-item-submenu">
-								<a href="#" class="nav-link"><i class="icon-cog3"></i> Menu levels</a>
-								<ul class="nav nav-group-sub">
-									<li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
-									<li class="nav-item nav-item-submenu">
-										<a href="#" class="nav-link">Second level with child</a>
-										<ul class="nav nav-group-sub">
-											<li class="nav-item"><a href="#" class="nav-link">Third level</a></li>
-											<li class="nav-item nav-item-submenu">
-												<a href="#" class="nav-link">Third level with child</a>
-												<ul class="nav nav-group-sub">
-													<li class="nav-item"><a href="#" class="nav-link">Fourth level</a></li>
-													<li class="nav-item"><a href="#" class="nav-link">Fourth level</a></li>
-												</ul>
-											</li>
-											<li class="nav-item"><a href="#" class="nav-link">Third level</a></li>
-										</ul>
-									</li>
-									<li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /sub navigation -->
-
-
-				<!-- Form sample -->
-				<div class="card">
-					<div class="card-header bg-transparent header-elements-inline">
-						<span class="text-uppercase font-size-sm font-weight-semibold">Form example</span>
-						<div class="header-elements">
-							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-	                		</div>
-                		</div>
-					</div>
-
-					<div class="card-body">
-						<form action="#">
-							<div class="form-group">
-								<label>Your name:</label>
-								<input type="text" class="form-control" placeholder="Username">
-							</div>
-
-							<div class="form-group">
-								<label>Your password:</label>
-								<input type="password" class="form-control" placeholder="Password">
-							</div>
-
-							<div class="form-group">
-								<label>Your message:</label>
-								<textarea rows="3" cols="3" class="form-control" placeholder="Default textarea"></textarea>
-							</div>
-
-							<div class="row">
-								<div class="col-6">
-									<button type="reset" class="btn btn-danger btn-block">Reset</button>
-								</div>
-								<div class="col-6">
-									<button type="submit" class="btn btn-info btn-block">Submit</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- /form sample -->
-
+				@yield('secondary-sidebar')
 			</div>
 			<!-- /sidebar content -->
 
 		</div>
 		<!-- /secondary sidebar -->
-
 
 		<!-- Main content -->
 		<div class="content-wrapper">
@@ -396,55 +221,25 @@
 			<div class="page-header page-header-light">
 				<div class="page-header-content header-elements-md-inline">
 					<div class="page-title d-flex">
-						<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Starters</span> - 2 Sidebars</h4>
+						<h4><span class="font-weight-semibold">Intemun</span></h4>
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 					</div>
 
 					<div class="header-elements d-none">
-						<a href="#" class="btn btn-labeled btn-labeled-right bg-primary">Button <b><i class="icon-menu7"></i></b></a>
+						<a href="#" class="btn btn-success">Button </a>
+						{{-- <a href="#" class="btn btn-danger ml-2">Button <b><i class="icon-menu7"></i></b></a> --}}
+						{{-- <a href="#" class="btn btn-warning ml-2">Button <b><i class="icon-menu7"></i></b></a> --}}
 					</div>
 				</div>
 
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-					<div class="d-flex">
-						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="#" class="breadcrumb-item">Link</a>
-							<span class="breadcrumb-item active">Current</span>
-						</div>
-
-						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-					</div>
-
-					<div class="header-elements d-none">
-						<div class="breadcrumb justify-content-center">
-							<a href="#" class="breadcrumb-elements-item">
-								Link
-							</a>
-
-							<div class="breadcrumb-elements-item dropdown p-0">
-								<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-									Dropdown
-								</a>
-
-								<div class="dropdown-menu dropdown-menu-right">
-									<a href="#" class="dropdown-item">Action</a>
-									<a href="#" class="dropdown-item">Another action</a>
-									<a href="#" class="dropdown-item">One more action</a>
-									<div class="dropdown-divider"></div>
-									<a href="#" class="dropdown-item">Separate action</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					@yield('breadcrumbs')
 				</div>
 			</div>
 			<!-- /page header -->
 
-
 			<!-- Content area -->
 			<div class="content">
-
 				@yield('content')
 				{{-- <!-- Basic card -->
 				<div class="card">
@@ -654,7 +449,6 @@
 			</div>
 			<!-- /content area -->
 
-
 			<!-- Footer -->
 			<div class="navbar navbar-expand-lg navbar-light">
 				<div class="text-center d-lg-none w-100">
@@ -670,13 +464,10 @@
 					</span>
 
 					<ul class="navbar-nav ml-lg-auto">
-						<li class="nav-item">
-							<a href="mailto:alvarez.jmanuel94@gmail.com,pablo@branderez.com?Subject=Error%20aplicación%20web%20Intemun" class="navbar-nav-link">Reportar error</a>
-						</li>
+
 
 						<li class="nav-item">
-							<a href="#" class="navbar-nav-link">
-								<i class="icon-facebook"></i>
+							<a href="https://wa.me/5492216373889?text=Buenas,%20reporte%20de%20error%20en%20IntemunApp" class="navbar-nav-link"> Reportar error <i class="icon-iphone"></i>
 							</a>
 						</li>
 
