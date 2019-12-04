@@ -14,12 +14,14 @@
 	<link href="{{ asset('/css/layout.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
 	<script src="{{ asset('/js/jquery.min.js') }}" defer></script>
 	<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" defer></script>
 	<script src="{{ asset('/js/blockui.min.js') }}" defer></script>
+
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
@@ -46,9 +48,11 @@
 			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
 				<i class="icon-paragraph-justify3"></i>
 			</button>
-			<button class="navbar-toggler sidebar-mobile-secondary-toggle" type="button">
-				<i class="icon-more"></i>
-			</button>
+			@if (Route::currentRouteName() != 'home')
+				<button class="navbar-toggler sidebar-mobile-secondary-toggle" type="button">
+					<i class="icon-more"></i>
+				</button>
+			@endif
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-mobile">
@@ -58,12 +62,13 @@
 						<i class="icon-paragraph-justify3"></i>
 					</a>
 				</li>
-
-				<li class="nav-item">
-					<a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
-						<i class="icon-list-unordered"></i>
-					</a>
-				</li>
+				@if (Route::currentRouteName() != 'home')
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
+							<i class="icon-list-unordered"></i>
+						</a>
+					</li>
+				@endif
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
@@ -189,30 +194,8 @@
 		<!-- /main sidebar -->
 
 
-		<!-- Secondary sidebar -->
-		<div class="sidebar sidebar-light sidebar-secondary sidebar-expand-md">
+		@yield('secondary-sidebar')
 
-			<!-- Sidebar mobile toggler -->
-			<div class="sidebar-mobile-toggler text-center">
-				<a href="#" class="sidebar-mobile-secondary-toggle">
-					<i class="icon-arrow-left8"></i>
-				</a>
-				<span class="font-weight-semibold">Secondary sidebar</span>
-				<a href="#" class="sidebar-mobile-expand">
-					<i class="icon-screen-full"></i>
-					<i class="icon-screen-normal"></i>
-				</a>
-			</div>
-			<!-- /sidebar mobile toggler -->
-
-			<!-- Sidebar content -->
-			<div class="sidebar-content">
-				@yield('secondary-sidebar')
-			</div>
-			<!-- /sidebar content -->
-
-		</div>
-		<!-- /secondary sidebar -->
 
 		<!-- Main content -->
 		<div class="content-wrapper">
@@ -226,7 +209,7 @@
 					</div>
 
 					<div class="header-elements d-none">
-						<a href="#" class="btn btn-success">Button </a>
+						@yield('actions')
 						{{-- <a href="#" class="btn btn-danger ml-2">Button <b><i class="icon-menu7"></i></b></a> --}}
 						{{-- <a href="#" class="btn btn-warning ml-2">Button <b><i class="icon-menu7"></i></b></a> --}}
 					</div>
@@ -481,6 +464,24 @@
 
 	</div>
 	<!-- /page content -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
 
+	$(document).ready( function () {
+
+		$('#myTable').DataTable( {
+					"scrollX": true,
+					"select": true,
+					"responsive": true,
+					 "order": [],
+					 "language": {
+							"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+					}
+			} );
+
+
+
+	} );
+</script>
 </body>
 </html>

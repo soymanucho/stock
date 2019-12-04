@@ -9,22 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 use App\Sale;
 use App\Brand;
-use App\Category;
 use App\Order;
-use App\ProductGender;
+use App\Suplier;
 
 class Product extends Model
 {
   use SoftDeletes;
-  
+
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['code','name','price','description','stock','category_id','brand_id'];
+  protected $fillable = ['code','name','description','stock','category_id','brand_id'];
 
-  public static function valueOfStock()
-  {
-    return  DB::table('products')->where('stock','>',0)->sum(DB::raw('stock * price'));
-  }
+  // public static function valueOfStock()
+  // {
+  //   return  DB::table('products')->where('stock','>',0)->sum(DB::raw('stock * price'));
+  // }
 
   public static function amountofItemsInStock()
   {
@@ -56,9 +55,9 @@ class Product extends Model
     return $this->belongsTo(Brand::class,'brand_id');
   }
 
-  public function category()
+  public function suppliers()
   {
-    return $this->belongsTo(Category::class,'category_id');
+    return $this->belongsToMany(Supplier::class)->using(ProductSupplier::class)->withPivot(['price']);
   }
 
 }

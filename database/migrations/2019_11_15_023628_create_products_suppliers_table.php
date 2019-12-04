@@ -15,6 +15,7 @@ class CreateProductsSuppliersTable extends Migration
     {
         Schema::create('products_suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->decimal('price',12,2);
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('supplier_id')->unsigned();
             $table->timestamps();

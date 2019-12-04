@@ -21,9 +21,7 @@ use Carbon\Carbon;
             DB::table('products')->insert([
                 'name' => $faker->word(),
                 'code' => $faker->lexify('?????????????'),
-                'price' => $faker->randomFloat(2,100,1500),
                 'description' => $faker->sentence(6,true),
-                'category_id' =>  rand(1,5),
                 'brand_id' =>  rand(1,12),
                 'stock' =>  rand(1,10),
             ]);

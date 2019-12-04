@@ -123,7 +123,7 @@ var App = function () {
 
             // Opposite sidebar visibility
             $('body').toggleClass('sidebar-right-visible');
-            
+
             // If visible
             if ($('body').hasClass('sidebar-right-visible')) {
                 $('body').addClass('sidebar-main-hidden');
@@ -340,9 +340,9 @@ var App = function () {
             e.preventDefault();
             var $target = $(this),
                 block = $target.closest('.card');
-            
+
             // Block card
-            $(block).block({ 
+            $(block).block({
                 message: '<i class="icon-spinner2 spinner"></i>',
                 overlayCSS: {
                     backgroundColor: '#fff',
@@ -360,7 +360,7 @@ var App = function () {
             // For demo purposes
             window.setTimeout(function () {
                $(block).unblock();
-            }, 2000); 
+            }, 2000);
         });
     };
 

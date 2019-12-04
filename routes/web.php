@@ -22,3 +22,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//CLIENTE
+Route::get('/clientes/', 'ClientController@show')->name('client-show');
+Route::get('/clientes/nuevo/', 'ClientController@new')->name('client-new');
+Route::post('/clientes/nuevo/', 'ClientController@save')->name('client-save');
+Route::get('/clientes/{client}/editar/', 'ClientController@edit')->name('client-edit');
+Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('client-update');
+Route::get('/clientes/{client}','ClientController@detail')->name('client-detail');

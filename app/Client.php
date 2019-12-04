@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\DB;
 
-use App\Gender;
 use App\Sale;
 use App\Address;
 
@@ -17,7 +16,7 @@ class Client extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['first_name','last_name','phone','address_id','dni','birthdate','gender_id','email'];
+  protected $fillable = ['name','address_id','cuit'];
 
   public static function totalAmountOfClients(){
      return  DB::table('clients')->count();
@@ -28,9 +27,14 @@ class Client extends Model
     return $this->belongsTo(Address::class);
   }
 
-  public function gender()
+  public function fullAddress()
   {
-      return $this->belongsTo(Gender::class,'gender_id');
+    return $this->address->street.' nº '.$this->address->number.' '.$this->address->floor.', '.$this->address->location->name.', '.$this->address->location->province->name;
+  }
+
+  public function contacts()
+  {
+      return $this->morphMany(Contact::class, 'contactable');
   }
 
   public function sales()
