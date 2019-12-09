@@ -51,7 +51,7 @@
       <a href="#" class="sidebar-mobile-secondary-toggle">
         <i class="icon-arrow-left8"></i>
       </a>
-      <span class="font-weight-semibold">Secondary sidebar</span>
+      <span class="font-weight-semibold"></span>
       <a href="#" class="sidebar-mobile-expand">
         <i class="icon-screen-full"></i>
         <i class="icon-screen-normal"></i>
@@ -155,9 +155,9 @@
 	</div>
 
 	<div class="card-body">
-		DataTables has the option of being able to <code>save the state</code> of a table: its paging position, ordering state etc., so that is can be restored when the user reloads a page, or comes back to the page after visiting a sub-page. This state saving ability is enabled by the <code>stateSave</code> option. The <code>duration</code> for which the saved state is valid can be set using the <code>stateDuration</code> initialisation parameter (2 hours by default).
+
+    @include('client.datatable')
 	</div>
-  @include('client.datatable')
 
 </div>
 {{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}

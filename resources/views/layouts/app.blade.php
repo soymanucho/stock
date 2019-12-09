@@ -14,7 +14,9 @@
 	<link href="{{ asset('/css/layout.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	{{-- <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> --}}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('/datatables/datatables.min.css') }}"/> --}}
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -36,7 +38,7 @@
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="{!! route('home') !!}" class="d-inline-block">
-				<img src="{{ asset('/img/logo2.png') }}" alt="">
+				<img src="{{ asset('/img/logo.png') }}" alt="">
 			</a>
 		</div>
 
@@ -103,7 +105,7 @@
 
 					<li class="nav-item dropdown dropdown-user">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-							<img src="{{ asset('/img/image.png') }}" class="rounded-circle" alt="">
+							<img src="{{ asset('/favicon-96x96.png') }}" class="rounded-circle" alt="">
 							<span>{{ Auth::user()->name }}</span>
 						</a>
 
@@ -160,7 +162,7 @@
 					<div class="card-body">
 						<div class="media">
 							<div class="mr-3">
-								<a href="#"><img src="{{ asset('/img/image.png') }}" width="38" height="38" class="rounded-circle" alt=""></a>
+								<a href="#"><img src="{{ asset('/favicon-96x96.png') }}" width="38" height="38" class="rounded-circle" alt=""></a>
 							</div>
 
 							<div class="media-body">
