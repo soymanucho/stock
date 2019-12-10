@@ -11,7 +11,7 @@ class ContactController extends Controller
 {
   public function new(Client $client)
   {
-    $client = Client::find($client)->first();
+    $client = Client::find($client->id)->first();
     $contact = new Contact();
     // $client->contacts->associate($contact)->save();
     return view('contact.new',compact('contact','client'));
