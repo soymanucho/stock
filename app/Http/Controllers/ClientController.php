@@ -80,7 +80,7 @@ class ClientController extends Controller
           'street' => 'required|string|max:60',
           'number'=> 'required|string|max:10',
           'floor'=> 'nullable|string|max:10',
-          'location_id'=> 'required|exists:locations,id ',
+          'location_id'=> 'required|exists:locations,id',
 
       ],
       [
