@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Client;
+use App\Address;
 
 class ClientController extends Controller
 {
@@ -21,48 +22,50 @@ class ClientController extends Controller
   public function new()
   {
     $client = new Client();
-    $genders = Gender::all();
-    return view('client.newClient',compact('client','genders'));
+    return view('client.new',compact('client'));
   }
 
   public function edit(Client $client)
   {
-    $genders = Gender::all();
-    return view('client.editClient',compact('client','genders'));
+
+    return view('client.edit',compact('client'));
   }
 
   public function save(Request $request)
   {
+    // dd($request);
     $this->validate(
       $request,
       [
-          'firstname' => 'required|max:60',
-          'lastname' => 'required|max:60',
-          'phone' => 'nullable|max:60',
-          'address'=> 'max:60',
-          'email'=> 'nullable|max:60',
-          'dni'=> 'required|max:60 ',
-          'birthdate'=> 'nullable|date',
-          'gender_id'=>'required|exists:genders,id',
+          'name' => 'required|string|max:100',
+          'cuit' => 'required|string|max:20',
+          'street' => 'required|string|max:60',
+          'number'=> 'required|string|max:10',
+          'floor'=> 'nullable|string|max:10',
+          'location_id'=> 'required|exists:locations,id',
 
       ],
       [
 
       ],
       [
-          'firstname' => 'nombre',
-          'lastname' => 'apellido',
-          'phone' => 'teléfono',
-          'address' => 'dirección',
-          'birthdate' => 'fecha de nacimiento',
-          'email' => 'email',
-          'gender_id' => 'genero',
-          'dni' => 'D.N.I',
+        'name' => 'Nombre',
+        'cuit' => 'CUIT',
+        'street' => 'Calle',
+        'number'=> 'Número',
+        'floor'=> 'Piso',
+        'location_id'=> 'Localidad',
       ]
     );
     $client = new Client;
     $client->fill($request->all());
     $client->save();
+
+    $address = new Address;
+    $address->fill($request->all());
+    $address->save();
+
+    $client->address()->associate($address)->save();
 
     return redirect()->route('client-show');
   }
@@ -72,28 +75,24 @@ class ClientController extends Controller
     $this->validate(
       $request,
       [
-          'firstname' => 'required|max:60',
-          'lastname' => 'required|max:60',
-          'phone' => 'nullable|max:60',
-          'address'=> 'required|max:60',
-          'email'=> 'nullable|max:60',
-          'dni'=> 'required|max:60 ',
-          'birthdate'=> 'nullable|date',
-          'gender_id'=>'required|exists:genders,id',
+          'name' => 'required|string|max:100',
+          'cuit' => 'required|string|max:20',
+          'street' => 'required|string|max:60',
+          'number'=> 'required|string|max:10',
+          'floor'=> 'nullable|string|max:10',
+          'location_id'=> 'required|exists:locations,id ',
 
       ],
       [
 
       ],
       [
-          'firstname' => 'nombre',
-          'lastname' => 'apellido',
-          'phone' => 'teléfono',
-          'address' => 'dirección',
-          'birthdate' => 'fecha de nacimiento',
-          'email' => 'email',
-          'gender_id' => 'genero',
-          'dni' => 'D.N.I',
+        'name' => 'Nombre',
+        'cuit' => 'CUIT',
+        'street' => 'Calle',
+        'number'=> 'Número',
+        'floor'=> 'Piso',
+        'location_id'=> 'Localidad',
       ]
     );
 

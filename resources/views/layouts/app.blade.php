@@ -5,22 +5,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>{{ config('app.name', 'Intemun') }}</title>
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 	<link href="{{ asset('/css/icomoonstyles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/layout.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
-	{{-- <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> --}}
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('/datatables/datatables.min.css') }}"/> --}}
-	<!-- /global stylesheets -->
 
+	<!-- /global stylesheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
 	<!-- Core JS files -->
-	<script src="{{ asset('/js/jquery.min.js') }}" defer></script>
 	<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" defer></script>
 	<script src="{{ asset('/js/blockui.min.js') }}" defer></script>
 
@@ -29,6 +32,9 @@
 	<!-- Theme JS files -->
 	<script src="{{ asset('/js/app.js') }}" defer></script>
 	<!-- /theme JS files -->
+
+	<!-- Extra files -->
+	<!-- /Extra files -->
 
 </head>
 
@@ -466,7 +472,13 @@
 
 	</div>
 	<!-- /page content -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/1.2.2/jquery-jvectormap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
 <script type="text/javascript">
 
 	$(document).ready( function () {
@@ -484,6 +496,23 @@
 
 
 	} );
+</script>
+<script type="text/javascript">
+  window.addEventListener('load',function() {
+  	$(".fancybox").fancybox({
+  		maxWidth	: 1600,
+      minWidth	: 1000,
+  		maxHeight	: 300,
+  		fitToView	: true,
+  		width		: '100%',
+  		height		: '50%',
+  		autoSize	: true,
+  		closeClick	: false,
+  		openEffect	: 'none',
+  		closeEffect	: 'none',
+      type: 'ajax'
+  	});
+  });
 </script>
 </body>
 </html>

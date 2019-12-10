@@ -33,3 +33,10 @@ Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('clien
 Route::get('/clientes/{client}','ClientController@detail')->name('client-detail');
 
 Route::get('/clientesApi/', 'ClientController@datatableApi')->name('client-api');
+
+//CONTACTO
+Route::get('/clientes/{client}/contactos/nuevo','ContactController@new')->name('contact-new');
+Route::post('/clientes/{client}/contactos/nuevo','ContactController@save')->name('contact-save');
+
+//LOCALIDADES
+Route::post('/api/localidades/', 'LocationController@selectApi')->name('location-api');

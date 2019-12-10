@@ -76,7 +76,7 @@
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="#" class="nav-link active"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
@@ -104,15 +104,15 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
+  <a href="{!! route('client-new') !!}" class="btn btn-success btn-disabled">Nuevo cliente</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Clientes</a>
-      <span class="breadcrumb-item active">Ver todos</span>
+      <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
+      <span class="breadcrumb-item active">Editar cliente</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -144,21 +144,52 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Clientes</h5>
+		<h5 class="card-title">Editar cliente</h5>
 		<div class="header-elements">
 			<div class="list-icons">
-            		<a class="list-icons-item" data-action="collapse"></a>
-            		{{-- <a class="list-icons-item" data-action="reload"></a> --}}
-            		{{-- <a class="list-icons-item" data-action="remove"></a> --}}
-            	</div>
-          	</div>
+    		<a class="list-icons-item" data-action="collapse"></a>
+    	</div>
+  	</div>
 	</div>
 
 	<div class="card-body">
-
-    @include('client.datatable')
+    @include('errors.errors')
+		<form method="post">
+      {{ csrf_field() }}
+      {{ method_field('put') }}
+			@include('client._fields')
+			<div class="text-right">
+				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+				<button type="submit" class="btn btn-success">Editar cliente <i class="icon-user-cancel ml-2"></i></button>
+			</div>
+		</form>
 	</div>
-
 </div>
-{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
+<script type="text/javascript">
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+    $( "#locations" ).select2({
+      ajax: {
+        url: "{{route('location-api')}}",
+        type: "post",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            _token: CSRF_TOKEN,
+            search: params.term // search term
+          };
+        },
+        processResults: function (response) {
+          return {
+            results: response
+          };
+        },
+        cache: true
+      }
+
+    });
+
+</script>
 @endsection
