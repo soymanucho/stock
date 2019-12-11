@@ -14,16 +14,16 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('client-show') !!}" class="nav-link active">
+        <a href="{!! route('client-show') !!}" class="nav-link">
           <i class="icon-users2"></i>
           <span>Clientes</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('product-show') !!}" class="nav-link">
-          <i class="icon-stack"></i>
-          <span>Productoss</span>
+        <a href="{!! route('product-show') !!}" class="nav-link active">
+          <i class="icon-grid"></i>
+          <span>Productos</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
@@ -71,7 +71,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Productos</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
@@ -83,19 +83,19 @@
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="#" class="nav-link active"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('product-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="#" class="nav-link active"><i class="icon-stack-plus"></i> Dar de alta</a>
             </li>
             <li class="nav-item-divider"></li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="icon-grid-alt"></i>
                 Pedidos
                 <span class="badge bg-primary badge-pill ml-auto">2</span>
               </a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item nav-item-submenu">
               <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
               <ul class="nav nav-group-sub">
@@ -111,15 +111,15 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
+  <a href="#" class="btn btn-success btn-disabled">Nuevo producto</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Clientes</a>
-      <span class="breadcrumb-item active">Ver todos</span>
+      <a href="{!! route('product-show') !!}" class="breadcrumb-item">Productos</a>
+      <span class="breadcrumb-item active">Nuevo producto</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -151,21 +151,31 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Clientes</h5>
+		<h5 class="card-title">Nuevo producto</h5>
 		<div class="header-elements">
 			<div class="list-icons">
-            		<a class="list-icons-item" data-action="collapse"></a>
-            		{{-- <a class="list-icons-item" data-action="reload"></a> --}}
-            		{{-- <a class="list-icons-item" data-action="remove"></a> --}}
-            	</div>
-          	</div>
+    		<a class="list-icons-item" data-action="collapse"></a>
+    	</div>
+  	</div>
 	</div>
 
 	<div class="card-body">
+    @include('errors.errors')
+		<form action="{!! route('product-save') !!}" method="post">
+      {{ csrf_field() }}
+      {{ method_field('post') }}
+			@include('product._fields')
 
-    @include('client.datatable')
+
+
+
+
+			<div class="text-right">
+				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+				<button type="submit" class="btn btn-success">Crear nuevo producto <i class="icon-stack-plus ml-2"></i></button>
+			</div>
+		</form>
 	</div>
-
 </div>
-{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
+
 @endsection

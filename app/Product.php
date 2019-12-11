@@ -18,7 +18,7 @@ class Product extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['code','name','description','stock','category_id','brand_id'];
+  protected $fillable = ['code','name','description','stock','brand_id'];
 
   // public static function valueOfStock()
   // {
@@ -32,7 +32,7 @@ class Product extends Model
 
   public function sales()
   {
-    return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
+    return $this->hasMany(ProductSale::class, 'product_sale');
   }
 
   public function orders()

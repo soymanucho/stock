@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use App\Product;
+use App\ProductStatus;
 
 class SaleDetailsTableSeeder extends Seeder
 {
@@ -18,7 +20,8 @@ class SaleDetailsTableSeeder extends Seeder
       {
           DB::table('product_sale')->insert([
               'sale_id' => rand(1,100),
-              'product_id' => rand(1,20),
+              'product_id' =>  rand(1,20),
+              'product_status_id' =>  rand(1,4),
               'price' => $faker->randomFloat(2,100,900),
               'amount' => rand(1,5),
               'accepted_amount' => rand(1,5),

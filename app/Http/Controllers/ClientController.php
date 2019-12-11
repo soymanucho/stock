@@ -103,6 +103,6 @@ class ClientController extends Controller
   }
   public function detail(Client $client)
   {
-    return view('clients.detail',compact('client'));
+    return view('client.detail',compact('client'));
   }
 }

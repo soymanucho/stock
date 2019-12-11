@@ -32,7 +32,7 @@ class Sale extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class)->withPivot('amount','accepted_amount', 'price')->withTimestamps();
+    return $this->hasMany(ProductSale::class)->withTimestamps();
   }
 
   public function statuses()

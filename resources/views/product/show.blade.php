@@ -14,16 +14,16 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('client-show') !!}" class="nav-link active">
+        <a href="{!! route('client-show') !!}" class="nav-link">
           <i class="icon-users2"></i>
           <span>Clientes</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('product-show') !!}" class="nav-link">
-          <i class="icon-stack"></i>
-          <span>Productoss</span>
+        <a href="{!! route('product-show') !!}" class="nav-link active">
+          <i class="icon-grid"></i>
+          <span>Productos</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
@@ -71,7 +71,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Productos</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
@@ -86,16 +86,16 @@
               <a href="#" class="nav-link active"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('product-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Dar de alta</a>
             </li>
             <li class="nav-item-divider"></li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="icon-grid-alt"></i>
                 Pedidos
                 <span class="badge bg-primary badge-pill ml-auto">2</span>
               </a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item nav-item-submenu">
               <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
               <ul class="nav nav-group-sub">
@@ -111,14 +111,14 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
+  <a href="{!! route('product-new') !!}" class="btn btn-success">Nuevo producto</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Clientes</a>
+      <a href="" class="breadcrumb-item">Productos</a>
       <span class="breadcrumb-item active">Ver todos</span>
     </div>
 
@@ -151,7 +151,7 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Clientes</h5>
+		<h5 class="card-title">Productos</h5>
 		<div class="header-elements">
 			<div class="list-icons">
             		<a class="list-icons-item" data-action="collapse"></a>
@@ -163,7 +163,7 @@
 
 	<div class="card-body">
 
-    @include('client.datatable')
+    @include('product.datatable')
 	</div>
 
 </div>

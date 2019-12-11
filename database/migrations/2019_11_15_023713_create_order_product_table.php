@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderDetailsTable extends Migration
+class CreateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_status_id');
             $table->float('price');
             $table->integer('ordered_amount');
             $table->integer('accepted_amount');
@@ -24,6 +25,7 @@ class CreateOrderDetailsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_status_id')->references('id')->on('product_statuses');
             $table->foreign('order_id')->references('id')->on('orders');
         });
     }
@@ -35,6 +37,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('order_product');
     }
 }

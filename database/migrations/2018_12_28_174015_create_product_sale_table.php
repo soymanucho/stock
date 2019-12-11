@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSaleDetailsTable extends Migration
+class CreateProductSaleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class CreateSaleDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('sale_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_status_id');
             $table->float('price');
             $table->integer('amount');
             $table->integer('accepted_amount');
@@ -24,6 +25,7 @@ class CreateSaleDetailsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_status_id')->references('id')->on('product_statuses');
             $table->foreign('sale_id')->references('id')->on('sales');
         });
 
