@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar" data-nav-type="accordion">
 
       <!-- Main -->
-      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div> <i class="icon-menu" title="Menú principal"></i></li>
+      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
       <li class="nav-item">
         <a href="{!! route('home') !!}" class="nav-link">
           <i class="icon-home4"></i>
@@ -22,8 +22,8 @@
       </li>
       <li class="nav-item">
         <a href="{!! route('product-show') !!}" class="nav-link">
-          <i class="icon-stack"></i>
-          <span>Productoss</span>
+          <i class="icon-grid"></i>
+          <span>Productos</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>

@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar" data-nav-type="accordion">
 
       <!-- Main -->
-      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div> <i class="icon-menu" title="Menú principal"></i></li>
+      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
       <li class="nav-item">
         <a href="{!! route('home') !!}" class="nav-link">
           <i class="icon-home4"></i>

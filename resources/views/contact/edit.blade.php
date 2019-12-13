@@ -4,9 +4,9 @@
 		<h5 class="modal-title">Nuevo contacto del cliente {{$client->name}}</h5>
 	</div>
 
-	<form action="{!! route('contact-save',compact('client')) !!}" class="form-horizontal" method="post">
+	<form action="{!! route('contact-update',compact('client','contact')) !!}" class="form-horizontal" method="post">
 		{{ csrf_field() }}
-		{{ method_field('post') }}
+		{{ method_field('put') }}
 		<div class="modal-body">
 
 			@include('contact._fields')
@@ -15,7 +15,7 @@
 
 		<div class="modal-footer">
 			<button type="button" class="btn btn-link" data-dismiss="modal">Cerrar</button>
-			<button type="submit" class="btn bg-primary">Crear contacto</button>
+			<button type="submit" class="btn bg-primary">Editar contacto</button>
 		</div>
 	</form>
 </div>

@@ -47,6 +47,9 @@ Route::get('/productosApi/', 'ProductController@datatableApi')->name('product-ap
 //CONTACTO
 Route::get('/clientes/{client}/contactos/nuevo','ContactController@new')->name('contact-new');
 Route::post('/clientes/{client}/contactos/nuevo','ContactController@save')->name('contact-save');
+Route::get('/clientes/{client}/contactos/{contact}/editar','ContactController@edit')->name('contact-edit');
+Route::put('/clientes/{client}/contactos/{contact}/editar','ContactController@update')->name('contact-update');
+Route::get('/clientes/{client}/contactos/{contact}/eliminar','ContactController@delete')->name('contact-delete');
 
 //LOCALIDADES
 Route::post('/api/localidades/', 'LocationController@selectApi')->name('location-api');

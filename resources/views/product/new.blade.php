@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar" data-nav-type="accordion">
 
       <!-- Main -->
-      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div> <i class="icon-menu" title="Menú principal"></i></li>
+      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
       <li class="nav-item">
         <a href="{!! route('home') !!}" class="nav-link">
           <i class="icon-home4"></i>
@@ -172,7 +172,7 @@
 
 			<div class="text-right">
 				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-				<button type="submit" class="btn btn-success">Crear nuevo producto <i class="icon-stack-plus ml-2"></i></button>
+				<button type="submit" class="btn btn-success">Crear nuevo producto <i class="fas fa-plus-square"></i></button>
 			</div>
 		</form>
 	</div>

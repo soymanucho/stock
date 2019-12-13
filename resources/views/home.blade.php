@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar" data-nav-type="accordion">
 
       <!-- Main -->
-      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div> </li>
+      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
       <li class="nav-item">
         <a href="{!! route('home') !!}" class="nav-link active">
           <i class="icon-home4"></i>
@@ -116,14 +116,14 @@
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Link</a>
-      <span class="breadcrumb-item active">Current</span>
+      {{-- <a href="" class="breadcrumb-item">Link</a> --}}
+      <span class="breadcrumb-item active">Panel de control</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
 
-  <div class="header-elements d-none">
+  {{-- <div class="header-elements d-none">
     <div class="breadcrumb justify-content-center">
       <a href="#" class="breadcrumb-elements-item">
         Link
@@ -143,7 +143,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 @endsection
 @section('content')
 
@@ -153,7 +153,7 @@
     <div class="card-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
-                {{ session('status') }} aa
+                {{ session('status') }}
             </div>
         @endif
 

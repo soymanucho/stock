@@ -31,9 +31,11 @@
       <select id="brands" class="form-control" name="brand_id">
         @foreach ($brands as $brand)
           <option value="{{ old('brand_id',$brand->id)}}"
-          @if ($brand->id == $product->brand->id)
-            selected="selected"
-          @endif
+          @isset($product->brand->id)
+            @if ($brand->id == $product->brand->id)
+              selected="selected"
+            @endif
+          @endisset
           >{{$brand->name}}</option>
         @endforeach
       </select>

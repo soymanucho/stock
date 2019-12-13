@@ -6,7 +6,7 @@
     <ul class="nav nav-sidebar" data-nav-type="accordion">
 
       <!-- Main -->
-      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div> <i class="icon-menu" title="Menú principal"></i></li>
+      <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
       <li class="nav-item">
         <a href="{!! route('home') !!}" class="nav-link">
           <i class="icon-home4"></i>
@@ -23,7 +23,7 @@
       <li class="nav-item">
         <a href="{!! route('product-show') !!}" class="nav-link">
           <i class="icon-stack"></i>
-          <span>Productoss</span>
+          <span>Productos</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
@@ -167,7 +167,7 @@
 			@include('client._fields')
 			<div class="text-right">
 				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-				<button type="submit" class="btn btn-success">Editar cliente <i class="icon-user-cancel ml-2"></i></button>
+				<button type="submit" class="btn btn-success">Editar cliente <i class="fas fa-user-edit"></i></button>
 			</div>
 		</form>
 	</div>

@@ -21,7 +21,7 @@
         <td>  {{ $client->fullAddress() }} </td>
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('client-edit',compact('client')) !!} ><b class="icon-database-edit2"></b></a> </td>
+        <td class="text-center">  <a href={!! route('client-edit',compact('client')) !!} ><i class="fas fa-edit"></i></a> </td>
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>
     @endforeach

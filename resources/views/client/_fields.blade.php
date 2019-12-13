@@ -16,19 +16,34 @@
   <div class="form-group row">
     <label class="col-form-label col-lg-2" for="street">Calle</label>
     <div class="col-lg-10">
-      <input type="text" class="form-control rounded-round" name="street" placeholder="Calle de la dirección" value="{{ old('street',$client->address->street)}}">
+      <input type="text" class="form-control rounded-round" name="street" placeholder="Calle de la dirección"
+        @isset($client->address)
+          value="{{ old('street',$client->address->street)}}"
+        @else
+          value="{{ old('street','')}}"
+        @endisset >
     </div>
   </div>
   <div class="form-group row">
     <label class="col-form-label col-lg-2" for="number">Número</label>
     <div class="col-lg-10">
-      <input type="text" class="form-control rounded-round" name="number" placeholder="Número de la dirección" value="{{ old('number',$client->address->number)}}">
+      <input type="text" class="form-control rounded-round" name="number" placeholder="Número de la dirección"
+      @isset($client->address)
+        value="{{ old('number',$client->address->number)}}"
+      @else
+        value="{{ old('number','')}}"
+      @endisset >
     </div>
   </div>
   <div class="form-group row">
     <label class="col-form-label col-lg-2" for="floor">Piso</label>
     <div class="col-lg-10">
-      <input type="text" class="form-control rounded-round" name="floor" placeholder="Piso de la dirección" value="{{ old('floor',$client->address->floor)}}">
+      <input type="text" class="form-control rounded-round" name="floor" placeholder="Piso de la dirección"
+      @isset($client->address)
+        value="{{ old('floor',$client->address->floor)}}"
+      @else
+        value="{{ old('floor','')}}"
+      @endisset >
     </div>
   </div>
   <div class="form-group row">
@@ -71,8 +86,10 @@
                       <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown" aria-expanded="false"><i class="icon-menu7"></i></a>
                       <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-164px, 19px, 0px);">
                         <a href="tel:{{$contact->prefix}}{{$contact->phone}}" class="dropdown-item"><i class="icon-phone2"></i> Llamar al {{$contact->prefix}} {{$contact->phone}}</a>
-                        <div class="dropdown-divider"></div>
                         <a href="mailto:{{$contact->email}}" class="dropdown-item"><i class="icon-mail5"></i> Enviar mail a {{$contact->email}}</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{!! route('contact-edit',compact('client','contact')) !!}" class="dropdown-item fancybox"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{!! route('contact-delete',compact('client','contact')) !!}" class="dropdown-item"><i class="fas fa-trash-alt"></i> Eliminar</a>
                       </div>
                     </div>
                   </div>
