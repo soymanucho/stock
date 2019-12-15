@@ -17,6 +17,11 @@ class Supplier extends Model
 
   protected $fillable = ['name','address_id'];
 
+  public function fullAddress()
+  {
+    return $this->address->street.' nº '.$this->address->number.' '.$this->address->floor.', '.$this->address->location->name.', '.$this->address->location->province->name;
+  }
+  
   public function address()
   {
     return $this->belongsTo(Address::class);

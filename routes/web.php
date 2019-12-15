@@ -34,7 +34,16 @@ Route::get('/clientes/{client}','ClientController@detail')->name('client-detail'
 
 Route::get('/clientesApi/', 'ClientController@datatableApi')->name('client-api');
 
-//CLIENTE
+//PROVEEDORES
+Route::get('/provedores/', 'SupplierController@show')->name('supplier-show');
+Route::get('/provedores/nuevo/', 'SupplierController@new')->name('supplier-new');
+Route::post('/provedores/nuevo/', 'SupplierController@save')->name('supplier-save');
+Route::get('/provedores/{supplier}/editar/', 'SupplierController@edit')->name('supplier-edit');
+Route::put('/provedores/{supplier}/editar/', 'SupplierController@update')->name('supplier-update');
+Route::get('/provedores/{supplier}','SupplierController@detail')->name('supplier-detail');
+
+
+//PRODUCTO
 Route::get('/productos/', 'ProductController@show')->name('product-show');
 Route::get('/productos/nuevo/', 'ProductController@new')->name('product-new');
 Route::post('/productos/nuevo/', 'ProductController@save')->name('product-save');
@@ -45,11 +54,11 @@ Route::get('/productos/{product}','ProductController@detail')->name('product-det
 Route::get('/productosApi/', 'ProductController@datatableApi')->name('product-api');
 
 //CONTACTO
-Route::get('/clientes/{client}/contactos/nuevo','ContactController@new')->name('contact-new');
-Route::post('/clientes/{client}/contactos/nuevo','ContactController@save')->name('contact-save');
-Route::get('/clientes/{client}/contactos/{contact}/editar','ContactController@edit')->name('contact-edit');
-Route::put('/clientes/{client}/contactos/{contact}/editar','ContactController@update')->name('contact-update');
-Route::get('/clientes/{client}/contactos/{contact}/eliminar','ContactController@delete')->name('contact-delete');
+Route::get('/contactos/{model}/{id}/nuevo','ContactController@new')->name('contact-new');
+Route::post('/contactos/{model}/{id}/nuevo','ContactController@save')->name('contact-save');
+Route::get('/contactos/{model}/{id}/{contact}/editar','ContactController@edit')->name('contact-edit');
+Route::put('/contactos/{model}/{id}/{contact}/editar','ContactController@update')->name('contact-update');
+Route::get('/contactos/{model}/{id}/{contact}/eliminar','ContactController@delete')->name('contact-delete');
 
 //LOCALIDADES
 Route::post('/api/localidades/', 'LocationController@selectApi')->name('location-api');

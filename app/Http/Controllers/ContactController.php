@@ -9,29 +9,39 @@ use App\Client;
 
 class ContactController extends Controller
 {
-  public function new(Client $client)
+  public function new($model,$id)
   {
-    $client = Client::with('contacts')->where('id',$client->id)->first();
+    $modelClass = $model;
+    $model = $modelClass::with('contacts')->where('id',$id)->first();
     $contact = new Contact();
     // $client->contacts->associate($contact)->save();
-    return view('contact.new',compact('contact','client'));
+    return view('contact.new',compact('contact','model'));
   }
-  public function delete(Client $client, Contact $contact)
+  public function delete($model,$id, Contact $contact)
   {
-    $client = Client::with('contacts')->where('id',$client->id)->first();
+    $modelClass = $model;
+    $model = $modelClass::with('contacts')->where('id',$id)->first();
     $contact = Contact::where('id',$contact->id)->first();
     $contact->delete();
     // $client->contacts->associate($contact)->save();
-    return redirect()->route('client-edit',compact('client'));
+    if ($modelClass == 'App\Client') {
+      $client = $model;
+      return redirect()->route('client-edit',compact('client'));
+    } elseif ($modelClass == 'App\Supplier') {
+      $supplier = $model;
+      return redirect()->route('supplier-edit',compact('supplier'));
+    }
+
   }
-  public function edit(Client $client,Contact $contact)
+  public function edit($model,$id,Contact $contact)
   {
-    $client = Client::with('contacts')->where('id',$client->id)->first();
+    $modelClass = $model;
+    $model = $modelClass::with('contacts')->where('id',$id)->first();
     $contact = Contact::where('id',$contact->id)->first();
     // $client->contacts->associate($contact)->save();
-    return view('contact.edit',compact('contact','client'));
+    return view('contact.edit',compact('contact','model'));
   }
-  public function save(Client $client,Request $request)
+  public function save($model,$id,Request $request)
   {
     // dd($request);
     $this->validate(
@@ -56,11 +66,12 @@ class ContactController extends Controller
         'location_id'=> 'Localidad',
       ]
     );
-    $client = Client::with('contacts')->where('id',$client->id)->first();
+    $modelClass = $model;
+    $model = $modelClass::with('contacts')->where('id',$id)->first();
     $contact = new Contact;
     $contact->fill($request->all());
-    $contact->contactable_id = $client->id;
-    $contact->contactable_type = Client::class;
+    $contact->contactable_id = $model->id;
+    $contact->contactable_type = $modelClass;
     $contact->save();
     // dd($contact,$client);
 
@@ -68,9 +79,16 @@ class ContactController extends Controller
     // $client->contacts->save($contact);
 
 
-    return redirect()->route('client-edit',compact('client'));
+    if ($modelClass == 'App\Client') {
+      $client = $model;
+      return redirect()->route('client-edit',compact('client'));
+    } elseif ($modelClass == 'App\Supplier') {
+      $supplier = $model;
+      return redirect()->route('supplier-edit',compact('supplier'));
+    }
+
   }
-  public function update(Client $client,Contact $contact,Request $request)
+  public function update($model,$id,Contact $contact,Request $request)
   {
     // dd($request);
     $this->validate(
@@ -95,7 +113,8 @@ class ContactController extends Controller
         'location_id'=> 'Localidad',
       ]
     );
-    $client = Client::with('contacts')->where('id',$client->id)->first();
+    $modelClass = $model;
+    $model = $modelClass::with('contacts')->where('id',$id)->first();
     $contact = Contact::where('id',$contact->id)->first();
     $contact->fill($request->all());
     // $contact->contactable_id = $client->id;
@@ -107,6 +126,13 @@ class ContactController extends Controller
     // $client->contacts->save($contact);
 
 
-    return redirect()->route('client-edit',compact('client'));
+    if ($modelClass == 'App\Client') {
+      $client = $model;
+      return redirect()->route('client-edit',compact('client'));
+    } elseif ($modelClass == 'App\Supplier') {
+      $supplier = $model;
+      return redirect()->route('supplier-edit',compact('supplier'));
+    }
+
   }
 }
