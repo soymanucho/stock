@@ -194,7 +194,7 @@
 				</div>
 				<!-- /user menu -->
 
-				@yield('main-sidebar')
+				@include('layouts.main-sidebar')
 
 			</div>
 			<!-- /sidebar content -->
@@ -491,6 +491,21 @@
 					 "order": [],
 					 "language": {
 							"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+					},
+					"fnDrawCallback": function () {
+					$(".fancybox").fancybox({
+						maxWidth	: 1600,
+			      minWidth	: 1000,
+			  		maxHeight	: 300,
+			  		fitToView	: true,
+			  		width		: '100%',
+			  		height		: '50%',
+			  		autoSize	: true,
+			  		closeClick	: false,
+			  		openEffect	: 'none',
+			  		closeEffect	: 'none',
+			      type: 'ajax',
+					});
 					}
 			} );
 
@@ -501,6 +516,7 @@
 <script type="text/javascript">
   window.addEventListener('load',function() {
   	$(".fancybox").fancybox({
+			selector : '[.fancybox]',
   		maxWidth	: 1600,
       minWidth	: 1000,
   		maxHeight	: 300,
@@ -511,7 +527,10 @@
   		closeClick	: false,
   		openEffect	: 'none',
   		closeEffect	: 'none',
-      type: 'ajax'
+      type: 'ajax',
+			afterClose : function() {
+        window.location.reload();
+    	}
   	});
   });
 </script>

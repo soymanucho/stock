@@ -24,7 +24,7 @@
              <th>Stock</th>
              <th># Ventas</th>
              <th># Pedidos</th>
-             <th>Proveedores</th>
+             {{-- <th>Proveedores</th> --}}
            </tr>
            </thead>
            <tbody>
@@ -36,12 +36,12 @@
                  <td>{{$product->stock}}</td>
                  <td>{{$product->timesSold()}}</td>
                  <td>{{$product->timesOrdered()}}</td>
-                 <td>
+                 {{-- <td>
                  @foreach ($product->suppliers as $supplier)
 
                    <span class="badge badge-dark">{{$supplier->name}}</span>
                  @endforeach
-                 </td>
+                 </td> --}}
                </tr>
              @endforeach
            </tbody>
@@ -53,7 +53,7 @@
              <th>Stock</th>
              <th># Ventas</th>
              <th># Pedidos</th>
-             <th>Proveedores</th>
+             {{-- <th>Proveedores</th> --}}
            </tr>
            </tfoot>
          </table>
