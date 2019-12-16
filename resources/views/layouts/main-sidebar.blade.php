@@ -5,36 +5,29 @@
     <!-- Main -->
     <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
     <li class="nav-item">
-      <a href="{!! route('home') !!}" class="nav-link {{ request()->route()->getName() === 'home' ? ' active' : ''}}">
+      <a href="{!! route('home') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'home') === false ? ' active' : ''}}">
         <i class="icon-home4"></i>
         <span>Inicio</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="{!! route('client-show') !!}" class="nav-link {{ request()->route()->getName() === 'client-show' ? ' active' : ''}}">
+      <a href="{!! route('client-show') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'client') === false ? ' active' : ''}}">
         <i class="icon-users2"></i>
         <span>Clientes</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>
     <li class="nav-item">
-      <a href="{!! route('product-show') !!}" class="nav-link {{ request()->route()->getName() === 'product-show' ? ' active' : ''}}">
+      <a href="{!! route('product-show') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'product') === false || !stristr(request()->route()->getName(),'brand') === false) ? ' active' : ''}}">
         <i class="icon-grid"></i>
         <span>Productos</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>
     <li class="nav-item">
-      <a href="{!! route('supplier-show') !!}" class="nav-link {{ request()->route()->getName() === 'supplier-show' ? ' active' : ''}}">
+      <a href="{!! route('supplier-show') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'supplier') === false ? ' active' : ''}}">
         <i class="fas fa-user-tie"></i>
         <span>Proveedores</span>
-        {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{!! route('brand-show') !!}" class="nav-link {{ request()->route()->getName() === 'brand-show' ? ' active' : ''}}">
-        <i class="fas fa-tags"></i>
-        <span>Marcas</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>

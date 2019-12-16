@@ -28,7 +28,12 @@
           >{{ $product->stock }}</span>
         </td>
         <td>  {{ $product->description }} </td>
-        <td>  {{ $product->brand->name }} </td>
+        <td>
+          {{ $product->brand->name }}
+          @if ($product->brand->trashed())
+            (eliminada)
+          @endif
+        </td>
         <td class="text-center">  <a href={!! route('product-edit',compact('product')) !!} ><i class="fas fa-edit"></i></a> </td>
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>

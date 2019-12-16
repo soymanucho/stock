@@ -22,6 +22,28 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
+          <span class="text-uppercase font-size-sm font-weight-semibold">Productos</span>
+          <div class="header-elements">
+            <div class="list-icons">
+              <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item">
+              <a href="{!! route('product-show') !!}" class="nav-link"><i class="fas fa-box-open"></i> Ver todos</a>
+            </li>
+            <li class="nav-item">
+              <a href="{!! route('product-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Dar de alta</a>
+            </li>
+            <li class="nav-item-divider"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-2">
+        <div class="card-header bg-transparent header-elements-inline">
           <span class="text-uppercase font-size-sm font-weight-semibold">Marcas</span>
           <div class="header-elements">
             <div class="list-icons">
@@ -32,21 +54,13 @@
 
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="{!! route('brand-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
+              <a href="{!! route('brand-show') !!}" class="nav-link"><i class="fas fa-tags"></i> Ver todas</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Dar de alta</a>
             </li>
             <li class="nav-item-divider"></li>
-
-            {{-- <li class="nav-item nav-item-submenu">
-              <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
-              <ul class="nav nav-group-sub">
-                <li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
-              </ul>
-            </li> --}}
           </ul>
         </div>
       </div>
@@ -54,7 +68,6 @@
     </div>
   </div>
 @endsection
-
 @section('actions')
   <a href="{!! route('brand-new') !!}" class="btn btn-success btn-disabled">Nueva marca</a>
 @endsection
