@@ -21,7 +21,7 @@ class Supplier extends Model
   {
     return $this->address->street.' nº '.$this->address->number.' '.$this->address->floor.', '.$this->address->location->name.', '.$this->address->location->province->name;
   }
-  
+
   public function address()
   {
     return $this->belongsTo(Address::class);
@@ -29,7 +29,7 @@ class Supplier extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class)->using(ProductSupplier::class)->withPivot(['price']);
+    return $this->belongsToMany(Product::class,'product_supplier')->using(ProductSupplier::class)->withPivot(['price']);
   }
 
   public function contacts()

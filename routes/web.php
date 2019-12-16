@@ -34,6 +34,17 @@ Route::get('/clientes/{client}','ClientController@detail')->name('client-detail'
 
 Route::get('/clientesApi/', 'ClientController@datatableApi')->name('client-api');
 
+//MARCAS
+Route::get('/marcas/', 'BrandController@show')->name('brand-show');
+Route::get('/marcas/nueva/', 'BrandController@new')->name('brand-new');
+Route::post('/marcas/nueva/', 'BrandController@save')->name('brand-save');
+Route::get('/marcas/{brand}/eliminar/', 'BrandController@delete')->name('brand-delete');
+Route::get('/marcas/{brand}/editar/', 'BrandController@edit')->name('brand-edit');
+Route::put('/marcas/{brand}/editar/', 'BrandController@update')->name('brand-update');
+Route::get('/marcas/{brand}','BrandController@detail')->name('brand-detail');
+
+Route::get('/marcasApi/', 'BrandController@datatableApi')->name('brand-api');
+
 //PROVEEDORES
 Route::get('/provedores/', 'SupplierController@show')->name('supplier-show');
 Route::get('/provedores/nuevo/', 'SupplierController@new')->name('supplier-new');

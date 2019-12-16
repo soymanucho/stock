@@ -99,6 +99,10 @@ class ClientController extends Controller
     $client->fill($request->all());
     $client->save();
 
+    $address = $client->address;
+    $address->fill($request->all());
+    $address->save();
+
     return redirect()->route('client-show');
   }
   public function detail(Client $client)

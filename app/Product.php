@@ -57,7 +57,7 @@ class Product extends Model
 
   public function suppliers()
   {
-    return $this->belongsToMany(Supplier::class)->using(ProductSupplier::class)->withPivot(['price']);
+    return $this->belongsToMany(Supplier::class,'product_supplier')->using(ProductSupplier::class)->withPivot(['price']);
   }
 
 }

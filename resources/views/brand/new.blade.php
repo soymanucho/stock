@@ -21,8 +21,8 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('product-show') !!}" class="nav-link active">
-          <i class="icon-grid"></i>
+        <a href="{!! route('product-show') !!}" class="nav-link">
+          <i class="icon-stack"></i>
           <span>Productos</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
@@ -35,7 +35,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{!! route('brand-show') !!}" class="nav-link">
+        <a href="{!! route('brand-show') !!}" class="nav-link active">
           <i class="fas fa-tags"></i>
           <span>Marcas</span>
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
@@ -85,7 +85,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Productos</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Marcas</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
@@ -97,19 +97,13 @@
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="{!! route('product-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('brand-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('product-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Dar de alta</a>
+              <a href="#" class="nav-link active"><i class="icon-user-plus"></i> Dar de alta</a>
             </li>
             <li class="nav-item-divider"></li>
-            {{-- <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="icon-grid-alt"></i>
-                Pedidos
-                <span class="badge bg-primary badge-pill ml-auto">2</span>
-              </a>
-            </li> --}}
+
             {{-- <li class="nav-item nav-item-submenu">
               <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
               <ul class="nav nav-group-sub">
@@ -125,15 +119,15 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('product-new') !!}" class="btn btn-success btn-disabled">Nuevo producto</a>
+  <a href="#" class="btn btn-success btn-disabled">Nueva marca</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="{!! route('product-show') !!}" class="breadcrumb-item">Productos</a>
-      <span class="breadcrumb-item active">Editar producto</span>
+      <a href="{!! route('brand-show') !!}" class="breadcrumb-item">Marcas</a>
+      <span class="breadcrumb-item active">Nuevo marca</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -165,7 +159,7 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Editar producto</h5>
+		<h5 class="card-title">Nueva marca</h5>
 		<div class="header-elements">
 			<div class="list-icons">
     		<a class="list-icons-item" data-action="collapse"></a>
@@ -175,13 +169,18 @@
 
 	<div class="card-body">
     @include('errors.errors')
-		<form method="post">
+		<form action="{!! route('brand-save') !!}" method="post">
       {{ csrf_field() }}
-      {{ method_field('put') }}
-			@include('product._fields')
+      {{ method_field('post') }}
+			@include('brand._fields')
+
+
+
+
+
 			<div class="text-right">
 				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-				<button type="submit" class="btn btn-success">Editar producto <i class="fas fa-edit"></i></button>
+				<button type="submit" class="btn btn-success">Crear nueva marca <i class="fas fa-plus"></i></button>
 			</div>
 		</form>
 	</div>

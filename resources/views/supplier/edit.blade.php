@@ -34,6 +34,13 @@
           {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{!! route('brand-show') !!}" class="nav-link">
+          <i class="fas fa-tags"></i>
+          <span>Marcas</span>
+          {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
+        </a>
+      </li>
       {{-- <li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
         <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Ventas</span></a>
 

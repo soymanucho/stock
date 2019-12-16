@@ -95,6 +95,10 @@ class SupplierController extends Controller
     $supplier->fill($request->all());
     $supplier->save();
 
+    $address = $supplier->address;
+    $address->fill($request->all());
+    $address->save();
+
     return redirect()->route('supplier-show');
   }
   public function detail(Supplier $supplier)
