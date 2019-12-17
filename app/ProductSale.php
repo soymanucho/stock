@@ -9,6 +9,8 @@ class ProductSale extends Model
 {
   use SoftDeletes;
 
+  protected $table = 'product_sale';
+
   protected $dates = ['created_at','updated_at','deleted_at'];
 
   protected $fillable = ['product_id','sale_id','amount','price','accepted_amount','product_status_id'];

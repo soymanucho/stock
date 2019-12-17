@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Sale;
 use App\Client;
-use App\Address;
 
-class ClientController extends Controller
+class SaleController extends Controller
 {
   public function __construct()
   {
@@ -15,20 +15,21 @@ class ClientController extends Controller
   }
   public function show()
   {
-    $clients = Client::orderby('name')->with('address')->with('address.location')->with('address.location.province')->get();
-    return view('client.show',compact('clients'));
+    $sales = Sale::orderbydesc('id')->with('products')->with('client')->with('latestStatus')->get();
+    return view('sale.show',compact('sales'));
   }
 
   public function new()
   {
-    $client = new Client();
-    return view('client.new',compact('client'));
+    $sale = new Sale();
+    $sale = new Sale();
+    return view('sale.new',compact('sale'));
   }
 
-  public function edit(Client $client)
+  public function edit(Sale $sale)
   {
 
-    return view('client.edit',compact('client'));
+    return view('sale.edit',compact('sale'));
   }
 
   public function save(Request $request)
@@ -57,20 +58,20 @@ class ClientController extends Controller
         'location_id'=> 'Localidad',
       ]
     );
-    $client = new Client;
-    $client->fill($request->all());
-    $client->save();
+    $sale = new Sale;
+    $sale->fill($request->all());
+    $sale->save();
 
     $address = new Address;
     $address->fill($request->all());
     $address->save();
 
-    $client->address()->associate($address)->save();
+    $sale->address()->associate($address)->save();
 
-    return redirect()->route('client-show');
+    return redirect()->route('sale-show');
   }
 
-  public function update(Client $client, Request $request)
+  public function update(Sale $sale, Request $request)
   {
     $this->validate(
       $request,
@@ -96,40 +97,17 @@ class ClientController extends Controller
       ]
     );
 
-    $client->fill($request->all());
-    $client->save();
+    $sale->fill($request->all());
+    $sale->save();
 
-    $address = $client->address;
+    $address = $sale->address;
     $address->fill($request->all());
     $address->save();
 
-    return redirect()->route('client-show');
+    return redirect()->route('sale-show');
   }
-  public function detail(Client $client)
+  public function detail(Sale $sale)
   {
-    return view('client.detail',compact('client'));
-  }
-
-  public function selectApi(Request $request)
-  {
-    $search = $request->search;
-
-    if($search == ''){
-       $clients = Client::orderby('name','asc')->limit(5)->get();
-    }else{
-       $clients = Client::orderby('name','asc')
-          ->where('name', 'like', '%' .$search . '%')
-          ->orWhere('cuil','like','%' .$search . '%')
-          ->limit(5)->get();
-    }
-    $response = array();
-    foreach($clients as $client){
-       $response[] = array(
-            "id"=>$client->id,
-            "text"=>$client->name.' ('.$client->cuit.')'
-       );
-    }
-
-    return json_encode($response);
+    return view('sale.detail',compact('sale'));
   }
 }

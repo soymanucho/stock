@@ -96,4 +96,31 @@ class ProductController extends Controller
   {
     return view('product.detail',compact('product'));
   }
+
+  public function selectApi(Request $request)
+  {
+    $search = $request->search;
+
+    if($search == ''){
+       $products = Product::orderby('name','asc')->limit(5)->get();
+    }else{
+       $products = Product::orderby('name','asc')
+          ->where('name', 'like', '%' .$search . '%')
+          ->orWhereHas('brand',function($query) use($search)
+          {
+            $query->where('name','like','%'.$search.'%');
+          })
+          ->limit(5)->with('brand')->get();
+    }
+    $response = array();
+    foreach($products as $product){
+       $response[] = array(
+            "id"=>$product->id,
+            "text"=>$product->name.' - '.$product->brand->name.' (quedan '.$product->stock.' unidades)'
+       );
+    }
+
+    return json_encode($response);
+  }
+
 }

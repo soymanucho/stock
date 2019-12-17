@@ -16,6 +16,7 @@
 	<link href="{{ asset('/css/layout.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
+	@notifyCss
 
 	<!-- /global stylesheets -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css">
@@ -26,6 +27,17 @@
 	<!-- Core JS files -->
 	<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" defer></script>
 	<script src="{{ asset('/js/blockui.min.js') }}" defer></script>
+
+	<script src="{{ asset('/js/pdfmake.min.js') }}" defer></script>
+	<script src="{{ asset('/js/jszip.min.js') }}" defer></script>
+	<script src="{{ asset('/js/responsive.min.js') }}" defer></script>
+	<script src="{{ asset('/js/vfs_fonts.min.js') }}" defer></script>
+	<script src="{{ asset('/js/buttons.min.js') }}" defer></script>
+	<script src="{{ asset('/js/ckeditor.js') }}" defer></script>
+	<script src="{{ asset('/js/echarts.min.js') }}" defer></script>
+	<script src="{{ asset('/js/ecommerce_orders_history.js') }}" defer></script>
+	<script src="{{ asset('/js/invoice_archive.js') }}" defer></script>
+	<script src="{{ asset('/js/invoice_template.js') }}" defer></script>
 
 	<!-- /core JS files -->
 
@@ -232,6 +244,7 @@
 
 			<!-- Content area -->
 			<div class="content">
+				@include('notify::messages')
 				@yield('content')
 				{{-- <!-- Basic card -->
 				<div class="card">
@@ -487,25 +500,30 @@
 		$('#myTable').DataTable( {
 					"scrollX": true,
 					"select": true,
-					"responsive": true,
+					"responsive": {
+							"details": {
+									"type": 'column',
+									"target": -1
+							}
+					},
 					 "order": [],
 					 "language": {
 							"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 					},
 					"fnDrawCallback": function () {
-					$(".fancybox").fancybox({
-						maxWidth	: 1600,
-			      minWidth	: 1000,
-			  		maxHeight	: 300,
-			  		fitToView	: true,
-			  		width		: '100%',
-			  		height		: '50%',
-			  		autoSize	: true,
-			  		closeClick	: false,
-			  		openEffect	: 'none',
-			  		closeEffect	: 'none',
-			      type: 'ajax',
-					});
+						$(".fancybox").fancybox({
+							maxWidth	: 1600,
+				      minWidth	: 1000,
+				  		maxHeight	: 300,
+				  		fitToView	: true,
+				  		width		: '100%',
+				  		height		: '50%',
+				  		autoSize	: true,
+				  		closeClick	: false,
+				  		openEffect	: 'none',
+				  		closeEffect	: 'none',
+				      type: 'ajax',
+						});
 					}
 			} );
 
@@ -534,5 +552,6 @@
   	});
   });
 </script>
+@notifyJs
 </body>
 </html>

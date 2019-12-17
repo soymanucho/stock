@@ -32,12 +32,12 @@ class Sale extends Model
 
   public function products()
   {
-    return $this->hasMany(ProductSale::class)->withTimestamps();
+    return $this->hasMany(ProductSale::class);
   }
 
   public function statuses()
   {
-    return $this->belongsToMany(Status::class)->withTimestamps();
+    return $this->belongsToMany(Status::class);
   }
 
   public function latestStatus()

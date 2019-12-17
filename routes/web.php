@@ -14,6 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ecommerce_customers', function () {
+    return view('support.ecommerce_customers');
+});
+Route::get('/ecommerce_orders', function () {
+    return view('support.ecommerce_orders_history');
+});
+Route::get('/invoice_template', function () {
+    return view('support.invoice_template');
+});
+Route::get('/invoice_archive', function () {
+    return view('support.invoice_archive');
+});
 
 Auth::routes();
 
@@ -23,6 +35,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//VENTAS
+Route::get('/ventas/', 'SaleController@show')->name('sale-show');
+Route::get('/ventas/nueva/', 'SaleController@new')->name('sale-new');
+Route::post('/ventas/nueva/', 'SaleController@save')->name('sale-save');
+Route::get('/ventas/{sale}/editar/', 'SaleController@edit')->name('sale-edit');
+Route::put('/ventas/{sale}/editar/', 'SaleController@update')->name('sale-update');
+Route::get('/ventas/{sale}','SaleController@detail')->name('sale-detail');
 
 //CLIENTE
 Route::get('/clientes/', 'ClientController@show')->name('client-show');
@@ -33,6 +53,7 @@ Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('clien
 Route::get('/clientes/{client}','ClientController@detail')->name('client-detail');
 
 Route::get('/clientesApi/', 'ClientController@datatableApi')->name('client-api');
+Route::post('/clientesSelectApi/', 'ClientController@selectApi')->name('client-select-api');
 
 //MARCAS
 Route::get('/marcas/', 'BrandController@show')->name('brand-show');
@@ -63,6 +84,7 @@ Route::put('/productos/{product}/editar/', 'ProductController@update')->name('pr
 Route::get('/productos/{product}','ProductController@detail')->name('product-detail');
 
 Route::get('/productosApi/', 'ProductController@datatableApi')->name('product-api');
+Route::post('/productosSelectApi/', 'ProductController@selectApi')->name('product-select-api');
 
 //CONTACTO
 Route::get('/contactos/{model}/{id}/nuevo','ContactController@new')->name('contact-new');

@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-bordered table-hover display nowrap" style="width:100%">
+<table id="myTable" class="table stripe table-hover display nowrap" style="width:100%">
   <thead>
   <tr>
     @yield('header')

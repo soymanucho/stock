@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // notify()->success('Welcome to Laravel Notify ⚡️');
+        // connectify('success', 'Connection Found', 'Success Message Here');
+        // drakify('success');
+        // drakify('error');
+        // smilify('success', 'You are successfully reconnected');
+        // emotify('success', 'You are awesome, your data was successfully created');
+
         return view('home');
     }
 }

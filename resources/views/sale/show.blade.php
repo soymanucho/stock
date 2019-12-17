@@ -29,30 +29,34 @@
             </div>
           </div>
         </div>
-
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="#" class="nav-link active"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
             </li>
-            <li class="nav-item-divider"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-2">
+        <div class="card-header bg-transparent header-elements-inline">
+          <span class="text-uppercase font-size-sm font-weight-semibold">Ventas</span>
+          <div class="header-elements">
+            <div class="list-icons">
+              <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="icon-grid-alt"></i>
-                Ventas
-                <span class="badge bg-primary badge-pill ml-auto">2</span>
-              </a>
+              <a href="{!! route('sale-show') !!}" class="nav-link active"><i class="icon-list3"></i> Ver todas</a>
             </li>
-            {{-- <li class="nav-item nav-item-submenu">
-              <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
-              <ul class="nav nav-group-sub">
-                <li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
-              </ul>
-            </li> --}}
+            <li class="nav-item">
+              <a href="{!! route('sale-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nueva venta</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -70,54 +74,31 @@
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Clientes</a>
-      <span class="breadcrumb-item active">Ver todos</span>
+      <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
+      <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
+      <span class="breadcrumb-item active">Ver todas</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
-
-  {{-- <div class="header-elements d-none">
-    <div class="breadcrumb justify-content-center">
-      <a href="#" class="breadcrumb-elements-item">
-        Link
-      </a>
-
-      <div class="breadcrumb-elements-item dropdown p-0">
-        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-          Dropdown
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">Action</a>
-          <a href="#" class="dropdown-item">Another action</a>
-          <a href="#" class="dropdown-item">One more action</a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Separate action</a>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 @endsection
 @section('content')
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Clientes</h5>
+		<h5 class="card-title">Ventas</h5>
 		<div class="header-elements">
 			<div class="list-icons">
-            		<a class="list-icons-item" data-action="collapse"></a>
-            		{{-- <a class="list-icons-item" data-action="reload"></a> --}}
-            		{{-- <a class="list-icons-item" data-action="remove"></a> --}}
-            	</div>
-          	</div>
+    		<a class="list-icons-item" data-action="collapse"></a>
+    	</div>
+  	</div>
 	</div>
 
 	<div class="card-body">
 
-    @include('client.datatable')
+    @include('sale.datatable')
 	</div>
 
 </div>
-
+{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
 @endsection

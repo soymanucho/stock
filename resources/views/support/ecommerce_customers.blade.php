@@ -43,7 +43,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Ventas
+                Pedidos
                 <span class="badge bg-primary badge-pill ml-auto">2</span>
               </a>
             </li>
@@ -63,7 +63,6 @@
 
 @section('actions')
   <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
 @endsection
 
 @section('breadcrumbs')
@@ -77,47 +76,25 @@
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
 
-  {{-- <div class="header-elements d-none">
-    <div class="breadcrumb justify-content-center">
-      <a href="#" class="breadcrumb-elements-item">
-        Link
-      </a>
-
-      <div class="breadcrumb-elements-item dropdown p-0">
-        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-          Dropdown
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">Action</a>
-          <a href="#" class="dropdown-item">Another action</a>
-          <a href="#" class="dropdown-item">One more action</a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Separate action</a>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 @endsection
 @section('content')
 
-<div class="card">
-	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Clientes</h5>
-		<div class="header-elements">
-			<div class="list-icons">
+				<!-- Customers -->
+				<div class="card">
+					<div class="card-header header-elements-inline">
+						<h6 class="card-title">Customers</h6>
+						<div class="header-elements">
+							<div class="list-icons">
             		<a class="list-icons-item" data-action="collapse"></a>
-            		{{-- <a class="list-icons-item" data-action="reload"></a> --}}
-            		{{-- <a class="list-icons-item" data-action="remove"></a> --}}
             	</div>
           	</div>
-	</div>
+					</div>
+          <div class="card-body">
 
-	<div class="card-body">
+          @include('support.datatableco')
+        </div>
 
-    @include('client.datatable')
-	</div>
-
-</div>
+				</div>
+				<!-- /customers -->
 
 @endsection

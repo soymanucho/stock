@@ -43,7 +43,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Pedidos
+                Ventas
                 <span class="badge bg-primary badge-pill ml-auto">2</span>
               </a>
             </li>
@@ -63,6 +63,7 @@
 
 @section('actions')
   <a href="{!! route('client-new') !!}" class="btn btn-success btn-disabled">Nuevo cliente</a>
+  <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
 @endsection
 
 @section('breadcrumbs')

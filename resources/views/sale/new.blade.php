@@ -29,30 +29,34 @@
             </div>
           </div>
         </div>
-
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
               <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link active"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
             </li>
-            <li class="nav-item-divider"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-2">
+        <div class="card-header bg-transparent header-elements-inline">
+          <span class="text-uppercase font-size-sm font-weight-semibold">Ventas</span>
+          <div class="header-elements">
+            <div class="list-icons">
+              <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="icon-grid-alt"></i>
-                Ventas
-                <span class="badge bg-primary badge-pill ml-auto">2</span>
-              </a>
+              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
             </li>
-            {{-- <li class="nav-item nav-item-submenu">
-              <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
-              <ul class="nav nav-group-sub">
-                <li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
-              </ul>
-            </li> --}}
+            <li class="nav-item">
+              <a href="{!! route('sale-new') !!}" class="nav-link active"><i class="icon-user-plus"></i> Nueva venta</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,7 +66,7 @@
 @endsection
 
 @section('actions')
-  <a href="#" class="btn btn-success btn-disabled">Nuevo cliente</a>
+  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
   <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
 @endsection
 
@@ -71,39 +75,19 @@
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
       <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
-      <span class="breadcrumb-item active">Nuevo cliente</span>
+      <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
+      <span class="breadcrumb-item active">Nueva venta</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
 
-  {{-- <div class="header-elements d-none">
-    <div class="breadcrumb justify-content-center">
-      <a href="#" class="breadcrumb-elements-item">
-        Link
-      </a>
-
-      <div class="breadcrumb-elements-item dropdown p-0">
-        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-          Dropdown
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">Action</a>
-          <a href="#" class="dropdown-item">Another action</a>
-          <a href="#" class="dropdown-item">One more action</a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Separate action</a>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 @endsection
 @section('content')
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Nuevo cliente</h5>
+		<h5 class="card-title">Nueva venta</h5>
 		<div class="header-elements">
 			<div class="list-icons">
     		<a class="list-icons-item" data-action="collapse"></a>
@@ -113,10 +97,10 @@
 
 	<div class="card-body">
     @include('errors.errors')
-		<form action="{!! route('client-save') !!}" method="post">
+		<form action="{!! route('sale-save') !!}" method="post">
       {{ csrf_field() }}
       {{ method_field('post') }}
-			@include('client._fields')
+			@include('sale._fields')
 
 
 
@@ -124,7 +108,7 @@
 
 			<div class="text-right">
 				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-				<button type="submit" class="btn btn-success">Crear nuevo cliente <i class="fas fa-user-plus"></i></button>
+				<button type="submit" class="btn btn-success">Realizar venta <i class="fas fa-plus"></i></button>
 			</div>
 		</form>
 	</div>
@@ -133,9 +117,30 @@
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 
-    $( "#locations" ).select2({
+    $( "#products" ).select2({
       ajax: {
-        url: "{{route('location-api')}}",
+        url: "{{route('product-select-api')}}",
+        type: "post",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            _token: CSRF_TOKEN,
+            search: params.term // search term
+          };
+        },
+        processResults: function (response) {
+          return {
+            results: response
+          };
+        },
+        cache: true
+      }
+
+    });
+    $( "#clients" ).select2({
+      ajax: {
+        url: "{{route('client-select-api')}}",
         type: "post",
         dataType: 'json',
         delay: 250,
