@@ -5,6 +5,8 @@
     <th># Venta</th>
     <th>Cliente</th>
     <th># de productos</th>
+    <th>Tpo. pago/Cuotas</th>
+    <th>Total</th>
     <th>Estado</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
@@ -20,15 +22,20 @@
         <td>  {{ $sale->id }} </td>
         <td>
           @isset($sale->client)
-            {{ $sale->client->name }}, CUIT {{ $sale->client->cuit }}
+            {{ $sale->client->name ?? ''}}, CUIT {{ $sale->client->cuit ?? '' }}
+          @else
+            Indefinido
           @endisset
         </td>
         <td>  {{ $sale->products->count() }} </td>
+        <td>  {{$sale->paymentType->name}} en {{ $sale->fee }} </td>
+        <td>  ${{number_format($sale->totalAmount(), 2, ',', '.')}} </td>
         <td>
-          @isset($sale->latestStatus)
-            {{ $sale->latestStatus->first()->name }}
-          @else
-            Sin estado definido
+          @php
+          $status = $sale->latestStatus->first()->name ?? 'Indefinido'
+          @endphp
+          @isset($status)
+            {{ $status }}
           @endisset
         </td>
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}

@@ -37,7 +37,7 @@ class Sale extends Model
 
   public function statuses()
   {
-    return $this->belongsToMany(Status::class);
+    return $this->belongsToMany(Status::class)->withTimestamps();
   }
 
   public function latestStatus()

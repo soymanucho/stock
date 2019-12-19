@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Sale;
+use App\Status;
 use App\Client;
 use App\PaymentType;
 use App\ProductSale;
@@ -25,9 +26,14 @@ class SaleController extends Controller
 
   public function new()
   {
+    $status = Status::where('name','Presupuestada')->first();
     $sale = new Sale();
     $sale->fee = 1;
     $sale->save();
+    $sale->statuses()->attach([$status->id]);
+    // $status->sales()->attach([$sale->id]);
+    // $status->save();
+    // $sale->save();
     // $paymentTypes = PaymentType::all();
     // return view('sale.new',compact('sale','paymentTypes'));
     return redirect()->route('sale-edit',compact('sale'));
@@ -123,10 +129,6 @@ class SaleController extends Controller
     $sale->fill($request->all());
     $sale->save();
 
-    $address = new Address;
-    $address->fill($request->all());
-    $address->save();
-
     $sale->address()->associate($address)->save();
 
     return redirect()->route('sale-show');
@@ -137,33 +139,26 @@ class SaleController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|string|max:100',
-          'cuit' => 'required|string|max:20',
-          'street' => 'required|string|max:60',
-          'number'=> 'required|string|max:10',
-          'floor'=> 'nullable|string|max:10',
-          'location_id'=> 'required|exists:locations,id',
+          'client_id' => 'required|exists:clients,id',
+          'payment_type_id' => 'required|exists:payment_types,id',
+          'fee' => 'required|numeric',
+          'created_at'=> 'required|date',
 
       ],
       [
 
       ],
       [
-        'name' => 'Nombre',
-        'cuit' => 'CUIT',
-        'street' => 'Calle',
-        'number'=> 'Número',
-        'floor'=> 'Piso',
-        'location_id'=> 'Localidad',
+        'client_id' => 'Cliente',
+        'payment_type_id' => 'Forma de pago',
+        'fee' => 'Cuotas',
+        'created_at'=> 'Fecha',
+
       ]
     );
 
     $sale->fill($request->all());
     $sale->save();
-
-    $address = $sale->address;
-    $address->fill($request->all());
-    $address->save();
 
     return redirect()->route('sale-show');
   }

@@ -103,7 +103,7 @@
           {{ csrf_field() }}
           {{ method_field('post') }}
           <div class="row">
-            
+
               <div class="form-group col-lg-5 col-md-12 col-sm-12">
                 <label for="product_id" class="control-label">Producto</label>
                 <select id="products" class="form-control" name="product_id"></select>
@@ -151,25 +151,21 @@
           </div>
 
           <div class="card-body">
-            <form action="#">
-              <div class="form-group form-group-feedback form-group-feedback-right">
-                <select id="clients" class="form-control" name="client_id">
-                  @isset($sale->client)
-                    <option value="{{ old('client_id',$sale->client->id)}}" selected="selected">{{$sale->client->name}}, {{$sale->client->cuit}} </option>
-                  @else
-                    <option value="0" selected="selected"> Buscar cliente </option>
-                  @endisset
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="card-body">
-          <form action="{!! route('sale-save') !!}">
+            <form action="" method="post">
             {{ csrf_field() }}
             {{ method_field('put') }}
             <div class="form-group">
               <label>TOTAL:</label>
               <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
+            </div>
+            <div class="form-group form-group-feedback form-group-feedback-right">
+              <select id="clients" class="form-control" name="client_id">
+                @isset($sale->client)
+                  <option value="{{ old('client_id',$sale->client->id)}}" selected="selected">{{$sale->client->name}}, {{$sale->client->cuit}} </option>
+                @else
+                  <option value="0" selected="selected"> Buscar cliente </option>
+                @endisset
+              </select>
             </div>
 
             <div class="form-group">
@@ -271,6 +267,11 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $("#totalAmount").keydown(function (e) {
       e.preventDefault();
     });
+
+    // $(window).bind('beforeunload', function(){
+    //
+    //   return 'Are you sure you want to leave?';
+    // });
 
     $( "#products" ).select2({
       ajax: {
