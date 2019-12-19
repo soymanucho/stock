@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Sale;
 use App\Client;
+use App\PaymentType;
+use App\ProductSale;
+use App\ProductStatus;
+use App\Product;
 
 class SaleController extends Controller
 {
@@ -22,14 +26,71 @@ class SaleController extends Controller
   public function new()
   {
     $sale = new Sale();
-    $sale = new Sale();
-    return view('sale.new',compact('sale'));
+    $sale->fee = 1;
+    $sale->save();
+    // $paymentTypes = PaymentType::all();
+    // return view('sale.new',compact('sale','paymentTypes'));
+    return redirect()->route('sale-edit',compact('sale'));
   }
 
   public function edit(Sale $sale)
   {
+    $products = ProductSale::where('sale_id',$sale->id)->with('sale')->with('sale.latestStatus')->with('sale.paymentType')->with('sale.client')->with('sale.client.address')->with('sale.client.address.location')->with('sale.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();
+    if (isset($products->first()->sale)) {
+      $sale = $products->first()->sale;
+    }else {
+      $sale = Sale::where('id',$sale->id)->with('latestStatus')->with('products.product')->with('products')->first();
+    }
 
-    return view('sale.edit',compact('sale'));
+    $paymentTypes = PaymentType::all();
+    return view('sale.edit',compact('sale','paymentTypes','products'));
+  }
+  public function deleteProduct(Sale $sale, ProductSale $productSale)
+  {
+    // $sale = Sale::where('id',$sale->id)->with('products')->with('products.product')->with('products')->first();
+    $product = ProductSale::where('id',$productSale->id)->first();
+    $product->delete();
+    return redirect()->back()->with('sale');
+  }
+  public function newProduct(Request $request, Sale $sale)
+  {
+    $this->validate(
+      $request,
+      [
+          'product_id' => 'required|exists:products,id',
+          'amount' => 'required|numeric',
+          'price' => 'required|numeric',
+      ],
+      [
+
+      ],
+      [
+        'product_id' => 'Producto',
+        'amount' => 'Cantidad',
+        'price' => 'Precio',
+
+      ]
+    );
+    $product = Product::where('id',$request->product_id)->first();
+    $stock = $product->stock > 0;
+    switch ($stock) {
+      case true:
+          $productStatus = ProductStatus::where('name','En stock')->first();
+        break;
+
+      default:
+          $productStatus = ProductStatus::where('name','Sin stock')->first();
+        break;
+    }
+    $productSale = new ProductSale;
+    $productSale->product()->associate($product);
+    $productSale->sale()->associate($sale);
+    $productSale->status()->associate($productStatus);
+    $productSale->amount = $request->amount;
+    $productSale->price = $request->price;
+    $productSale->price = $request->price;
+    $productSale->save();
+    return redirect()->back()->with('sale');
   }
 
   public function save(Request $request)

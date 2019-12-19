@@ -15,9 +15,10 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('payment_type_id');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('fee');
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->unsignedBigInteger('payment_type_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

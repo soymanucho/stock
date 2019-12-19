@@ -115,7 +115,7 @@ class ClientController extends Controller
     $search = $request->search;
 
     if($search == ''){
-       $clients = Client::orderby('name','asc')->limit(5)->get();
+       $clients = Client::orderby('name','asc')->limit(5)->with('address')->with('address.location')->with('address.location.province')->get();
     }else{
        $clients = Client::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')
@@ -126,7 +126,10 @@ class ClientController extends Controller
     foreach($clients as $client){
        $response[] = array(
             "id"=>$client->id,
-            "text"=>$client->name.' ('.$client->cuit.')'
+            "text"=>$client->name.' ('.$client->cuit.')',
+            "name"=>$client->name,
+            "cuit"=>$client->cuit,
+            "address"=>$client->fullAddress()
        );
     }
 

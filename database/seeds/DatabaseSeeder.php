@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                   BrandsTableSeeder::class,
                   PaymentTypeTableSeeder::class,
                   ProductsTableSeeder::class,
+                  StatusTableSeeder::class,
                   SalesTableSeeder::class,
                   ProductsStatusesTableSeeder::class,
                   SaleDetailsTableSeeder::class,

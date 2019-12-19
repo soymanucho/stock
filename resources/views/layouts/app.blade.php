@@ -74,6 +74,9 @@
 					<i class="icon-more"></i>
 				</button>
 			@endif
+			<button class="navbar-toggler sidebar-mobile-component-toggle" type="button">
+				<i class="icon-unfold"></i>
+			</button>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-mobile">

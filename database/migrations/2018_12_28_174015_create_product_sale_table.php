@@ -20,7 +20,7 @@ class CreateProductSaleTable extends Migration
             $table->unsignedBigInteger('product_status_id');
             $table->float('price');
             $table->integer('amount');
-            $table->integer('accepted_amount');
+            $table->integer('accepted_amount')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

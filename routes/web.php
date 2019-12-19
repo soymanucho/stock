@@ -43,6 +43,8 @@ Route::post('/ventas/nueva/', 'SaleController@save')->name('sale-save');
 Route::get('/ventas/{sale}/editar/', 'SaleController@edit')->name('sale-edit');
 Route::put('/ventas/{sale}/editar/', 'SaleController@update')->name('sale-update');
 Route::get('/ventas/{sale}','SaleController@detail')->name('sale-detail');
+Route::get('/ventas/{sale}/producto/{productSale}/eliminar','SaleController@deleteProduct')->name('sale-product-delete');
+Route::post('/ventas/{sale}/producto/nuevo','SaleController@newProduct')->name('sale-product-new');
 
 //CLIENTE
 Route::get('/clientes/', 'ClientController@show')->name('client-show');

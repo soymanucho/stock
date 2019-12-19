@@ -17,12 +17,16 @@
 @section('body')
   @foreach($sales as $sale)
       <tr >
-        <td>  #{{ $sale->id }} </td>
-        <td>  {{ $sale->client->name }}, CUIT {{ $sale->client->cuit }} </td>
+        <td>  {{ $sale->id }} </td>
+        <td>
+          @isset($sale->client)
+            {{ $sale->client->name }}, CUIT {{ $sale->client->cuit }}
+          @endisset
+        </td>
         <td>  {{ $sale->products->count() }} </td>
         <td>
           @isset($sale->latestStatus)
-            {{ $sale->latestStatus->first->name }}
+            {{ $sale->latestStatus->first()->name }}
           @else
             Sin estado definido
           @endisset

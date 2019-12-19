@@ -47,6 +47,6 @@ class Sale extends Model
 
   public function totalAmount()
   {
-    return $total = DB::table('product_sale')->where('sale_id', $this->id)->sum(DB::raw('accepted_amount * price'));
+    return $total = DB::table('product_sale')->where('sale_id', $this->id)->sum(DB::raw('amount * price'));
   }
 }
