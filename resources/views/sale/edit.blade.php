@@ -155,6 +155,7 @@
             {{ csrf_field() }}
             {{ method_field('put') }}
             <div class="form-group">
+
               <label>TOTAL:</label>
               <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
             </div>

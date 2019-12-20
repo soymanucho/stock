@@ -48,8 +48,9 @@ class SaleController extends Controller
       $sale = Sale::where('id',$sale->id)->with('latestStatus')->with('products.product')->with('products')->first();
     }
 
+    $productStatuses = ProductStatus::all();
     $paymentTypes = PaymentType::all();
-    return view('sale.edit',compact('sale','paymentTypes','products'));
+    return view('sale.edit',compact('sale','paymentTypes','products','productStatuses'));
   }
   public function deleteProduct(Sale $sale, ProductSale $productSale)
   {

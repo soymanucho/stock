@@ -14,10 +14,10 @@ use Carbon\Carbon;
      */
     public function run()
     {
-      DB::table('product_statuses')->insert(['name' => 'Sin stock','color' => '#eb3434']);
-      DB::table('product_statuses')->insert(['name' => 'Pedido al proveedor','color' => '#343aeb']);
-      DB::table('product_statuses')->insert(['name' => 'Para remitir','color' => '#d9eb34']);
-      DB::table('product_statuses')->insert(['name' => 'En stock','color' => '#34eb7a']);
+      DB::table('product_statuses')->insert(['name' => 'Cancelado','color' => '#d52b2b']);
+      DB::table('product_statuses')->insert(['name' => 'Pedido','color' => '#d1b41b']);
+      DB::table('product_statuses')->insert(['name' => 'En stock','color' => '#d78e11']);
+      DB::table('product_statuses')->insert(['name' => 'Entregado','color' => '#41a74e']);
 
     }
 }

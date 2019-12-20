@@ -28,7 +28,7 @@
           @endisset
         </td>
         <td>  {{ $sale->products->count() }} </td>
-        <td>  {{$sale->paymentType->name}} en {{ $sale->fee }} </td>
+        <td>  {{$sale->paymentType->name}} en {{ $sale->fee }} cuota/s </td>
         <td>  ${{number_format($sale->totalAmount(), 2, ',', '.')}} </td>
         <td>
           @php

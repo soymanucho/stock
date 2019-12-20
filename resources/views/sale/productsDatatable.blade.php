@@ -19,12 +19,26 @@
 @section('body')
   @foreach($products as $productSale)
       <tr >
-        <td>  {{ $productSale->product->id ?? ''}} </td>
-        <td>  {{ $productSale->product->name ?? '' }} </td>
-        <td>  {{ $productSale->price ?? '' }} </td>
-        <td>  {{ $productSale->amount ?? '' }}  </td>
-        <td>  {{ number_format($productSale->amount*$productSale->price ?? '', 2, ',', '.')}}  </td>
-        <td>  <span class="badge badge-pill" style="color:white; background-color:{{$productSale->status->color ?? ''}}">{{ $productSale->status->name ?? '' }}</span>  </td>
+        <td class="text-center">  {{ $productSale->product->id ?? ''}} </td>
+        <td class="text-center">  {{ $productSale->product->name ?? '' }} </td>
+        <td class="text-center">  {{ $productSale->price ?? '' }} </td>
+        <td class="text-center">  {{ $productSale->amount ?? '' }}  </td>
+        <td class="text-center">  {{ number_format($productSale->amount*$productSale->price ?? '', 2, ',', '.')}}  </td>
+        <td class="text-center">
+          <div class="btn-group">
+          	<button type="button" class="btn btn-labeled btn-labeled-right dropdown-toggle" style="color:white; background-color:{{$productSale->status->color ?? ''}}" data-toggle="dropdown" aria-expanded="false"><b><i class="icon-menu7"></i></b> {{ $productSale->status->name ?? '' }}</button>
+          	<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-38px, 36px, 0px);">
+              @foreach ($productStatuses as $productStatus)
+                @if ($productStatus == $productSale->status)
+                  @php
+                    continue;
+                  @endphp
+                @endif
+                <a href="{!! route('product-status-edit',compact('sale','productSale','productStatus')) !!}" class="dropdown-item" style="background-color:{{$productStatus->color}}"><i class="fas fa-exchange-alt"></i> {{$productStatus->name}}</a>
+              @endforeach
+						</div>
+					</div>
+
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
         <td class="text-center">  <a href={!! route('sale-product-delete',compact('sale','productSale')) !!} ><i class="fas fa-trash"></i></a> </td>

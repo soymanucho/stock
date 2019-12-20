@@ -501,7 +501,7 @@
 	$(document).ready( function () {
 
 		$('#myTable').DataTable( {
-					"scrollX": true,
+					// "scrollX": true,
 					"select": true,
 					"responsive": {
 							"details": {

@@ -35,7 +35,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 //VENTAS
 Route::get('/ventas/', 'SaleController@show')->name('sale-show');
 Route::get('/ventas/nueva/', 'SaleController@new')->name('sale-new');
@@ -94,6 +93,9 @@ Route::post('/contactos/{model}/{id}/nuevo','ContactController@save')->name('con
 Route::get('/contactos/{model}/{id}/{contact}/editar','ContactController@edit')->name('contact-edit');
 Route::put('/contactos/{model}/{id}/{contact}/editar','ContactController@update')->name('contact-update');
 Route::get('/contactos/{model}/{id}/{contact}/eliminar','ContactController@delete')->name('contact-delete');
+
+//ESTADO DEL PRODUCTO DE UNA VENTA
+Route::get('/ventas/{sale}/producto/{productSale}/estado/{productStatus}/edit','ProductStatusController@edit')->name('product-status-edit');
 
 //LOCALIDADES
 Route::post('/api/localidades/', 'LocationController@selectApi')->name('location-api');
