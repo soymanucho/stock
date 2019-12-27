@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Sale;
 use App\Receipt;
 use App\ProductSale;
+use App\ProductStatus;
 
 class ReceiptController extends Controller
 {
@@ -40,8 +41,11 @@ class ReceiptController extends Controller
     $receipt->sale()->associate($sale);
     $receipt->save();
 
+    $status = ProductStatus::where('name','Entregado')->first();
+
     foreach ($productSales as $productSale) {
       $productSale->receipt()->associate($receipt)->save();
+      $productSale->status()->associate($status)->save();
     }
 
     // $receipt->productSales()->saveMany($productSales);
