@@ -47,6 +47,13 @@ class Sale extends Model
 
   public function totalAmount()
   {
-    return $total = DB::table('product_sale')->where('sale_id', $this->id)->sum(DB::raw('amount * price'));
+    return $total = DB::table('product_sale')
+                        ->join('product_statuses','product_sale.product_status_id','=','product_statuses.id')
+                        ->where('sale_id', $this->id)->where('product_statuses.name','<>','Cancelado')->sum(DB::raw('amount * price'));
+  }
+
+  public function totalIVA()
+  {
+    return number_format(($this->totalAmount()*21)/100, 2, ',', '.');
   }
 }

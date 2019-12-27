@@ -66,8 +66,9 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
+  <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
+  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a>
+  <a href="{!! route('receipt-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver remitos</a>
 @endsection
 
 @section('breadcrumbs')
@@ -141,6 +142,7 @@
 
         <!-- Categories -->
         <div class="card">
+          <a class="btn btn-primary" href="{!! route('receipt-new',compact('sale')) !!}">Generar remito</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$sale->id}}</span>
             <div class="header-elements">
@@ -214,11 +216,14 @@
 
 
             <div class="row">
-              <div class="col-6">
-                <a class="btn btn-warning btn-block" href="{{ URL::previous()}}">Volver</a>
+              <div class="col-12">
+                {{-- <a class="btn bg-teal btn-block mb-2" href="{!! route('sale-remito-new',compact('sale')) !!}">Generar remito</a> --}}
               </div>
               <div class="col-6">
-                <button type="submit" class="btn btn-info btn-block">Editar venta</button>
+                <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
+              </div>
+              <div class="col-6">
+                <button type="submit" class="btn btn-success btn-block mb-2">Guardar venta</button>
               </div>
             </div>
           </form>

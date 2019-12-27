@@ -21,7 +21,9 @@ Route::get('/ecommerce_orders', function () {
     return view('support.ecommerce_orders_history');
 });
 Route::get('/invoice_template', function () {
-    return view('support.invoice_template');
+    $receipt = App\Receipt::where('id',1)->get()->first();
+    $sale = $receipt->sale;
+    return view('support.invoice_template',compact('receipt','sale'));
 });
 Route::get('/invoice_archive', function () {
     return view('support.invoice_archive');
@@ -44,6 +46,14 @@ Route::put('/ventas/{sale}/editar/', 'SaleController@update')->name('sale-update
 Route::get('/ventas/{sale}','SaleController@detail')->name('sale-detail');
 Route::get('/ventas/{sale}/producto/{productSale}/eliminar','SaleController@deleteProduct')->name('sale-product-delete');
 Route::post('/ventas/{sale}/producto/nuevo','SaleController@newProduct')->name('sale-product-new');
+
+//REMITOS
+Route::get('/ventas/{sale}/remitos/','ReceiptController@show')->name('receipt-show');
+Route::get('/ventas/{sale}/remitos/nuevo/','ReceiptController@new')->name('receipt-new');
+Route::get('/ventas/{sale}/remitos/{receipt}/eliminar/','ReceiptController@delete')->name('receipt-delete');
+Route::get('/ventas/{sale}/remitos/{receipt}/descargar/','ReceiptController@download')->name('receipt-download');
+Route::get('/ventas/{sale}/remitos/{receipt}/imprimir/','ReceiptController@print')->name('receipt-print');
+Route::get('/ventas/{sale}/remitos/{receipt}/detalle/','ReceiptController@detail')->name('receipt-detail');
 
 //CLIENTE
 Route::get('/clientes/', 'ClientController@show')->name('client-show');

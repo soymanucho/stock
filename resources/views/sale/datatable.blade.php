@@ -3,6 +3,7 @@
 @section('header')
 
     <th># Venta</th>
+    <th>Fecha</th>
     <th>Cliente</th>
     <th># de productos</th>
     <th>Tpo. pago/Cuotas</th>
@@ -10,7 +11,7 @@
     <th>Estado</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
-    <th>Acciones</th>
+    <th>Editar</th>
     {{-- <th>Historial</th> --}}
 
 
@@ -20,15 +21,12 @@
   @foreach($sales as $sale)
       <tr >
         <td>  {{ $sale->id }} </td>
+        <td>  {{ $sale->created_at->format('d/m/y h:m') }} </td>
         <td>
-          @isset($sale->client)
-            {{ $sale->client->name ?? ''}}, CUIT {{ $sale->client->cuit ?? '' }}
-          @else
-            Indefinido
-          @endisset
+          {{ $sale->client->name ?? 'Indefinido'}}, CUIT {{ $sale->client->cuit ?? 'Indefinido' }}
         </td>
         <td>  {{ $sale->products->count() }} </td>
-        <td>  {{$sale->paymentType->name}} en {{ $sale->fee }} cuota/s </td>
+        <td>  {{$sale->paymentType->name ?? 'Indefinido'}} en {{ $sale->fee }} cuota/s </td>
         <td>  ${{number_format($sale->totalAmount(), 2, ',', '.')}} </td>
         <td>
           @php

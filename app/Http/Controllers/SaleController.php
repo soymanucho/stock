@@ -26,7 +26,7 @@ class SaleController extends Controller
 
   public function new()
   {
-    $status = Status::where('name','Presupuestada')->first();
+    $status = Status::where('name','Presupuestado')->first();//todo cambiar la llamada de los estados por id
     $sale = new Sale();
     $sale->fee = 1;
     $sale->save();
@@ -100,40 +100,40 @@ class SaleController extends Controller
     return redirect()->back()->with('sale');
   }
 
-  public function save(Request $request)
-  {
-    // dd($request);
-    $this->validate(
-      $request,
-      [
-          'name' => 'required|string|max:100',
-          'cuit' => 'required|string|max:20',
-          'street' => 'required|string|max:60',
-          'number'=> 'required|string|max:10',
-          'floor'=> 'nullable|string|max:10',
-          'location_id'=> 'required|exists:locations,id',
-
-      ],
-      [
-
-      ],
-      [
-        'name' => 'Nombre',
-        'cuit' => 'CUIT',
-        'street' => 'Calle',
-        'number'=> 'Número',
-        'floor'=> 'Piso',
-        'location_id'=> 'Localidad',
-      ]
-    );
-    $sale = new Sale;
-    $sale->fill($request->all());
-    $sale->save();
-
-    $sale->address()->associate($address)->save();
-
-    return redirect()->route('sale-show');
-  }
+  // public function save(Request $request)
+  // {
+  //   // dd($request);
+  //   $this->validate(
+  //     $request,
+  //     [
+  //         'name' => 'required|string|max:100',
+  //         'cuit' => 'required|string|max:20',
+  //         'street' => 'required|string|max:60',
+  //         'number'=> 'required|string|max:10',
+  //         'floor'=> 'nullable|string|max:10',
+  //         'location_id'=> 'required|exists:locations,id',
+  //
+  //     ],
+  //     [
+  //
+  //     ],
+  //     [
+  //       'name' => 'Nombre',
+  //       'cuit' => 'CUIT',
+  //       'street' => 'Calle',
+  //       'number'=> 'Número',
+  //       'floor'=> 'Piso',
+  //       'location_id'=> 'Localidad',
+  //     ]
+  //   );
+  //   $sale = new Sale;
+  //   $sale->fill($request->all());
+  //   $sale->save();
+  //
+  //   $sale->address()->associate($address)->save();
+  //
+  //   return redirect()->route('sale-show');
+  // }
 
   public function update(Sale $sale, Request $request)
   {

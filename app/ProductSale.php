@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Sale;
+use App\Product;
+use App\ProductStatus;
+use App\Receipt;
+
 class ProductSale extends Model
 {
   use SoftDeletes;
@@ -13,11 +18,15 @@ class ProductSale extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['product_id','sale_id','amount','price','accepted_amount','product_status_id'];
+  protected $fillable = ['product_id','sale_id','amount','price','accepted_amount','product_status_id','receipt_id'];
 
   public function sale()
   {
     return $this->belongsTo(Sale::class);
+  }
+  public function receipt()
+  {
+    return $this->belongsTo(Receipt::class);
   }
   public function product()
   {
