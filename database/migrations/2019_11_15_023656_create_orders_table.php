@@ -16,7 +16,6 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
-            $table->float('total_price');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

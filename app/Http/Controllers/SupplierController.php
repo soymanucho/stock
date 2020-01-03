@@ -103,6 +103,7 @@ class SupplierController extends Controller
   }
   public function detail(Supplier $supplier)
   {
+    $supplier = Supplier::where('id',$supplier->id)->with('products')->with('products.orders')->with('products.sales')->get()->first();
     return view('supplier.detail',compact('supplier'));
   }
 }

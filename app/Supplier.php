@@ -29,7 +29,7 @@ class Supplier extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class,'product_supplier')->using(ProductSupplier::class)->withPivot(['price']);
+    return $this->belongsToMany(Product::class,'product_supplier')->withPivot('price');
   }
 
   public function contacts()

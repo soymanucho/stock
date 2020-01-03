@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 use App\Supplier;
 use App\Product;
 
-class ProductSupplier extends Model
+class ProductSupplier extends Pivot
 {
 
   protected $dates = ['created_at','updated_at'];

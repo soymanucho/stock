@@ -15,7 +15,8 @@ class ProductController extends Controller
   }
   public function show()
   {
-    $products = Product::orderby('name')->with('brand')->get();
+    $products = Product::orderby('name')->with('brand')->with('suppliers')->get();
+    // dd($products);
     return view('product.show',compact('products'));
   }
 
@@ -102,7 +103,7 @@ class ProductController extends Controller
     $search = $request->search;
 
     if($search == ''){
-       $products = Product::orderby('name','asc')->limit(5)->get();
+       $products = Product::orderby('name','asc')->limit(10)->get();
     }else{
        $products = Product::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')

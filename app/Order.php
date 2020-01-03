@@ -25,12 +25,21 @@ class Order extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class)->withPivot('ordered_amount','accepted_amount', 'price')->withTimestamps();
+    return $this->hasMany(ProductOrder::class)->with('status');
+    // return $this->belongsToMany(Product::class)->withPivot('ordered_amount','accepted_amount', 'price')->withTimestamps();
   }
 
   public function totalAmount()
   {
-    return $total = DB::table('order_product')->where('order_id', $this->id)->sum(DB::raw('accepted_amount * price'));
+    // return $total = DB::table('order_product')->where('order_id', $this->id)->sum(DB::raw('accepted_amount * price'));
+    $totalAmount = 0;
+    $products = $this->products;
+    foreach ($products as $product) {
+      if ($product->status->id <> 1) {
+        $totalAmount = $totalAmount + ($product->price*$product->amount);
+      }
+    }
+    return $totalAmount;
   }
 
 }

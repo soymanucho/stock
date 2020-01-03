@@ -37,6 +37,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//ORDENES
+Route::get('/ordenes/', 'OrderController@show')->name('order-show');
+Route::get('/ordenes/nueva/', 'OrderController@new')->name('order-new');
+Route::post('/ordenes/nueva/', 'OrderController@save')->name('order-save');
+Route::get('/ordenes/{order}/editar/', 'OrderController@edit')->name('order-edit');
+Route::put('/ordenes/{order}/editar/', 'OrderController@update')->name('order-update');
+Route::get('/ordenes/{order}','OrderController@detail')->name('order-detail');
+Route::get('/ordenes/{order}/producto/{product}/eliminar','OrderController@deleteProduct')->name('order-product-delete');
+Route::post('/ordenes/{order}/producto/nuevo','OrderController@newProduct')->name('order-product-new');
+
 //VENTAS
 Route::get('/ventas/', 'SaleController@show')->name('sale-show');
 Route::get('/ventas/nueva/', 'SaleController@new')->name('sale-new');

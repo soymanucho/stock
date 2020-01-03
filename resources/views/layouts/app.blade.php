@@ -503,12 +503,7 @@
 		$('#myTable').DataTable( {
 					// "scrollX": true,
 					"select": true,
-					"responsive": {
-							"details": {
-									"type": 'column',
-									"target": -1
-							}
-					},
+					"responsive": true,
 					 "order": [],
 					 "language": {
 							"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
@@ -537,7 +532,6 @@
 <script type="text/javascript">
   window.addEventListener('load',function() {
   	$(".fancybox").fancybox({
-			selector : '[.fancybox]',
   		maxWidth	: 1600,
       minWidth	: 1000,
   		maxHeight	: 300,

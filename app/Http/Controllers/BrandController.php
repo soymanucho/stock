@@ -84,7 +84,7 @@ class BrandController extends Controller
   }
   public function detail(Brand $brand)
   {
-    // $brand = Brand::where('id', $brand->id)->get()->first();
+    $brand = Brand::where('id', $brand->id)->with('products')->with('products.orders')->with('products.sales')->get()->first();
     return view('brand.detail',compact('brand'));
   }
 }

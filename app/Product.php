@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Sale;
 use App\Brand;
 use App\Order;
-use App\Suplier;
+use App\Supplier;
+use App\ProductSupplier;
 
 class Product extends Model
 {
@@ -32,7 +33,7 @@ class Product extends Model
 
   public function sales()
   {
-    return $this->hasMany(ProductSale::class, 'product_sale');
+    return $this->hasMany(ProductSale::class);
   }
 
   public function orders()
@@ -42,12 +43,14 @@ class Product extends Model
 
   public function timesSold()
   {
-    return  DB::table('product_sale')->where('product_id', $this->id)->count();
+    return $this->sales()->where('product_status_id','<>',1)->count();
+    // return  DB::table('product_sale')->where('product_id', $this->id)->count();
   }
 
   public function timesOrdered()
   {
-    return  DB::table('order_product')->where('product_id', $this->id)->count();
+    return $this->orders->where('product_status_id','<>',1)->count();
+    // return  DB::table('order_product')->where('product_id', $this->id)->count();
   }
 
   public function brand()
@@ -57,7 +60,12 @@ class Product extends Model
 
   public function suppliers()
   {
-    return $this->belongsToMany(Supplier::class,'product_supplier')->using(ProductSupplier::class)->withPivot(['price']);
+    return $this->belongsToMany(Supplier::class,'product_supplier')->withPivot('price');
   }
+
+  // public function prices()
+  // {
+  //   return $this->suppliers->pluck('price');
+  // }
 
 }

@@ -93,12 +93,12 @@
       @include('errors.errors')
 
       <!-- List -->
-        <div class="card card-body border-top-teal">
+      <div class="card card-body">
         @include('sale.productsDatatable')
       </div>
-      <div class="card card-body border-top-teal">
+      <div class="card card-body">
         <div class="card-title">
-          <b>Agregar nuevo producto</b>
+          Agregar nuevo producto
         </div>
         <form class="" action="{!! route('sale-product-new',compact('sale')) !!}" method="post">
           {{ csrf_field() }}
@@ -127,25 +127,13 @@
           <button type="submit" class="btn bg-teal-400 mt-3 float-right"><i class="icon-cart-add mr-2"></i> Agregar nuevo producto</button>
         </form>
       </div>
-      <div class="card card-body border-top-teal">
-        <div class="card-title">
-          <b>Historial de estados</b>
-        </div>
-  			<div class="list-feed">
-          @foreach ($sale->statuses as $status)
-            <div class="list-feed-item">
-              <div class="text-muted">{{$status->created_at->format('M d, h:m')}}</div>
-              <span style="color:{{$status->color}}"> <i class="fas fa-history"></i> </span> {{$status->name}}
-            </div>
-          @endforeach
-  			</div>
-  		</div>
       <!-- /list -->
       {{-- <div class="card-body">
         <button type="button" class="btn btn-primary" name="button">Agregar nuevo producto</button>
       </div> --}}
     </div>
     <!-- /left content -->
+
     <!-- Right sidebar component -->
     <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
 
@@ -250,6 +238,7 @@
 
     </div>
     <!-- /right sidebar component -->
+
   </div>
   <!-- /inner container -->
 

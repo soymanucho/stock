@@ -27,10 +27,19 @@ class Receipt extends Model
   }
   public function totalAmount()
   {
-    return $total = DB::table('product_sale')
-                        ->join('receipts','receipts.id','=','product_sale.receipt_id')
-                        ->join('product_statuses','product_sale.product_status_id','=','product_statuses.id')
-                        ->where('receipt_id', $this->id)->where('product_statuses.name','<>','Cancelado')->sum(DB::raw('product_sale.amount * product_sale.price'));
+    $totalAmount = 0;
+    $products = $this->productSales;
+    foreach ($products as $product) {
+      if ($product->status->name <> 'Cancelado') {
+        $totalAmount = $totalAmount + ($product->price*$product->amount);
+      }
+    }
+    return $totalAmount;
+
+    // return $total = DB::table('product_sale')
+    //                     ->join('receipts','receipts.id','=','product_sale.receipt_id')
+    //                     ->join('product_statuses','product_sale.product_status_id','=','product_statuses.id')
+    //                     ->where('receipt_id', $this->id)->where('product_statuses.name','<>','Cancelado')->sum(DB::raw('product_sale.amount * product_sale.price'));
   }
 
   public function totalIVA()

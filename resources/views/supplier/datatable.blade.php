@@ -4,6 +4,7 @@
 
     <th>Nombre</th>
     <th>Direccion</th>
+    <th>Ver productos</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
     <th>Acciones</th>
@@ -17,6 +18,7 @@
       <tr >
         <td>  {{ $supplier->name }} </td>
         <td>  {{ $supplier->fullAddress() }} </td>
+        <td class="text-center">  <a href={!! route('supplier-detail',compact('supplier')) !!} class="fancybox" ><i class="fa fa-eye"></i></a> </td>
         {{-- <td>  {{ $supplier->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $supplier->totalSpent() }} </td> --}}
         <td class="text-center">  <a href={!! route('supplier-edit',compact('supplier')) !!} ><i class="fas fa-edit"></i></a> </td>

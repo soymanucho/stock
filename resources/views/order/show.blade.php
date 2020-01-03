@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('secondary-sidebar')
@@ -53,7 +52,7 @@
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
+              <a href="{!! route('sale-show') !!}" class="nav-link active"><i class="icon-list3"></i> Ver todas</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('sale-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nueva venta</a>
@@ -67,9 +66,8 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a>
-  <a href="{!! route('receipt-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver remitos</a>
+  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
+  <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
 @endsection
 
 @section('breadcrumbs')
@@ -78,33 +76,29 @@
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
       <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
       <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
-      <a href="{!! route('sale-edit',compact('sale')) !!}" class="breadcrumb-item">Venta</a>
-      <span class="breadcrumb-item active">Remitos</span>
+      <span class="breadcrumb-item active">Ver todas</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
-
 @endsection
-
 @section('content')
 
-	<!-- Invoice archive -->
-	<div class="card">
-		<div class="card-header bg-transparent header-elements-inline">
-			<h6 class="card-title">Registro de remitos</h6>
-			<div class="header-elements">
-				<div class="list-icons">
-					<a class="list-icons-item" data-action="collapse"></a>
-				</div>
-			</div>
-		</div>
-
-    <div class="card-body">
-  		@include('receipt.datatable')
-    </div>
+<div class="card">
+	<div class="card-header header-elements-inline">
+		<h5 class="card-title">Ventas</h5>
+		<div class="header-elements">
+			<div class="list-icons">
+    		<a class="list-icons-item" data-action="collapse"></a>
+    	</div>
+  	</div>
 	</div>
-	<!-- /invoice archive -->
 
+	<div class="card-body">
 
+    @include('sale.datatable')
+	</div>
+
+</div>
+{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
 @endsection

@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Sale;
-use App\Status;
-use App\Client;
-use App\PaymentType;
-use App\ProductSale;
 use App\ProductStatus;
 use App\Product;
+use App\Supplier;
+use App\Order;
 
-class SaleController extends Controller
+class OrderController extends Controller
 {
   public function __construct()
   {
@@ -20,46 +17,44 @@ class SaleController extends Controller
   }
   public function show()
   {
-    $sales = Sale::orderbydesc('id')->with('products')->with('client')->with('paymentType')->with('latestStatus')->get();
-    return view('sale.show',compact('sales'));
+    $orders = Order::orderbydesc('id')->with('products')->with('supplier')->get();
+    return view('order.show',compact('orders'));
   }
 
   public function new()
   {
-    $status = Status::where('id',1)->first();
-    $sale = new Sale();
-    $sale->fee = 1;
-    $sale->save();
-    $sale->statuses()->attach([$status->id]);
-    // $status->sales()->attach([$sale->id]);
+    $order = new Order();
+    $order->save();
+    $order->statuses()->attach([$status->id]);
+    // $status->orders()->attach([$order->id]);
     // $status->save();
-    // $sale->save();
+    // $order->save();
     // $paymentTypes = PaymentType::all();
-    // return view('sale.new',compact('sale','paymentTypes'));
-    return redirect()->route('sale-edit',compact('sale'));
+    // return view('order.new',compact('order','paymentTypes'));
+    return redirect()->route('order-edit',compact('order'));
   }
 
-  public function edit(Sale $sale)
+  public function edit(Order $order)
   {
-    // $products = ProductSale::where('sale_id',$sale->id)->with('sale')->with('sale.latestStatus')->with('sale.paymentType')->with('sale.client')->with('sale.client.address')->with('sale.client.address.location')->with('sale.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();
-    // if (isset($products->first()->sale)) {
-    //   $sale = $products->first()->sale;
+    // $products = ProductSale::where('sale_id',$order->id)->with('order')->with('order.latestStatus')->with('order.paymentType')->with('order.client')->with('order.client.address')->with('order.client.address.location')->with('order.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();
+    // if (isset($products->first()->order)) {
+    //   $order = $products->first()->order;
     // }else {
-      $sale = Sale::where('id',$sale->id)->with('statuses')->with('latestStatus')->with('products.product')->with('paymentType')->with('client')->with('client.address')->with('client.address.location')->with('client.address.location.province')->with('products.status')->with('products')->first();
+      $order = Order::where('id',$order->id)->with('latestStatus')->with('products.product')->with('paymentType')->with('client')->with('client.address')->with('client.address.location')->with('client.address.location.province')->with('products.status')->with('products')->first();
     // }
 
     $productStatuses = ProductStatus::all();
     $paymentTypes = PaymentType::all();
-    return view('sale.edit',compact('sale','paymentTypes','productStatuses'));
+    return view('order.edit',compact('order','paymentTypes','productStatuses'));
   }
-  public function deleteProduct(Sale $sale, ProductSale $productSale)
+  public function deleteProduct(Order $order, ProductSale $productSale)
   {
-    // $sale = Sale::where('id',$sale->id)->with('products')->with('products.product')->with('products')->first();
+    // $order = Order::where('id',$order->id)->with('products')->with('products.product')->with('products')->first();
     $product = ProductSale::where('id',$productSale->id)->first();
     $product->delete();
-    return redirect()->back()->with('sale');
+    return redirect()->back()->with('order');
   }
-  public function newProduct(Request $request, Sale $sale)
+  public function newProduct(Request $request, Order $order)
   {
     $this->validate(
       $request,
@@ -91,13 +86,13 @@ class SaleController extends Controller
     }
     $productSale = new ProductSale;
     $productSale->product()->associate($product);
-    $productSale->sale()->associate($sale);
+    $productSale->order()->associate($order);
     $productSale->status()->associate($productStatus);
     $productSale->amount = $request->amount;
     $productSale->price = $request->price;
     $productSale->price = $request->price;
     $productSale->save();
-    return redirect()->back()->with('sale');
+    return redirect()->back()->with('order');
   }
 
   // public function save(Request $request)
@@ -126,16 +121,16 @@ class SaleController extends Controller
   //       'location_id'=> 'Localidad',
   //     ]
   //   );
-  //   $sale = new Sale;
-  //   $sale->fill($request->all());
-  //   $sale->save();
+  //   $order = new Order;
+  //   $order->fill($request->all());
+  //   $order->save();
   //
-  //   $sale->address()->associate($address)->save();
+  //   $order->address()->associate($address)->save();
   //
-  //   return redirect()->route('sale-show');
+  //   return redirect()->route('order-show');
   // }
 
-  public function update(Sale $sale, Request $request)
+  public function update(Order $order, Request $request)
   {
     $this->validate(
       $request,
@@ -168,30 +163,30 @@ class SaleController extends Controller
     // Pedido
     // En stock
     // Entregado
-    $outOfStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',2)->get()->count();
-    $inStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',3)->get()->count();
-    $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
-    $saleProductsCount = $sale->products()->where('product_status_id','<>',1)->get()->count();
+    $outOfStockProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',2)->get()->count();
+    $inStockProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',3)->get()->count();
+    $deliveredProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',4)->get()->count();
+    $saleProductsCount = $order->products()->where('product_status_id','<>',1)->get()->count();
     if ($outOfStockProducts > 0) {
-      if ($sale->latestStatus()->first()->name <> 'Presupuestado') {
+      if ($order->latestStatus()->first()->name <> 'Presupuestado') {
         $status = Status::where('id',1)->first();
-        $sale->statuses()->attach([$status->id]);
+        $order->statuses()->attach([$status->id]);
       }
     }elseif ($inStockProducts > 0 && $inStockProducts = $saleProductsCount) {
       $status = Status::where('id',2)->first();
-      $sale->statuses()->attach([$status->id]);
+      $order->statuses()->attach([$status->id]);
     }elseif ($deliveredProducts > 0 && $deliveredProducts = $saleProductsCount) {
       $status = Status::where('id',3)->first();
-      $sale->statuses()->attach([$status->id]);
+      $order->statuses()->attach([$status->id]);
     }
 
-    $sale->fill($request->all());
-    $sale->save();
+    $order->fill($request->all());
+    $order->save();
 
-    return redirect()->route('sale-show');
+    return redirect()->route('order-show');
   }
-  public function detail(Sale $sale)
+  public function detail(Order $order)
   {
-    return view('sale.detail',compact('sale'));
+    return view('order.detail',compact('order'));
   }
 }

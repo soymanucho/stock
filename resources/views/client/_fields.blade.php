@@ -66,7 +66,7 @@
     <div class="row">
       @isset($client->contacts)
         @foreach ($client->contacts as $contact)
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-6 col-md-6 col-sm-12">
             <div class="card card-body">
               <div class="media">
                 <div class="mr-3">
@@ -99,7 +99,7 @@
           </div>
         @endforeach
       @endisset
-      <div class="col-xl-3 col-md-6">
+      <div class="col-xl-6 col-md-6 col-sm-12" id="newContact">
         <a href="{!! route('contact-new', ['model'=>$client->getMorphClass(),'id'=>$client]) !!}" class="fancybox">
         <div class="card card-body">
           <div class="media">
