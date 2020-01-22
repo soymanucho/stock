@@ -21,7 +21,7 @@
   @foreach($sales as $sale)
       <tr >
         <td>  {{ $sale->id }} </td>
-        <td>  {{ $sale->created_at->format('d/m/y h:m') }} </td>
+        <td>  {{ $sale->created_at->format('d/m/Y h:i') }} </td>
         <td>
           {{ $sale->client->name ?? 'Indefinido'}}, CUIT {{ $sale->client->cuit ?? 'Indefinido' }}
         </td>

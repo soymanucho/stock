@@ -5,8 +5,8 @@
     <th>Nombre</th>
     <th>CUIT</th>
     <th>Direccion</th>
-    {{-- <th># Compras</th>
-    <th>Total Gastado</th> --}}
+    <th>Fecha última compra</th>
+    {{-- <th>Total Gastado</th> --}}
     <th>Editar</th>
     <th>Detalle</th>
 
@@ -15,10 +15,16 @@
 
 @section('body')
   @foreach($clients as $client)
-      <tr >
+      <tr>
         <td>  {{ $client->name }} </td>
         <td>  {{ $client->cuit }} </td>
         <td>  {{ $client->fullAddress() }} </td>
+        <td class="text-center">
+          @isset($client->lastSale->first()->created_at)
+            {{ $client->lastSale->first()->created_at->format('d/m/Y  ') }} </td>
+          @else
+            Sin compras aún
+          @endisset
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
         <td class="text-center">  <a href={!! route('client-edit',compact('client')) !!} ><i class="fas fa-edit"></i></a> </td>

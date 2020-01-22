@@ -95,7 +95,6 @@ class SaleController extends Controller
     $productSale->status()->associate($productStatus);
     $productSale->amount = $request->amount;
     $productSale->price = $request->price;
-    $productSale->price = $request->price;
     $productSale->save();
     return redirect()->back()->with('sale');
   }
@@ -173,14 +172,14 @@ class SaleController extends Controller
     $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
     $saleProductsCount = $sale->products()->where('product_status_id','<>',1)->get()->count();
     if ($outOfStockProducts > 0) {
-      if ($sale->latestStatus()->first()->name <> 'Presupuestado') {
+      if ($sale->latestStatus()->first()->id <> 1) {
         $status = Status::where('id',1)->first();
         $sale->statuses()->attach([$status->id]);
       }
-    }elseif ($inStockProducts > 0 && $inStockProducts = $saleProductsCount) {
+    }elseif ($inStockProducts > 0 && $inStockProducts = $saleProductsCount && $sale->latestStatus()->first()->id <> 2) {
       $status = Status::where('id',2)->first();
       $sale->statuses()->attach([$status->id]);
-    }elseif ($deliveredProducts > 0 && $deliveredProducts = $saleProductsCount) {
+    }elseif ($deliveredProducts > 0 && $deliveredProducts = $saleProductsCount && $sale->latestStatus()->first()->id <> 3) {
       $status = Status::where('id',3)->first();
       $sale->statuses()->attach([$status->id]);
     }

@@ -41,6 +41,10 @@ class Client extends Model
    {
       return $this->hasMany(Sale::class, 'client_id');
    }
+  public function lastSale()
+   {
+      return $this->hasMany(Sale::class, 'client_id')->latest();
+   }
 
    public function totalPurchases(){
      return  Sale::where('client_id', '=', $this->id)->count();
@@ -49,6 +53,6 @@ class Client extends Model
    public function totalSpent()
    {
      $mySales = $this->sales()->pluck('id')->toArray();
-       return  DB::table('product_sale')->whereIn('sale_id', $mySales)->sum(DB::raw('accepted_amount * price'));
+       return  DB::table('product_sale')->whereIn('sale_id', $mySales)->sum(DB::raw('amount * price'));
    }
 }

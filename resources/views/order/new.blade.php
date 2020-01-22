@@ -22,41 +22,44 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Proveedores</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
             </div>
           </div>
         </div>
+
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
             </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Ventas</span>
-          <div class="header-elements">
-            <div class="list-icons">
-              <a class="list-icons-item" data-action="collapse"></a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item-divider"></li>
             <li class="nav-item">
-              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
+              <a href="{!! route('order-show') !!}" class="nav-link">
+                <i class="icon-grid-alt"></i>
+                Órdenes
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
+              </a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('sale-new') !!}" class="nav-link active"><i class="icon-user-plus"></i> Nueva venta</a>
+              <a href="{!! route('order-new') !!}" class="nav-link active">
+                <i class="fas fa-cart-plus"></i>
+                Nueva orden
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
+              </a>
             </li>
+            {{-- <li class="nav-item nav-item-submenu">
+              <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
+              <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
+              </ul>
+            </li> --}}
           </ul>
         </div>
       </div>
@@ -66,22 +69,42 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn btn-success">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-indigo ml-2">Nueva venta</a>
+  <a href="{!! route('supplier-new') !!}" class="btn bg-teal-800">Nuevo proveedor</a>
+  <a href="{!! route('order-new') !!}" class="btn bg-teal-700 ml-2 btn-disabled">Nueva orden</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
-      <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
-      <span class="breadcrumb-item active">Nueva venta</span>
+      <a href="{!! route('supplier-show') !!}" class="breadcrumb-item">Orden</a>
+      <span class="breadcrumb-item active">Nueva orden</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
 
+  {{-- <div class="header-elements d-none">
+    <div class="breadcrumb justify-content-center">
+      <a href="#" class="breadcrumb-elements-item">
+        Link
+      </a>
+
+      <div class="breadcrumb-elements-item dropdown p-0">
+        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+          Dropdown
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item">Action</a>
+          <a href="#" class="dropdown-item">Another action</a>
+          <a href="#" class="dropdown-item">One more action</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Separate action</a>
+        </div>
+      </div>
+    </div>
+  </div> --}}
 @endsection
 @section('content')
 		<!-- Inner container -->
@@ -93,7 +116,7 @@
 				<!-- List -->
 				<div class="card card-body">
           @include('errors.errors')
-          @include('sale.productsDatatable')
+          @include('order.productsDatatable')
 					<div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
 						<div class="mr-lg-3 mb-3 mb-lg-0">
 							<a href="" data-popup="lightbox">
@@ -144,7 +167,7 @@
 					<!-- Categories -->
 					<div class="card">
 						<div class="card-header bg-transparent header-elements-inline">
-							<span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$sale->id}}</span>
+							<span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$order->id}}</span>
 							<div class="header-elements">
 								<div class="list-icons">
               		<a class="list-icons-item" data-action="collapse"></a>
@@ -156,8 +179,8 @@
 							<form action="#">
 								<div class="form-group form-group-feedback form-group-feedback-right">
                   <select id="clients" class="form-control" name="client_id">
-                    @isset($sale->client)
-                      <option value="{{ old('client_id',$sale->client->id)}}" selected="selected">{{$sale->client->name}}, {{$sale->client->cuit}} </option>
+                    @isset($order->client)
+                      <option value="{{ old('client_id',$order->client->id)}}" selected="selected">{{$order->client->name}}, {{$order->client->cuit}} </option>
                     @else
                       <option value="0" selected="selected"> Buscar cliente </option>
                     @endisset
@@ -166,26 +189,26 @@
 							</form>
 						</div>
             <div class="card-body">
-						<form action="{!! route('sale-save') !!}">
+						<form action="{!! route('order-save') !!}">
               {{ csrf_field() }}
               {{ method_field('post') }}
 							<div class="form-group">
 								<label>Nombre:</label>
-								<input type="text" class="form-control" placeholder="Nombre del cliente" id="client-name" readonly name="name" value="@isset($sale->client)
-                  {{$sale->client->name}}
+								<input type="text" class="form-control" placeholder="Nombre del cliente" id="client-name" readonly name="name" value="@isset($order->client)
+                  {{$order->client->name}}
                 @endisset">
 							</div>
 
 							<div class="form-group">
 								<label>Cuit:</label>
-								<input type="text" class="form-control" placeholder="CUIT" id="client-cuit" readonly name="cuit" value="@isset($sale->client)
-                  {{$sale->client->cuit}}
+								<input type="text" class="form-control" placeholder="CUIT" id="client-cuit" readonly name="cuit" value="@isset($order->client)
+                  {{$order->client->cuit}}
                 @endisset">
 							</div>
 							<div class="form-group">
 								<label>Dirección:</label>
-								<input type="text" class="form-control" placeholder="Dirección del cliente" id="client-address" readonly name="address" value="@isset($sale->client->address)
-                  {{$sale->client->fullAddress()}}
+								<input type="text" class="form-control" placeholder="Dirección del cliente" id="client-address" readonly name="address" value="@isset($order->client->address)
+                  {{$order->client->fullAddress()}}
                 @endisset">
 							</div>
 
@@ -194,8 +217,8 @@
                 <select id="paymentTypes" class="form-control" name="payment_type_id">
                   @foreach ($paymentTypes as $paymentType)
                     <option value="{{ old('payment_type_id',$paymentType->id)}}"
-                      @isset($sale->paymentType)
-                        @if ($sale->paymentType->id === $paymentType->id)
+                      @isset($order->paymentType)
+                        @if ($order->paymentType->id === $paymentType->id)
                           selected="selected"
                         @endif
                       @endisset
@@ -206,12 +229,12 @@
 
 							<div class="form-group">
 								<label>Cuotas:</label>
-                <input type="text" class="form-control" placeholder="Cantidad de cuotas" name="fee" value="{{$sale->fee}}">
+                <input type="text" class="form-control" placeholder="Cantidad de cuotas" name="fee" value="{{$order->fee}}">
 							</div>
 
 							<div class="form-group">
 								<label>Fecha:</label>
-                <input type="date" class="form-control" placeholder"Fecha de la venta" name="created_at" value="{{$sale->created_at->format('Y-m-d')}}">
+                <input type="date" class="form-control" placeholder"Fecha de la venta" name="created_at" value="{{$order->created_at->format('Y-m-d')}}">
 							</div>
 
 
@@ -272,10 +295,10 @@
 
 	<div class="card-body">
     @include('errors.errors')
-		<form action="{!! route('sale-save') !!}" method="post">
+		<form action="{!! route('order-save') !!}" method="post">
       {{ csrf_field() }}
       {{ method_field('post') }}
-			@include('sale._fields')
+			@include('order._fields')
 
 
 

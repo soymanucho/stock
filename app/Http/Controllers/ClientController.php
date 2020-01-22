@@ -15,7 +15,7 @@ class ClientController extends Controller
   }
   public function show()
   {
-    $clients = Client::orderby('name')->with('address')->with('address.location')->with('address.location.province')->get();
+    $clients = Client::orderby('name')->with('address')->with('sales')->with('lastSale')->with('address.location')->with('address.location.province')->get();
     return view('client.show',compact('clients'));
   }
 
@@ -38,7 +38,10 @@ class ClientController extends Controller
       $request,
       [
           'name' => 'required|string|max:100',
-          'cuit' => 'required|string|max:20',
+          'cuit' => array(
+            'required',
+            'regex:/\b(20|23|24|27|30|33|34)(\D)?[0-9]{0,8}(\D)?[0-9]/u'
+          ),
           'street' => 'required|string|max:60',
           'number'=> 'required|string|max:10',
           'floor'=> 'nullable|string|max:10',

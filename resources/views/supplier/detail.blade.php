@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Productos del proveedor {{$supplier->name}}
+        Órdenes del proveedor {{$supplier->name}}
       </h1>
     </section>
 
@@ -18,30 +18,21 @@
          <table id="myTable" class="table table-bordered table-hover display nowrap" style="width:100%">
            <thead>
            <tr>
-             <th>Código</th>
-             <th>Nombre</th>
-             <th>Descrip.</th>
-             <th>Stock</th>
-             <th># Ventas</th>
-             <th># Pedidos</th>
+             <th>#</th>
+             <th>Fecha</th>
+             <th>Cantidad de productos</th>
+             <th>Total</th>
              {{-- <th>Proveedores</th> --}}
            </tr>
            </thead>
            <tbody>
-             @foreach ($supplier->products as $product)
+             @foreach ($supplier->orders as $order)
                <tr>
-                 <td>{{$product->id}} </td>
-                 <td>{{$product->name}} </td>
-                 <td>{{$product->description}} </td>
-                 <td>{{$product->stock}}</td>
-                 <td>{{$product->sales->where('product_status_id','<>',1)->count()}}</td>
-                 <td>{{$product->orders->where('product_status_id','<>',1)->count()}}</td>
-                 {{-- <td>
-                 @foreach ($product->suppliers as $supplier)
+                 <td>{{$order->id}} </td>
+                 <td>{{$order->created_at->format('d/m/Y h:m')}} </td>
+                 <td>{{$order->products->count()}} </td>
+                 <td>{{$order->totalAmount()}}</td>
 
-                   <span class="badge badge-dark">{{$supplier->name}}</span>
-                 @endforeach
-                 </td> --}}
                </tr>
              @endforeach
            </tbody>

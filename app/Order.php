@@ -16,11 +16,15 @@ class Order extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['supplier_id','total_price','user_id'];
+  protected $fillable = ['supplier_id','user_id'];
 
   public function supplier()
   {
     return $this->belongsTo(Supplier::class,'supplier_id');
+  }
+  public function user()
+  {
+    return $this->belongsTo(User::class,'user_id');
   }
 
   public function products()
@@ -36,7 +40,7 @@ class Order extends Model
     $products = $this->products;
     foreach ($products as $product) {
       if ($product->status->id <> 1) {
-        $totalAmount = $totalAmount + ($product->price*$product->amount);
+        $totalAmount = $totalAmount + ($product->price*$product->accepted_amount);
       }
     }
     return $totalAmount;

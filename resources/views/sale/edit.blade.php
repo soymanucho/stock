@@ -134,7 +134,7 @@
   			<div class="list-feed">
           @foreach ($sale->statuses as $status)
             <div class="list-feed-item">
-              <div class="text-muted">{{$status->created_at->format('M d, h:m')}}</div>
+              <div class="text-muted" data-toggle="tooltip" data-placement="top" title="{{$status->pivot->created_at->format('d/m/Y H:i')}}">{{$status->pivot->created_at->diffForHumans()}}</div>
               <span style="color:{{$status->color}}"> <i class="fas fa-history"></i> </span> {{$status->name}}
             </div>
           @endforeach
@@ -223,8 +223,9 @@
             </div>
             <div class="form-group">
               <label>Estado:</label>
-              <input type="text" class="form-control" readonly style="color:white; background-color:{{$sale->latestStatus->first()->color ?? ''}}" placeholder"Estado" name="status_id" value="{{$sale->latestStatus->first()->name ?? ''}}">
+              <input type="text" class="form-control" readonly style="color:white; background-color:{{$sale->statuses->first()->color ?? ''}}" placeholder"Estado" name="status_id" value="{{$sale->statuses->first()->name ?? ''}}">
             </div>
+
 
 
             <div class="row">

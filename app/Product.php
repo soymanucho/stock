@@ -11,7 +11,7 @@ use App\Sale;
 use App\Brand;
 use App\Order;
 use App\Supplier;
-use App\ProductSupplier;
+
 
 class Product extends Model
 {
@@ -60,7 +60,8 @@ class Product extends Model
 
   public function suppliers()
   {
-    return $this->belongsToMany(Supplier::class,'product_supplier')->withPivot('price');
+    return $this->orders()->pluck('suppliers');
+    // return $this->belongsToMany(Supplier::class,'product_supplier')->withPivot('price');
   }
 
   // public function prices()

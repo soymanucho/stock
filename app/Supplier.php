@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Product;
 use App\Address;
 use App\Contact;
+use App\Order;
 
 class Supplier extends Model
 {
@@ -27,9 +28,13 @@ class Supplier extends Model
     return $this->belongsTo(Address::class);
   }
 
-  public function products()
+  // public function products()
+  // {
+  //   return $this->belongsToMany(Product::class,'product_supplier')->withPivot('price');
+  // }
+  public function orders()
   {
-    return $this->belongsToMany(Product::class,'product_supplier')->withPivot('price');
+    return $this->hasMany(Order::class);
   }
 
   public function contacts()

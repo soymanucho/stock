@@ -41,10 +41,17 @@
             </li>
             <li class="nav-item-divider"></li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{!! route('order-show') !!}" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Pedidos
-                <span class="badge bg-primary badge-pill ml-auto">2</span>
+                Órdenes
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{!! route('order-new') !!}" class="nav-link">
+                <i class="fas fa-cart-plus"></i>
+                Nueva orden
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
               </a>
             </li>
             {{-- <li class="nav-item nav-item-submenu">
@@ -62,7 +69,8 @@
 @endsection
 
 @section('actions')
-  <a href="#" class="btn btn-success btn-disabled">Nuevo proveedor</a>
+  <a href="#" class="btn bg-teal-800 btn-disabled">Nuevo proveedor</a>
+  <a href="{!! route('order-new') !!}" class="btn bg-teal-700 ml-2">Nueva orden</a>
 @endsection
 
 @section('breadcrumbs')

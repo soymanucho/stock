@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\ProductStatus;
 use App\Product;
+use App\ProductOrder;
 use App\Supplier;
 use App\Order;
 
@@ -23,9 +25,10 @@ class OrderController extends Controller
 
   public function new()
   {
+    $user = Auth::user();
     $order = new Order();
+    $order->user()->associate($user);
     $order->save();
-    $order->statuses()->attach([$status->id]);
     // $status->orders()->attach([$order->id]);
     // $status->save();
     // $order->save();
@@ -40,12 +43,11 @@ class OrderController extends Controller
     // if (isset($products->first()->order)) {
     //   $order = $products->first()->order;
     // }else {
-      $order = Order::where('id',$order->id)->with('latestStatus')->with('products.product')->with('paymentType')->with('client')->with('client.address')->with('client.address.location')->with('client.address.location.province')->with('products.status')->with('products')->first();
+      $order = Order::where('id',$order->id)->with('products.product')->with('supplier')->with('supplier.address')->with('supplier.address.location')->with('supplier.address.location.province')->with('products.status')->with('products')->first();
     // }
-
     $productStatuses = ProductStatus::all();
-    $paymentTypes = PaymentType::all();
-    return view('order.edit',compact('order','paymentTypes','productStatuses'));
+
+    return view('order.edit',compact('order','productStatuses'));
   }
   public function deleteProduct(Order $order, ProductSale $productSale)
   {
@@ -84,14 +86,14 @@ class OrderController extends Controller
           $productStatus = ProductStatus::where('name','Pedido')->first();
         break;
     }
-    $productSale = new ProductSale;
-    $productSale->product()->associate($product);
-    $productSale->order()->associate($order);
-    $productSale->status()->associate($productStatus);
-    $productSale->amount = $request->amount;
-    $productSale->price = $request->price;
-    $productSale->price = $request->price;
-    $productSale->save();
+    $productOrder = new ProductOrder;
+    $productOrder->product()->associate($product);
+    $productOrder->order()->associate($order);
+    $productOrder->status()->associate($productStatus);
+    $productOrder->ordered_amount = $request->amount;
+    $productOrder->accepted_amount = $request->amount;
+    $productOrder->price = $request->price;
+    $productOrder->save();
     return redirect()->back()->with('order');
   }
 
@@ -135,9 +137,7 @@ class OrderController extends Controller
     $this->validate(
       $request,
       [
-          'client_id' => 'required|exists:clients,id',
-          'payment_type_id' => 'required|exists:payment_types,id',
-          'fee' => 'required|numeric',
+          'supplier_id' => 'required|exists:suppliers,id',
           'created_at'=> 'required|date',
 
       ],
@@ -145,9 +145,7 @@ class OrderController extends Controller
 
       ],
       [
-        'client_id' => 'Cliente',
-        'payment_type_id' => 'Forma de pago',
-        'fee' => 'Cuotas',
+        'supplier_id' => 'Proveedor',
         'created_at'=> 'Fecha',
 
       ]
@@ -163,22 +161,10 @@ class OrderController extends Controller
     // Pedido
     // En stock
     // Entregado
-    $outOfStockProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',2)->get()->count();
-    $inStockProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',3)->get()->count();
-    $deliveredProducts = ProductSale::where('sale_id',$order->id)->where('product_status_id',4)->get()->count();
-    $saleProductsCount = $order->products()->where('product_status_id','<>',1)->get()->count();
-    if ($outOfStockProducts > 0) {
-      if ($order->latestStatus()->first()->name <> 'Presupuestado') {
-        $status = Status::where('id',1)->first();
-        $order->statuses()->attach([$status->id]);
-      }
-    }elseif ($inStockProducts > 0 && $inStockProducts = $saleProductsCount) {
-      $status = Status::where('id',2)->first();
-      $order->statuses()->attach([$status->id]);
-    }elseif ($deliveredProducts > 0 && $deliveredProducts = $saleProductsCount) {
-      $status = Status::where('id',3)->first();
-      $order->statuses()->attach([$status->id]);
-    }
+    // $outOfStockProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',2)->get()->count();
+    // $inStockProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',3)->get()->count();
+    // $deliveredProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',4)->get()->count();
+    // $saleProductsCount = $order->products()->where('product_status_id','<>',1)->get()->count();
 
     $order->fill($request->all());
     $order->save();

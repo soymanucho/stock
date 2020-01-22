@@ -4,7 +4,7 @@
 
     <th>Nombre</th>
     <th>Direccion</th>
-    <th>Ver productos</th>
+    <th>Ver órdenes</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
     <th>Acciones</th>

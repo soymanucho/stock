@@ -103,7 +103,7 @@ class ProductController extends Controller
     $search = $request->search;
 
     if($search == ''){
-       $products = Product::orderby('name','asc')->limit(10)->get();
+       $products = Product::orderby('name','asc')->with('brand')->limit(10)->get();
     }else{
        $products = Product::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')

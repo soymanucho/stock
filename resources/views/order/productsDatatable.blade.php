@@ -18,14 +18,14 @@
 @endsection
 
 @section('body')
-  @foreach($sale->products as $productSale)
+  @foreach($order->products as $productSale)
       <tr >
         {{-- <td class="text-center">  {{ $productSale->product->id ?? ''}} </td> --}}
         <td class="text-center">  {{ $productSale->product->name ?? '' }} </td>
         <td class="text-center">  {{ $productSale->created_at->format('d/m/y') ?? '' }} </td>
         <td class="text-center">  {{ $productSale->price ?? '' }} </td>
-        <td class="text-center">  {{ $productSale->amount ?? '' }}  </td>
-        <td class="text-center">  {{ number_format($productSale->amount*$productSale->price ?? '', 2, ',', '.')}}  </td>
+        <td class="text-center">  {{ $productSale->accepted_amount ?? '' }}  </td>
+        <td class="text-center">  {{ number_format($productSale->accepted_amount *$productSale->price ?? '', 2, ',', '.')}}  </td>
         <td class="text-center">
           <div class="btn-group">
             @if ($productSale->status->name !== 'Entregado')
@@ -38,7 +38,7 @@
                       continue;
                     @endphp
                   @endif
-                  <a href="{!! route('product-status-edit',compact('sale','productSale','productStatus')) !!}" class="dropdown-item" style="background-color:{{$productStatus->color}}"><i class="fas fa-exchange-alt"></i> {{$productStatus->name}}</a>
+                  <a href="{!! route('product-status-edit',compact('order','productSale','productStatus')) !!}" class="dropdown-item" style="background-color:{{$productStatus->color}}"><i class="fas fa-exchange-alt"></i> {{$productStatus->name}}</a>
                   @endforeach
 						</div>
             @else
@@ -48,7 +48,7 @@
 
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('sale-product-delete',compact('sale','productSale')) !!} ><i class="fas fa-trash"></i></a> </td>
+        <td class="text-center">  <a href={!! route('order-product-delete',compact('order','productSale')) !!} ><i class="fas fa-trash"></i></a> </td>
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>
     @endforeach

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Order;
 use App\Product;
@@ -13,7 +14,7 @@ class ProductOrder extends Model
 {
   use SoftDeletes;
 
-  protected $table = 'product_sale';
+  protected $table = 'order_product';
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 

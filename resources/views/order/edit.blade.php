@@ -22,41 +22,44 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Proveedores</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
             </div>
           </div>
         </div>
+
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item-header">Sub-menú</li>
             <li class="nav-item">
-              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('client-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
             </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Ventas</span>
-          <div class="header-elements">
-            <div class="list-icons">
-              <a class="list-icons-item" data-action="collapse"></a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item-divider"></li>
             <li class="nav-item">
-              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
+              <a href="{!! route('order-show') !!}" class="nav-link">
+                <i class="icon-grid-alt"></i>
+                Órdenes
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
+              </a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('sale-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nueva venta</a>
+              <a href="{!! route('order-new') !!}" class="nav-link active">
+                <i class="fas fa-cart-plus"></i>
+                Nueva orden
+                {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
+              </a>
             </li>
+            {{-- <li class="nav-item nav-item-submenu">
+              <a href="#" class="nav-link"><i class="icon-grid-alt"></i> Menu levels</a>
+              <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
+              </ul>
+            </li> --}}
           </ul>
         </div>
       </div>
@@ -66,23 +69,42 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a>
-  <a href="{!! route('receipt-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver remitos</a>
+  <a href="{!! route('supplier-new') !!}" class="btn bg-teal-800">Nuevo proveedor</a>
+  <a href="{!! route('order-new') !!}" class="btn bg-teal-700 ml-2">Nueva orden</a>
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
-      <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
-      <span class="breadcrumb-item active">Editando venta</span>
+      <a href="{!! route('supplier-show') !!}" class="breadcrumb-item">Órdenes</a>
+      <span class="breadcrumb-item active">Editar orden</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
   </div>
 
+  {{-- <div class="header-elements d-none">
+    <div class="breadcrumb justify-content-center">
+      <a href="#" class="breadcrumb-elements-item">
+        Link
+      </a>
+
+      <div class="breadcrumb-elements-item dropdown p-0">
+        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+          Dropdown
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item">Action</a>
+          <a href="#" class="dropdown-item">Another action</a>
+          <a href="#" class="dropdown-item">One more action</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Separate action</a>
+        </div>
+      </div>
+    </div>
+  </div> --}}
 @endsection
 @section('content')
   <!-- Inner container -->
@@ -94,13 +116,13 @@
 
       <!-- List -->
       <div class="card card-body">
-        @include('sale.productsDatatable')
+        @include('order.productsDatatable')
       </div>
       <div class="card card-body">
         <div class="card-title">
           Agregar nuevo producto
         </div>
-        <form class="" action="{!! route('sale-product-new',compact('sale')) !!}" method="post">
+        <form class="" action="{!! route('order-product-new',compact('order')) !!}" method="post">
           {{ csrf_field() }}
           {{ method_field('post') }}
           <div class="row">
@@ -142,9 +164,8 @@
 
         <!-- Categories -->
         <div class="card">
-          <a class="btn btn-primary" href="{!! route('receipt-new',compact('sale')) !!}">Generar remito</a>
           <div class="card-header bg-transparent header-elements-inline">
-            <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$sale->id}}</span>
+            <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la orden #{{$order->id}}</span>
             <div class="header-elements">
               <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -159,71 +180,43 @@
             <div class="form-group">
 
               <label>TOTAL:</label>
-              <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
+              <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($order->totalAmount(), 2, ',', '.')}}">
             </div>
             <div class="form-group form-group-feedback form-group-feedback-right">
-              <select id="clients" class="form-control" name="client_id">
-                @isset($sale->client)
-                  <option value="{{ old('client_id',$sale->client->id)}}" selected="selected">{{$sale->client->name}}, {{$sale->client->cuit}} </option>
+
+              <select id="suppliers" class="form-control" name="supplier_id">
+                @isset($order->supplier)
+                  <option value="{{ old('supplier_id',$order->supplier->id)}}" selected="selected">{{$order->supplier->name}} </option>
                 @else
-                  <option value="0" selected="selected"> Buscar cliente </option>
+                  <option value="0" selected="selected"> Buscar proveedor </option>
                 @endisset
               </select>
             </div>
 
             <div class="form-group">
-              <label>Cliente:</label>
-              <input type="text" class="form-control" placeholder="Nombre del cliente" id="client-name" readonly name="name" value="@isset($sale->client) {{$sale->client->name}} @endisset">
+              <label>Proveedor:</label>
+              <input type="text" class="form-control" placeholder="Nombre del proveedor" id="supplier-name" readonly name="name" value="@isset($order->supplier) {{$order->client->name}} @endisset">
             </div>
 
-            <div class="form-group">
-              <label>Cuit:</label>
-              <input type="text" class="form-control" placeholder="CUIT" id="client-cuit" readonly name="cuit" value="@isset($sale->client) {{$sale->client->cuit}} @endisset">
-            </div>
             <div class="form-group">
               <label>Dirección:</label>
-              <input type="text" class="form-control" placeholder="Dirección del cliente" id="client-address" readonly name="address" value="@isset($sale->client->address){{$sale->client->fullAddress()}} @endisset">
-            </div>
-
-            <div class="form-group">
-              <label>Forma de pago:</label>
-              <select id="paymentTypes" class="form-control" name="payment_type_id">
-                @foreach ($paymentTypes as $paymentType)
-                  <option value="{{ old('payment_type_id',$paymentType->id)}}"
-                    @isset($sale->paymentType)
-                      @if ($sale->paymentType->id === $paymentType->id)
-                        selected="selected"
-                      @endif
-                    @endisset
-                    >{{$paymentType->name}} </option>
-                  @endforeach
-                </select>
-              </div>
-
-            <div class="form-group">
-              <label>Cuotas:</label>
-              <input type="text" class="form-control" placeholder="Cantidad de cuotas" name="fee" value="{{$sale->fee}}">
+              <input type="text" class="form-control" placeholder="Dirección del proveedor" id="supplier-address" readonly name="address" value="@isset($order->supplier->address){{$order->supplier->fullAddress()}} @endisset">
             </div>
 
             <div class="form-group">
               <label>Fecha:</label>
-              <input type="date" class="form-control" placeholder"Fecha de la venta" name="created_at" value="{{$sale->created_at->format('Y-m-d')}}">
+              <input type="date" class="form-control" placeholder"Fecha de la orden" name="created_at" value="{{$order->created_at->format('Y-m-d')}}">
             </div>
-            <div class="form-group">
-              <label>Estado:</label>
-              <input type="text" class="form-control" readonly style="color:white; background-color:{{$sale->latestStatus->first()->color ?? ''}}" placeholder"Estado" name="status_id" value="{{$sale->latestStatus->first()->name ?? ''}}">
-            </div>
-
 
             <div class="row">
               <div class="col-12">
-                {{-- <a class="btn bg-teal btn-block mb-2" href="{!! route('sale-remito-new',compact('sale')) !!}">Generar remito</a> --}}
+                {{-- <a class="btn bg-teal btn-block mb-2" href="{!! route('order-remito-new',compact('order')) !!}">Generar remito</a> --}}
               </div>
               <div class="col-6">
                 <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
               </div>
               <div class="col-6">
-                <button type="submit" class="btn btn-success btn-block mb-2">Guardar venta</button>
+                <button type="submit" class="btn btn-success btn-block mb-2">Guardar orden</button>
               </div>
             </div>
           </form>
@@ -259,7 +252,7 @@
 		<form method="post">
       {{ csrf_field() }}
       {{ method_field('put') }}
-			@include('sale._fields')
+			@include('order._fields')
 			<div class="text-right">
 				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
 				<button type="submit" class="btn btn-success">Editar venta <i class="fas fa-user-edit"></i></button>
@@ -300,9 +293,9 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       }
 
     });
-    $( "#clients" ).select2({
+    $( "#suppliers" ).select2({
       ajax: {
-        url: "{{route('client-select-api')}}",
+        url: "{{route('supplier-select-api')}}",
         type: "post",
         dataType: 'json',
         delay: 250,
@@ -322,11 +315,10 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     });
 
-    $('#clients').on('select2:select', function (e) {
+    $('#suppliers').on('select2:select', function (e) {
       var data = e.params.data;
-      $('#client-name').val(data.name);
-      $('#client-cuit').val(data.cuit);
-      $('#client-address').val(data.address);
+      $('#supplier-name').val(data.name);
+      $('#supplier-address').val(data.address);
     });
 
 </script>

@@ -103,7 +103,30 @@ class SupplierController extends Controller
   }
   public function detail(Supplier $supplier)
   {
-    $supplier = Supplier::where('id',$supplier->id)->with('products')->with('products.orders')->with('products.sales')->get()->first();
+    $supplier = Supplier::where('id',$supplier->id)->with('orders')->with('orders.products')->get()->first();
     return view('supplier.detail',compact('supplier'));
+  }
+  public function selectApi(Request $request)
+  {
+    $search = $request->search;
+
+    if($search == ''){
+       $suppliers = Supplier::orderby('name','asc')->limit(5)->with('address')->with('address.location')->with('address.location.province')->get();
+    }else{
+       $suppliers = Supplier::orderby('name','asc')
+          ->where('name', 'like', '%' .$search . '%')
+          ->limit(5)->get();
+    }
+    $response = array();
+    foreach($suppliers as $supplier){
+       $response[] = array(
+            "id"=>$supplier->id,
+            "text"=>$supplier->name,
+            "name"=>$supplier->name,
+            "address"=>$supplier->fullAddress()
+       );
+    }
+
+    return json_encode($response);
   }
 }

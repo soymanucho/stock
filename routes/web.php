@@ -95,6 +95,8 @@ Route::get('/provedores/{supplier}/editar/', 'SupplierController@edit')->name('s
 Route::put('/provedores/{supplier}/editar/', 'SupplierController@update')->name('supplier-update');
 Route::get('/provedores/{supplier}','SupplierController@detail')->name('supplier-detail');
 
+Route::post('/proveedoresSelectApi/', 'SupplierController@selectApi')->name('supplier-select-api');
+
 
 //PRODUCTO
 Route::get('/productos/', 'ProductController@show')->name('product-show');

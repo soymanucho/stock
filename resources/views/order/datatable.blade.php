@@ -2,44 +2,24 @@
 
 @section('header')
 
-    <th># Venta</th>
+    <th># Orden</th>
     <th>Fecha</th>
-    <th>Cliente</th>
+    <th>Proveedor</th>
     <th># de productos</th>
-    <th>Tpo. pago/Cuotas</th>
     <th>Total</th>
-    <th>Estado</th>
-    {{-- <th># Compras</th>
-    <th>Total Gastado</th> --}}
     <th>Editar</th>
-    {{-- <th>Historial</th> --}}
-
 
 @endsection
 
 @section('body')
-  @foreach($sales as $sale)
+  @foreach($orders as $order)
       <tr >
-        <td>  {{ $sale->id }} </td>
-        <td>  {{ $sale->created_at->format('d/m/y h:m') }} </td>
-        <td>
-          {{ $sale->client->name ?? 'Indefinido'}}, CUIT {{ $sale->client->cuit ?? 'Indefinido' }}
-        </td>
-        <td>  {{ $sale->products->where('product_status_id','<>',1)->count() }} </td>
-        <td>  {{$sale->paymentType->name ?? 'Indefinido'}} en {{ $sale->fee }} cuota/s </td>
-        <td>  ${{number_format($sale->totalAmount(), 2, ',', '.')}} </td>
-        <td>
-          @php
-          $status = $sale->latestStatus->first()->name ?? 'Indefinido'
-          @endphp
-          @isset($status)
-            {{ $status }}
-          @endisset
-        </td>
-        {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
-        {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('sale-edit',compact('sale')) !!} ><i class="fas fa-edit"></i></a> </td>
-        {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
+        <td>  {{ $order->id }} </td>
+        <td>  {{ $order->created_at->format('d/m/Y h:i') }} </td>
+        <td>  {{ $order->supplier->name ?? 'Indefinido'}} </td>
+        <td>  {{ $order->products->where('product_status_id','<>',1)->count() }} </td>
+        <td>  ${{number_format($order->totalAmount(), 2, ',', '.')}} </td>
+        <td class="text-center">  <a href={!! route('order-edit',compact('order')) !!} ><i class="fas fa-edit"></i></a> </td>
       </tr>
     @endforeach
 @endsection
