@@ -8,6 +8,12 @@
     </div>
   </div>
   <div class="form-group row">
+    <label class="col-form-label col-lg-2" for="email">Correo electrónico</label>
+    <div class="col-lg-10">
+      <input type="email" class="form-control rounded-round" name="email" placeholder"Email del proveedor al que se le enviarán las órdenes" value="{{ old('email',$supplier->email)}}">
+    </div>
+  </div>
+  <div class="form-group row">
     <label class="col-form-label col-lg-2" for="street">Calle</label>
     <div class="col-lg-10">
       <input type="text" class="form-control rounded-round" name="street" placeholder="Calle de la dirección"

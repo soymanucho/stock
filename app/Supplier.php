@@ -16,7 +16,7 @@ class Supplier extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['name','address_id'];
+  protected $fillable = ['name','email','address_id'];
 
   public function fullAddress()
   {

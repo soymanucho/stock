@@ -37,10 +37,11 @@ class SupplierController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|string|max:100',
-          'street' => 'required|string|max:60',
-          'number'=> 'required|string|max:10',
-          'floor'=> 'nullable|string|max:10',
+          'name' => 'required|string|max:255',
+          'email' => 'required|string|email|max:255',
+          'street' => 'required|string|max:255',
+          'number'=> 'required|numeric',
+          'floor'=> 'nullable|string|max:255',
           'location_id'=> 'required|exists:locations,id',
 
       ],
@@ -49,6 +50,7 @@ class SupplierController extends Controller
       ],
       [
         'name' => 'Nombre',
+        'email' => 'Correo electrónico',
         'street' => 'Calle',
         'number'=> 'Número',
         'floor'=> 'Piso',
@@ -73,10 +75,11 @@ class SupplierController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|string|max:100',
-          'street' => 'required|string|max:60',
-          'number'=> 'required|string|max:10',
-          'floor'=> 'nullable|string|max:10',
+          'name' => 'required|string|max:255',
+          'email' => 'required|string|email|max:255',
+          'street' => 'required|string|max:255',
+          'number'=> 'required|numeric',
+          'floor'=> 'nullable|string|max:255',
           'location_id'=> 'required|exists:locations,id',
 
       ],
@@ -85,6 +88,7 @@ class SupplierController extends Controller
       ],
       [
         'name' => 'Nombre',
+        'email' => 'Correo electrónico',
         'street' => 'Calle',
         'number'=> 'Número',
         'floor'=> 'Piso',
@@ -123,6 +127,7 @@ class SupplierController extends Controller
             "id"=>$supplier->id,
             "text"=>$supplier->name,
             "name"=>$supplier->name,
+            "email"=>$supplier->email,
             "address"=>$supplier->fullAddress()
        );
     }
