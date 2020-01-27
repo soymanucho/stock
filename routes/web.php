@@ -36,6 +36,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/configuracion', 'ConfigurationController@show')->name('configuration-show');
 
 //ORDENES
 Route::get('/ordenes/', 'OrderController@show')->name('order-show');

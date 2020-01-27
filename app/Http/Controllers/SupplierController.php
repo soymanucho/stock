@@ -116,6 +116,7 @@ class SupplierController extends Controller
 
     if($search == ''){
        $suppliers = Supplier::orderby('name','asc')->limit(5)->with('address')->with('address.location')->with('address.location.province')->get();
+       // dd($suppliers);
     }else{
        $suppliers = Supplier::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')

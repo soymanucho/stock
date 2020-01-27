@@ -43,7 +43,7 @@ class OrderController extends Controller
     // if (isset($products->first()->order)) {
     //   $order = $products->first()->order;
     // }else {
-      $order = Order::where('id',$order->id)->with('products.product')->with('supplier')->with('supplier.address')->with('supplier.address.location')->with('supplier.address.location.province')->with('products.status')->with('products')->first();
+    $order = Order::where('id',$order->id)->with('products.product')->with('supplier')->with('supplier.address')->with('supplier.address.location')->with('supplier.address.location.province')->with('products.status')->with('products')->first();
     // }
     $productStatuses = ProductStatus::all();
 
@@ -77,15 +77,15 @@ class OrderController extends Controller
     );
     $product = Product::where('id',$request->product_id)->first();
     $stock = $product->stock > 0;
-    switch ($stock) {
-      case true:
-          $productStatus = ProductStatus::where('name','En stock')->first();
-        break;
-
-      default:
+    // switch ($stock) {
+    //   case true:
+          // $productStatus = ProductStatus::where('name','En stock')->first();
+      //   break;
+      //
+      // default:
           $productStatus = ProductStatus::where('name','Pedido')->first();
-        break;
-    }
+    //     break;
+    // }
     $productOrder = new ProductOrder;
     $productOrder->product()->associate($product);
     $productOrder->order()->associate($order);

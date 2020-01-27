@@ -195,7 +195,7 @@
 
             <div class="form-group">
               <label>Proveedor:</label>
-              <input type="text" class="form-control" placeholder="Nombre del proveedor" id="supplier-name" readonly name="name" value="@isset($order->supplier) {{$order->client->name}} @endisset">
+              <input type="text" class="form-control" placeholder="Nombre del proveedor" id="supplier-name" readonly name="name" value="@isset($order->supplier) {{$order->supplier->name}} @endisset">
             </div>
 
             <div class="form-group">
