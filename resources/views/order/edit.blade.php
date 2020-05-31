@@ -32,9 +32,9 @@
 
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
+            {{-- <li class="nav-item-header">Sub-menú</li> --}}
             <li class="nav-item">
-              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Listar proveedores</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nuevo proveedor</a>
@@ -43,7 +43,7 @@
             <li class="nav-item">
               <a href="{!! route('order-show') !!}" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Órdenes
+                Listar órdenes
                 {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
               </a>
             </li>

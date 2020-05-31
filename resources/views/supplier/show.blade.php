@@ -32,18 +32,18 @@
 
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
+            {{-- <li class="nav-item-header">Sub-menú</li> --}}
             <li class="nav-item">
-              <a href="#" class="nav-link active"><i class="icon-list3"></i> Ver todos</a>
+              <a href="#" class="nav-link active"><i class="icon-list3"></i> Listar proveedores</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nuevo proveedor</a>
             </li>
             <li class="nav-item-divider"></li>
             <li class="nav-item">
               <a href="{!! route('order-show') !!}" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Órdenes
+                Listar órdenes
                 {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
               </a>
             </li>
@@ -78,7 +78,7 @@
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
       <a href="" class="breadcrumb-item">Proveedores</a>
-      <span class="breadcrumb-item active">Ver todos</span>
+      <span class="breadcrumb-item active">Listado</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>

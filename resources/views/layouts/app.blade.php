@@ -468,7 +468,7 @@
 
 				<div class="navbar-collapse collapse" id="navbar-footer">
 					<span class="navbar-text">
-						&copy; 2019 - {{ now()->year }}. <a href="#">IntemunApp</a> by <a href="http://branderez.com" target="_blank"><strong>Brander</strong>ez </a>
+						&copy; 2019 - {{ now()->year }}. <a href="#">Intemun</a> 
 					</span>
 
 					<ul class="navbar-nav ml-lg-auto">

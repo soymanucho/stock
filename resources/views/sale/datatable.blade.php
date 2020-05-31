@@ -11,8 +11,8 @@
     <th>Estado</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
-    <th>Editar</th>
-    <th>Eliminar</th>
+    <th>Acciones</th>
+    {{-- <th>Eliminar</th> --}}
     {{-- <th>Historial</th> --}}
 
 
@@ -39,8 +39,8 @@
         </td>
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('sale-edit',compact('sale')) !!} ><i class="fas fa-edit" style="color:orange"></i></a> </td>
-        <td class="text-center">  <a href={!! route('sale-delete',compact('sale')) !!} ><i class="fas fa-trash" style="color:red"></i></a> </td>
+        <td class="text-center">  <a href={!! route('sale-edit',compact('sale')) !!} ><i class="fas fa-edit" style="color:orange"></i></a> <a href={!! route('sale-delete',compact('sale')) !!} ><i class="fas fa-trash" style="color:red"></i></a></td>
+
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>
     @endforeach

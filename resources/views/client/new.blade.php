@@ -22,26 +22,6 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
-          <div class="header-elements">
-            <div class="list-icons">
-              <a class="list-icons-item" data-action="collapse"></a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item">
-              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
-            </li>
-            <li class="nav-item">
-              <a href="{!! route('client-new') !!}" class="nav-link active"><i class="icon-user-plus"></i> Dar de alta</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-header bg-transparent header-elements-inline">
           <span class="text-uppercase font-size-sm font-weight-semibold">Ventas</span>
           <div class="header-elements">
             <div class="list-icons">
@@ -52,7 +32,7 @@
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todas</a>
+              <a href="{!! route('sale-show') !!}" class="nav-link"><i class="icon-list3"></i>Listar ventas</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('sale-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nueva venta</a>
@@ -60,6 +40,27 @@
           </ul>
         </div>
       </div>
+      <div class="card mb-2">
+        <div class="card-header bg-transparent header-elements-inline">
+          <span class="text-uppercase font-size-sm font-weight-semibold">Clientes</span>
+          <div class="header-elements">
+            <div class="list-icons">
+              <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <ul class="nav nav-sidebar" data-nav-type="accordion">
+            <li class="nav-item">
+              <a href="{!! route('client-show') !!}" class="nav-link"><i class="icon-list3"></i> Listar clientes</a>
+            </li>
+            <li class="nav-item">
+              <a href="{!! route('client-new') !!}" class="nav-link active"><i class="icon-user-plus"></i> Nuevo cliente</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
         <!-- /sub navigation -->
     </div>
   </div>

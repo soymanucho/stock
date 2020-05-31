@@ -32,18 +32,18 @@
 
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
-            <li class="nav-item-header">Sub-menú</li>
+            {{-- <li class="nav-item-header">Sub-menú</li> --}}
             <li class="nav-item">
-              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
+              <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Listar proveedores</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nuevo proveedor</a>
             </li>
             <li class="nav-item-divider"></li>
             <li class="nav-item">
               <a href="{!! route('order-show') !!}" class="nav-link">
                 <i class="icon-grid-alt"></i>
-                Órdenes
+                Listar órdenes
                 {{-- <span class="badge bg-primary badge-pill ml-auto">2</span> --}}
               </a>
             </li>
@@ -78,7 +78,7 @@
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
       <a href="{!! route('supplier-show') !!}" class="breadcrumb-item">Proveedores</a>
-      <span class="breadcrumb-item active">Editar proveedor</span>
+      <span class="breadcrumb-item active">Editando proveedor #{{$supplier->id}}</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -110,7 +110,7 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Editar proveedor</h5>
+		<h5 class="card-title">Editando proveedor</h5>
 		<div class="header-elements">
 			<div class="list-icons">
     		<a class="list-icons-item" data-action="collapse"></a>
