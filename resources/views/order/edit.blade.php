@@ -37,7 +37,7 @@
               <a href="{!! route('supplier-show') !!}" class="nav-link"><i class="icon-list3"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Dar de alta</a>
+              <a href="{!! route('supplier-new') !!}" class="nav-link"><i class="icon-user-plus"></i> Nuevo proveedor</a>
             </li>
             <li class="nav-item-divider"></li>
             <li class="nav-item">
@@ -77,8 +77,8 @@
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="{!! route('supplier-show') !!}" class="breadcrumb-item">Órdenes</a>
-      <span class="breadcrumb-item active">Editar orden</span>
+      <a href="{!! route('order-show') !!}" class="breadcrumb-item">Órdenes</a>
+      <span class="breadcrumb-item active">Editando orden #{{$order->id}}</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -164,6 +164,7 @@
 
         <!-- Categories -->
         <div class="card">
+          <a class="btn btn-primary" href="{!! route('order-receive',compact('order')) !!}">Recibir orden</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la orden #{{$order->id}}</span>
             <div class="header-elements">

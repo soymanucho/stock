@@ -36,7 +36,7 @@
               <a href="{!! route('product-show') !!}" class="nav-link"><i class="fas fa-box-open"></i> Ver todos</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('product-new') !!}" class="nav-link active"><i class="icon-stack-plus"></i> Dar de alta</a>
+              <a href="{!! route('product-new') !!}" class="nav-link active"><i class="icon-stack-plus"></i> Nuevo producto</a>
             </li>
             <li class="nav-item-divider"></li>
           </ul>
@@ -58,7 +58,7 @@
               <a href="{!! route('brand-show') !!}" class="nav-link"><i class="fas fa-tags"></i> Ver todas</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Dar de alta</a>
+              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-stack-plus"></i> Nueva marca</a>
             </li>
             <li class="nav-item-divider"></li>
           </ul>

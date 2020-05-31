@@ -29,30 +29,41 @@ class OrderController extends Controller
     $order = new Order();
     $order->user()->associate($user);
     $order->save();
-    // $status->orders()->attach([$order->id]);
-    // $status->save();
-    // $order->save();
-    // $paymentTypes = PaymentType::all();
-    // return view('order.new',compact('order','paymentTypes'));
+
     return redirect()->route('order-edit',compact('order'));
   }
 
+  public function receiveOrder(Order $order)
+  {
+
+    $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->first();
+    $productStatus = ProductStatus::where('name','Recibido')->first();
+    foreach ($order->products as $productOrder) {
+      if ($productOrder->status->name == 'Pedido'){
+        $productOrder->status()->associate($productStatus);
+        $productOrder->save();
+        $product = Product::where('id',$productOrder->product->id)->first();
+        $product->stock = $product->stock + $productOrder->accepted_amount;
+        $product->save();
+      }
+    }
+    return redirect()->route('order-edit',compact('order'));
+  }
   public function edit(Order $order)
   {
-    // $products = ProductSale::where('sale_id',$order->id)->with('order')->with('order.latestStatus')->with('order.paymentType')->with('order.client')->with('order.client.address')->with('order.client.address.location')->with('order.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();
-    // if (isset($products->first()->order)) {
-    //   $order = $products->first()->order;
-    // }else {
     $order = Order::where('id',$order->id)->with('products.product')->with('supplier')->with('supplier.address')->with('supplier.address.location')->with('supplier.address.location.province')->with('products.status')->with('products')->first();
-    // }
     $productStatuses = ProductStatus::all();
-
     return view('order.edit',compact('order','productStatuses'));
   }
-  public function deleteProduct(Order $order, ProductSale $productSale)
+  public function delete(Order $order)
   {
-    // $order = Order::where('id',$order->id)->with('products')->with('products.product')->with('products')->first();
-    $product = ProductSale::where('id',$productSale->id)->first();
+    $order = Order::where('id',$order->id)->delete();
+
+    return redirect()->route('order-show');
+  }
+  public function deleteProduct(Order $order, ProductOrder $productOrder)
+  {
+    $product = ProductOrder::where('id',$productOrder->id)->first();
     $product->delete();
     return redirect()->back()->with('order');
   }
@@ -76,16 +87,9 @@ class OrderController extends Controller
       ]
     );
     $product = Product::where('id',$request->product_id)->first();
-    $stock = $product->stock > 0;
-    // switch ($stock) {
-    //   case true:
-          // $productStatus = ProductStatus::where('name','En stock')->first();
-      //   break;
-      //
-      // default:
-          $productStatus = ProductStatus::where('name','Pedido')->first();
-    //     break;
-    // }
+
+    $productStatus = ProductStatus::where('name','Pedido')->first();
+
     $productOrder = new ProductOrder;
     $productOrder->product()->associate($product);
     $productOrder->order()->associate($order);
@@ -96,41 +100,6 @@ class OrderController extends Controller
     $productOrder->save();
     return redirect()->back()->with('order');
   }
-
-  // public function save(Request $request)
-  // {
-  //   // dd($request);
-  //   $this->validate(
-  //     $request,
-  //     [
-  //         'name' => 'required|string|max:100',
-  //         'cuit' => 'required|string|max:20',
-  //         'street' => 'required|string|max:60',
-  //         'number'=> 'required|string|max:10',
-  //         'floor'=> 'nullable|string|max:10',
-  //         'location_id'=> 'required|exists:locations,id',
-  //
-  //     ],
-  //     [
-  //
-  //     ],
-  //     [
-  //       'name' => 'Nombre',
-  //       'cuit' => 'CUIT',
-  //       'street' => 'Calle',
-  //       'number'=> 'Número',
-  //       'floor'=> 'Piso',
-  //       'location_id'=> 'Localidad',
-  //     ]
-  //   );
-  //   $order = new Order;
-  //   $order->fill($request->all());
-  //   $order->save();
-  //
-  //   $order->address()->associate($address)->save();
-  //
-  //   return redirect()->route('order-show');
-  // }
 
   public function update(Order $order, Request $request)
   {
@@ -150,21 +119,6 @@ class OrderController extends Controller
 
       ]
     );
-    // Presupuestado
-    // Preparado
-    // Remitido
-    // Facturado
-    // Cobrado
-
-
-    // Cancelado
-    // Pedido
-    // En stock
-    // Entregado
-    // $outOfStockProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',2)->get()->count();
-    // $inStockProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',3)->get()->count();
-    // $deliveredProducts = ProductOrder::where('order_id',$order->id)->where('product_status_id',4)->get()->count();
-    // $saleProductsCount = $order->products()->where('product_status_id','<>',1)->get()->count();
 
     $order->fill($request->all());
     $order->save();

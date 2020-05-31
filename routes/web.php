@@ -44,9 +44,11 @@ Route::get('/ordenes/nueva/', 'OrderController@new')->name('order-new');
 Route::post('/ordenes/nueva/', 'OrderController@save')->name('order-save');
 Route::get('/ordenes/{order}/editar/', 'OrderController@edit')->name('order-edit');
 Route::put('/ordenes/{order}/editar/', 'OrderController@update')->name('order-update');
+Route::get('/ordenes/{order}/eliminar/', 'OrderController@delete')->name('order-delete');
 Route::get('/ordenes/{order}','OrderController@detail')->name('order-detail');
-Route::get('/ordenes/{order}/producto/{product}/eliminar','OrderController@deleteProduct')->name('order-product-delete');
+Route::get('/ordenes/{order}/producto/{productOrder}/eliminar','OrderController@deleteProduct')->name('order-product-delete');
 Route::post('/ordenes/{order}/producto/nuevo','OrderController@newProduct')->name('order-product-new');
+Route::get('/ordenes/{order}/confirmar/','OrderController@receiveOrder')->name('order-receive');
 
 //VENTAS
 Route::get('/ventas/', 'SaleController@show')->name('sale-show');
@@ -54,6 +56,7 @@ Route::get('/ventas/nueva/', 'SaleController@new')->name('sale-new');
 Route::post('/ventas/nueva/', 'SaleController@save')->name('sale-save');
 Route::get('/ventas/{sale}/editar/', 'SaleController@edit')->name('sale-edit');
 Route::put('/ventas/{sale}/editar/', 'SaleController@update')->name('sale-update');
+Route::get('/ventas/{sale}/eliminar/', 'SaleController@delete')->name('sale-delete');
 Route::get('/ventas/{sale}','SaleController@detail')->name('sale-detail');
 Route::get('/ventas/{sale}/producto/{productSale}/eliminar','SaleController@deleteProduct')->name('sale-product-delete');
 Route::post('/ventas/{sale}/producto/nuevo','SaleController@newProduct')->name('sale-product-new');
@@ -117,8 +120,9 @@ Route::get('/contactos/{model}/{id}/{contact}/editar','ContactController@edit')-
 Route::put('/contactos/{model}/{id}/{contact}/editar','ContactController@update')->name('contact-update');
 Route::get('/contactos/{model}/{id}/{contact}/eliminar','ContactController@delete')->name('contact-delete');
 
-//ESTADO DEL PRODUCTO DE UNA VENTA
-Route::get('/ventas/{sale}/producto/{productSale}/estado/{productStatus}/edit','ProductStatusController@edit')->name('product-status-edit');
+//ESTADO DEL PRODUCTO DE UNA VENTA U ORDEN
+Route::get('/ventas/{sale}/producto/{productSale}/estado/{productStatus}/edit','ProductStatusController@editSale')->name('sale-product-status-edit');
+Route::get('/ordenes/{order}/producto/{productOrder}/estado/{productStatus}/edit','ProductStatusController@editOrder')->name('order-product-status-edit');
 
 //LOCALIDADES
 Route::post('/api/localidades/', 'LocationController@selectApi')->name('location-api');

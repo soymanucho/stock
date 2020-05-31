@@ -18,6 +18,7 @@ use Carbon\Carbon;
       DB::table('product_statuses')->insert(['name' => 'Pedido','color' => '#d1b41b']);
       DB::table('product_statuses')->insert(['name' => 'En stock','color' => '#d78e11']);
       DB::table('product_statuses')->insert(['name' => 'Entregado','color' => '#41a74e']);
+      DB::table('product_statuses')->insert(['name' => 'Recibido','color' => '#0f64c7']);
 
     }
 }

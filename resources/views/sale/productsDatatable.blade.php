@@ -38,7 +38,7 @@
                       continue;
                     @endphp
                   @endif
-                  <a href="{!! route('product-status-edit',compact('sale','productSale','productStatus')) !!}" class="dropdown-item" style="background-color:{{$productStatus->color}}"><i class="fas fa-exchange-alt"></i> {{$productStatus->name}}</a>
+                  <a href="{!! route('sale-product-status-edit',compact('sale','productSale','productStatus')) !!}" class="dropdown-item" style="background-color:{{$productStatus->color}}"><i class="fas fa-exchange-alt"></i> {{$productStatus->name}}</a>
                   @endforeach
 						</div>
             @else

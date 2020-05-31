@@ -77,7 +77,7 @@
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="{!! route('supplier-show') !!}" class="breadcrumb-item">Órdenes</a>
+      <a href="{!! route('order-show') !!}" class="breadcrumb-item">Órdenes</a>
       <span class="breadcrumb-item active">Ver todas</span>
     </div>
 

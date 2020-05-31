@@ -39,6 +39,11 @@ class SaleController extends Controller
     return redirect()->route('sale-edit',compact('sale'));
   }
 
+  public function delete(Sale $sale)
+  {
+    $sale = Sale::where('id',$sale->id)->delete();
+    return redirect()->route('sale-show');
+  }
   public function edit(Sale $sale)
   {
     // $products = ProductSale::where('sale_id',$sale->id)->with('sale')->with('sale.latestStatus')->with('sale.paymentType')->with('sale.client')->with('sale.client.address')->with('sale.client.address.location')->with('sale.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();

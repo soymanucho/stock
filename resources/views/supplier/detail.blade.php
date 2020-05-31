@@ -38,12 +38,10 @@
            </tbody>
            <tfoot>
            <tr>
-             <th>Código</th>
-             <th>Nombre</th>
-             <th>Descrip.</th>
-             <th>Stock</th>
-             <th># Ventas</th>
-             <th># Pedidos</th>
+             <th>#</th>
+             <th>Fecha</th>
+             <th>Cantidad de productos</th>
+             <th>Total</th>
              {{-- <th>Proveedores</th> --}}
            </tr>
            </tfoot>

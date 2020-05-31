@@ -15,7 +15,7 @@ class ProductController extends Controller
   }
   public function show()
   {
-    $products = Product::orderby('name')->with('brand')->with('suppliers')->get();
+    $products = Product::orderby('name')->with('brand')->get();
     // dd($products);
     return view('product.show',compact('products'));
   }

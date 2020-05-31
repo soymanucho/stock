@@ -7,7 +7,7 @@
     <th>Ver órdenes</th>
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
-    <th>Acciones</th>
+    <th>Editar</th>
     {{-- <th>Historial</th> --}}
 
 

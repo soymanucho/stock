@@ -8,6 +8,7 @@
     <th># de productos</th>
     <th>Total</th>
     <th>Editar</th>
+    <th>Borrar</th>
 
 @endsection
 
@@ -19,7 +20,8 @@
         <td>  {{ $order->supplier->name ?? 'Indefinido'}} </td>
         <td>  {{ $order->products->where('product_status_id','<>',1)->count() }} </td>
         <td>  ${{number_format($order->totalAmount(), 2, ',', '.')}} </td>
-        <td class="text-center">  <a href={!! route('order-edit',compact('order')) !!} ><i class="fas fa-edit"></i></a> </td>
+        <td class="text-center">  <a href={!! route('order-edit',compact('order')) !!} ><i class="fas fa-edit" style="color:orange"></i></a> </td>
+        <td class="text-center">  <a href={!! route('order-delete',compact('order')) !!} ><i class="fas fa-trash" style="color:red"></i></a> </td>
       </tr>
     @endforeach
 @endsection
