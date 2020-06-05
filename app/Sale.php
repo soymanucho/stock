@@ -37,12 +37,12 @@ class Sale extends Model
 
   public function statuses()
   {
-    return $this->belongsToMany(Status::class)->withTimestamps()->orderBy('created_at');
+    return $this->belongsToMany(Status::class)->withPivot(['created_at','updated_at','sale_id','status_id','id'])->orderBy('pivot_created_at');
   }
 
   public function latestStatus()
   {
-    return $this->belongsToMany(Status::class)->orderBy('created_at')->latest();
+    return $this->belongsToMany(Status::class)->withPivot(['created_at','updated_at','sale_id','status_id','id'])->orderBy('pivot_created_at','desc')->latest('pivot_created_at');
   }
 
   public function totalAmount()
