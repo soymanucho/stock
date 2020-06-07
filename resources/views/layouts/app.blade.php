@@ -102,13 +102,29 @@
 					</a>
 				</li>
 
-				{{-- <li class="nav-item dropdown">
-					<a href="#" class="navbar-nav-link">
+				<li class="nav-item dropdown">
+					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 						<i class="icon-bell2"></i>
-						<span class="d-md-none ml-2">Notifications</span>
-						<span class="badge badge-mark border-white ml-auto ml-md-0"></span>
+						<span class="d-md-none ml-2">Notificaciones</span>
+						<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>
 					</a>
-				</li> --}}
+
+					<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+						<div class="dropdown-content-header">
+							<span class="font-weight-semibold">Notificaciones</span>
+						</div>
+
+						<div class="dropdown-content-body dropdown-scrollable">
+							<ul class="media-list" id="notificationContainer">
+
+							</ul>
+						</div>
+
+						<div class="dropdown-content-footer justify-content-center p-0">
+							<a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="" data-original-title="Load more"><i class="icon-menu7 d-block top-0"></i></a>
+						</div>
+					</div>
+				</li>
 
 				@guest
 					<li class="nav-item">
@@ -468,7 +484,7 @@
 
 				<div class="navbar-collapse collapse" id="navbar-footer">
 					<span class="navbar-text">
-						&copy; 2019 - {{ now()->year }}. <a href="#">Intemun</a> 
+						&copy; 2019 - {{ now()->year }}. <a href="#">Intemun</a>
 					</span>
 
 					<ul class="navbar-nav ml-lg-auto">
@@ -547,7 +563,29 @@
         window.location.reload();
     	}
   	});
+
+		$.ajax({
+			url: "{{route('notification-api')}}",
+			success: function(result){
+
+				$("#notificationContainer").html(result);
+			}});
+
   });
+
+
+	// <li class="media">
+	// 	<div class="media-body">
+	// 		<div class="media-title">
+	// 			<a href="#">
+	// 				<span class="font-weight-semibold">{{$notification->title}}</span>
+	// 				<span class="text-muted float-right font-size-sm">{{$notification->created_at->diffForHumans()}}</span>
+	// 			</a>
+	// 		</div>
+	//
+	// 		<span class="text-muted">{{$notification->body}}</span>
+	// 	</div>
+	// </li>
 </script>
 @notifyJs
 </body>

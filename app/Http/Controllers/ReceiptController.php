@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Barryvdh\DomPDF\Facade as PDF;
 
-
+use App\CaeVoucher;
 
 use App\Sale;
 use App\Receipt;
@@ -40,6 +40,8 @@ class ReceiptController extends Controller
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "En stock" para poder generar un remito.']);
     }
+    // $lastCae = CaeVoucher::where('')
+    if
     $receipt = new Receipt;
 
     $receipt->sale()->associate($sale);
@@ -53,7 +55,6 @@ class ReceiptController extends Controller
       $productSale->product->save();
       $productSale->status()->associate($statusEntregado)->save();
     }
-
     // $receipt->productSales()->saveMany($productSales);
     // $receipt->save();
 

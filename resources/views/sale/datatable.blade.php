@@ -39,7 +39,10 @@
         </td>
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('sale-edit',compact('sale')) !!} ><i class="fas fa-edit" style="color:orange"></i></a> <a href={!! route('sale-delete',compact('sale')) !!} ><i class="fas fa-trash" style="color:red"></i></a></td>
+        <td class="text-center">
+          <a data-toggle="tooltip" data-placement="top" title="Editar" href={!! route('sale-edit',compact('sale')) !!} ><i class="fas fa-edit" style="color:orange"></i></a>
+          <a data-toggle="tooltip" data-placement="top" title="Eliminar" href={!! route('sale-delete',compact('sale')) !!} ><i class="fas fa-trash" style="color:red"></i></a>
+        </td>
 
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>

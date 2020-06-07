@@ -224,7 +224,7 @@
             </div>
             <div class="form-group">
               <label>Estado:</label>
-              <input type="text" class="form-control" readonly style="color:white; background-color:{{$sale->statuses->first()->color ?? ''}}" placeholder"Estado" name="status_id" value="{{$sale->statuses->first()->name ?? ''}}">
+              <input type="text" class="form-control" readonly style="color:white; background-color:{{$sale->latestStatus->first()->color ?? ''}}" placeholder"Estado" name="status_id" value="{{$sale->latestStatus->first()->name ?? ''}}">
             </div>
 
 

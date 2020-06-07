@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// use Barryvdh\Debugbar\Facade as Debugbar;
 use App\Sale;
 use App\Status;
 use App\Client;
@@ -18,6 +19,7 @@ class SaleController extends Controller
   {
       $this->middleware('auth');
   }
+
   public function show()
   {
     $sales = Sale::orderbydesc('id')->with('products')->with('client')->with('paymentType')->with('latestStatus')->get();
@@ -27,15 +29,12 @@ class SaleController extends Controller
   public function new()
   {
     $status = Status::where('id',1)->first();
+    $user = Auth::user();
     $sale = new Sale();
     $sale->fee = 1;
+    $sale->user()->associate($user);
     $sale->save();
     $sale->statuses()->attach([$status->id]);
-    // $status->sales()->attach([$sale->id]);
-    // $status->save();
-    // $sale->save();
-    // $paymentTypes = PaymentType::all();
-    // return view('sale.new',compact('sale','paymentTypes'));
     return redirect()->route('sale-edit',compact('sale'));
   }
 
@@ -44,26 +43,22 @@ class SaleController extends Controller
     $sale = Sale::where('id',$sale->id)->delete();
     return redirect()->route('sale-show');
   }
+
   public function edit(Sale $sale)
   {
-    // $products = ProductSale::where('sale_id',$sale->id)->with('sale')->with('sale.latestStatus')->with('sale.paymentType')->with('sale.client')->with('sale.client.address')->with('sale.client.address.location')->with('sale.client.address.location.province')->with('product')->with('status')->orderby('product_status_id')->get();
-    // if (isset($products->first()->sale)) {
-    //   $sale = $products->first()->sale;
-    // }else {
-      $sale = Sale::where('id',$sale->id)->with('statuses')->with('latestStatus')->with('products.product')->with('paymentType')->with('client')->with('client.address')->with('client.address.location')->with('client.address.location.province')->with('products.status')->with('products')->first();
-    // }
-
+    $sale = Sale::where('id',$sale->id)->with('statuses')->with('latestStatus')->with('products.product')->with('paymentType')->with('client')->with('client.address')->with('client.address.location')->with('client.address.location.province')->with('products.status')->with('products')->first();
     $productStatuses = ProductStatus::all();
     $paymentTypes = PaymentType::all();
     return view('sale.edit',compact('sale','paymentTypes','productStatuses'));
   }
+
   public function deleteProduct(Sale $sale, ProductSale $productSale)
   {
-    // $sale = Sale::where('id',$sale->id)->with('products')->with('products.product')->with('products')->first();
     $product = ProductSale::where('id',$productSale->id)->first();
     $product->delete();
     return redirect()->back()->with('sale');
   }
+
   public function newProduct(Request $request, Sale $sale)
   {
     $this->validate(
@@ -161,17 +156,6 @@ class SaleController extends Controller
 
       ]
     );
-    // Presupuestado
-    // Preparado
-    // Remitido
-    // Facturado
-    // Cobrado
-
-
-    // Cancelado
-    // Pedido
-    // En stock
-    // Entregado
     $outOfStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',2)->get()->count();
     $inStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',3)->get()->count();
     $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
@@ -194,6 +178,7 @@ class SaleController extends Controller
 
     return redirect()->route('sale-show');
   }
+
   public function detail(Sale $sale)
   {
     return view('sale.detail',compact('sale'));

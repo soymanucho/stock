@@ -11,6 +11,7 @@ use App\PaymentType;
 use App\Client;
 use App\Status;
 use App\Product;
+use App\User;
 
 class Sale extends Model
 {
@@ -55,15 +56,15 @@ class Sale extends Model
       }
     }
     return $totalAmount;
-
-
-    // return $total = DB::table('product_sale')
-    //                     ->join('product_statuses','product_sale.product_status_id','=','product_statuses.id')
-    //                     ->where('sale_id', $this->id)->where('product_statuses.name','<>','Cancelado')->sum(DB::raw('amount * price'));
   }
 
   public function totalIVA()
   {
     return number_format(($this->totalAmount()*21)/100, 2, ',', '.');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo(User::class,'user_id');
   }
 }
