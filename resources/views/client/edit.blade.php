@@ -67,8 +67,8 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn bg-teal-800 btn-disabled">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a>
+  <a href="{!! route('client-new') !!}" class="btn bg-teal-600 btn-disabled">Nuevo cliente</a>
+  <a href="{!! route('sale-new') !!}" class="btn bg-teal-600 ml-2">Nueva venta</a>
 @endsection
 
 @section('breadcrumbs')

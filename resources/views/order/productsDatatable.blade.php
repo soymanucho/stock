@@ -33,7 +33,7 @@
           	<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-38px, 36px, 0px);">
 
                 @foreach ($productStatuses as $productStatus)
-                  @if ($productStatus == $productOrder->status || in_array($productStatus->name,["Entregado","En stock","Recibido"]))
+                  @if ($productStatus == $productOrder->status || in_array($productStatus->name,["Entregado","En stock","Recibido","Facturado"]))
                     @php
                       continue;
                     @endphp

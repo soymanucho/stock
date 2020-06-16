@@ -67,9 +67,10 @@
 @endsection
 
 @section('actions')
-  <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a>
+  {{-- <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
+  <a href="{!! route('sale-new') !!}" class="btn bg-teal-800 ml-2">Nueva venta</a> --}}
   <a href="{!! route('receipt-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver remitos</a>
+  <a href="{!! route('invoice-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver facturas</a>
 @endsection
 
 @section('breadcrumbs')
@@ -155,7 +156,8 @@
 
         <!-- Categories -->
         <div class="card">
-          <a class="btn btn-primary" href="{!! route('receipt-new',compact('sale')) !!}">Generar remito</a>
+          <a class="btn btn-primary mb-1" href="{!! route('receipt-new',compact('sale')) !!}">Generar remito</a>
+          <a class="btn btn-danger mb-1" href="{!! route('invoice-new',compact('sale')) !!}">Facturar</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$sale->id}}</span>
             <div class="header-elements">

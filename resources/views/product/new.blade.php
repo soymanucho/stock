@@ -70,7 +70,7 @@
 @endsection
 
 @section('actions')
-  <a href="#" class="btn btn-success btn-disabled">Nuevo producto</a>
+  <a href="#" class="btn bg-teal-600 ml-2 btn-disabled">Nuevo producto</a>
 @endsection
 
 @section('breadcrumbs')

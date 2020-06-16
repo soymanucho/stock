@@ -13,7 +13,7 @@ class CreateCaeVoucherTable extends Migration
      */
     public function up()
     {
-        Schema::create('cae_voucher', function (Blueprint $table) {
+        Schema::create('cae_vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
             $table->datetime('ini_date');
@@ -29,6 +29,6 @@ class CreateCaeVoucherTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cae_voucher');
+        Schema::dropIfExists('cae_vouchers');
     }
 }

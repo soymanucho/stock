@@ -10,4 +10,5 @@ class CaeVoucher extends Model
   protected $dates = ['created_at','updated_at','deleted_at','ini_date','fin_date'];
 
   protected $fillable = ['number'];
+
 }

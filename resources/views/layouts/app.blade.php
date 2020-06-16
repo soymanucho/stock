@@ -101,8 +101,8 @@
 						Inicio
 					</a>
 				</li>
-
-				<li class="nav-item dropdown">
+				
+				{{-- <li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 						<i class="icon-bell2"></i>
 						<span class="d-md-none ml-2">Notificaciones</span>
@@ -124,7 +124,7 @@
 							<a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="" data-original-title="Load more"><i class="icon-menu7 d-block top-0"></i></a>
 						</div>
 					</div>
-				</li>
+				</li> --}}
 
 				@guest
 					<li class="nav-item">
@@ -564,28 +564,6 @@
     	}
   	});
 
-		$.ajax({
-			url: "{{route('notification-api')}}",
-			success: function(result){
-
-				$("#notificationContainer").html(result);
-			}});
-
-  });
-
-
-	// <li class="media">
-	// 	<div class="media-body">
-	// 		<div class="media-title">
-	// 			<a href="#">
-	// 				<span class="font-weight-semibold">{{$notification->title}}</span>
-	// 				<span class="text-muted float-right font-size-sm">{{$notification->created_at->diffForHumans()}}</span>
-	// 			</a>
-	// 		</div>
-	//
-	// 		<span class="text-muted">{{$notification->body}}</span>
-	// 	</div>
-	// </li>
 </script>
 @notifyJs
 </body>

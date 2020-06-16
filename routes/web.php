@@ -69,6 +69,14 @@ Route::get('/ventas/{sale}/remitos/{receipt}/descargar/','ReceiptController@down
 Route::get('/ventas/{sale}/remitos/{receipt}/imprimir/','ReceiptController@print')->name('receipt-print');
 Route::get('/ventas/{sale}/remitos/{receipt}/detalle/','ReceiptController@detail')->name('receipt-detail');
 
+//FACTURAS
+Route::get('/ventas/{sale}/facturas/','InvoiceController@show')->name('invoice-show');
+Route::get('/ventas/{sale}/facturas/nuevo/','InvoiceController@new')->name('invoice-new');
+Route::get('/ventas/{sale}/facturas/{invoice}/eliminar/','InvoiceController@delete')->name('invoice-delete');
+Route::get('/ventas/{sale}/facturas/{invoice}/descargar/','InvoiceController@download')->name('invoice-download');
+Route::get('/ventas/{sale}/facturas/{invoice}/imprimir/','InvoiceController@print')->name('invoice-print');
+Route::get('/ventas/{sale}/facturas/{invoice}/detalle/','InvoiceController@detail')->name('invoice-detail');
+
 //CLIENTE
 Route::get('/clientes/', 'ClientController@show')->name('client-show');
 Route::get('/clientes/nuevo/', 'ClientController@new')->name('client-new');

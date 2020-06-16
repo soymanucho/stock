@@ -35,13 +35,14 @@ class ReceiptController extends Controller
   }
   public function new(Sale $sale)
   {
-
     $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 3)->get();
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "En stock" para poder generar un remito.']);
+    }elseif ($sale->client == null) {
+      return Redirect::back()->withErrors(['Debe asignar un cliente y guardar la venta para poder generar un remito.']);
     }
     // $lastCae = CaeVoucher::where('')
-    if
+    // if
     $receipt = new Receipt;
 
     $receipt->sale()->associate($sale);

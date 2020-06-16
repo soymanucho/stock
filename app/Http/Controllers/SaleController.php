@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 // use Barryvdh\Debugbar\Facade as Debugbar;
 use App\Sale;
 use App\Status;

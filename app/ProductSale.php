@@ -9,6 +9,7 @@ use App\Sale;
 use App\Product;
 use App\ProductStatus;
 use App\Receipt;
+use App\Invoice;
 
 class ProductSale extends Model
 {
@@ -18,7 +19,7 @@ class ProductSale extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['product_id','sale_id','amount','price','accepted_amount','product_status_id','receipt_id'];
+  protected $fillable = ['product_id','sale_id','amount','price','accepted_amount','product_status_id','receipt_id','invoice_id'];
 
   public function sale()
   {
@@ -27,6 +28,10 @@ class ProductSale extends Model
   public function receipt()
   {
     return $this->belongsTo(Receipt::class);
+  }
+  public function invoice()
+  {
+    return $this->belongsTo(Invoice::class);
   }
   public function product()
   {

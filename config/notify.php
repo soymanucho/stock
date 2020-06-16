@@ -38,8 +38,8 @@ return [
     */
 
     'animate' => [
-        'in_class' => 'slideInDown', // The class to use to animate the notice in.
-        'out_class' => 'slideOutRight', // The class to use to animate the notice out.
+        'in_class' => 'slideInUp', // The class to use to animate the notice in.
+        'out_class' => 'slideOutLeft', // The class to use to animate the notice out.
         'timeout'   => 5000 // Number of seconds before the notice disappears
     ],
 
@@ -64,6 +64,6 @@ return [
     |
     */
 
-    'position' => 'top-right',
+    'position' => 'bottom-left',
 
 ];

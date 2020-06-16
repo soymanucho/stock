@@ -80,7 +80,7 @@
       <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
       <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
       <a href="{!! route('sale-edit',compact('sale')) !!}" class="breadcrumb-item">Venta</a>
-      <span class="breadcrumb-item active">Remitos</span>
+      <span class="breadcrumb-item active">Facturas</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -93,7 +93,7 @@
 	<!-- Invoice archive -->
 	<div class="card">
 		<div class="card-header bg-transparent header-elements-inline">
-			<h6 class="card-title">Registro de remitos</h6>
+			<h6 class="card-title">Registro de facturas</h6>
 			<div class="header-elements">
 				<div class="list-icons">
 					<a class="list-icons-item" data-action="collapse"></a>
@@ -102,7 +102,7 @@
 		</div>
 
     <div class="card-body">
-  		@include('receipt.datatable')
+  		@include('invoice.datatable')
     </div>
 	</div>
 	<!-- /invoice archive -->
