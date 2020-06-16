@@ -71,7 +71,7 @@ Route::get('/ventas/{sale}/remitos/{receipt}/detalle/','ReceiptController@detail
 
 //FACTURAS
 Route::get('/ventas/{sale}/facturas/','InvoiceController@show')->name('invoice-show');
-Route::get('/ventas/{sale}/facturas/nuevo/','InvoiceController@new')->name('invoice-new');
+Route::post('/ventas/{sale}/facturas/nuevo/','InvoiceController@new')->name('invoice-new');
 Route::get('/ventas/{sale}/facturas/{invoice}/eliminar/','InvoiceController@delete')->name('invoice-delete');
 Route::get('/ventas/{sale}/facturas/{invoice}/descargar/','InvoiceController@download')->name('invoice-download');
 Route::get('/ventas/{sale}/facturas/{invoice}/imprimir/','InvoiceController@print')->name('invoice-print');

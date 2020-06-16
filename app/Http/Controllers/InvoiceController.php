@@ -34,8 +34,26 @@ class InvoiceController extends Controller
 
     return view('invoice.printFancyBox',compact('sale','invoice'));
   }
-  public function new(Sale $sale)
+  public function new(Sale $sale,Request $request)
   {
+    $this->validate(
+      $request,
+      [
+          'prefix_number' => 'required|string|max:4',
+          'number' => 'required|string|max:8',
+          'emissions_date' => 'required|date',
+          'expiration_date'=> 'required|date',
+      ],
+      [
+
+      ],
+      [
+        'prefix_number' => 'Punto de venta',
+        'number' => 'Número de factura',
+        'emissions_date' => 'Fecha de emisión',
+        'expiration_date'=> 'Fecha de vencimiento',
+      ]
+    );
     $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 4)->get();
     $lastCae = CaeVoucher::latest('fin_date')->first();
     if ($productSales->count() <= 0) {
@@ -47,7 +65,9 @@ class InvoiceController extends Controller
     $invoice = new Invoice;
     $invoice->sale()->associate($sale);
     $invoice->caeVoucher()->associate($lastCae);
+    $invoice->fill($request->all());
     $invoice->save();
+
 
     $statusFacturado = ProductStatus::where('name','Facturado')->first();
 

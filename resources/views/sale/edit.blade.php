@@ -155,9 +155,62 @@
       <div class="sidebar-content">
 
         <!-- Categories -->
+        <div class="card card-collapsed">
+          <a class="btn btn-danger mb-1" style="color:white;" id="facturar">Facturar</a>
+          <div class="card-header bg-transparent header-elements-inline">
+            <span class="text-uppercase font-size-sm font-weight-semibold">COMPLETAR PARA FACTURAR</span>
+            <div class="header-elements">
+              <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="{!! route('invoice-new',compact('sale')) !!}" method="post" id="formFacturacion">
+            {{ csrf_field() }}
+            {{ method_field('post') }}
+            {{-- <div class="form-group">
+
+              <label>TOTAL:</label>
+              <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
+            </div> --}}
+            <label>Tipo:</label>
+            <div class="form-group row">
+
+              <select class="form-control col-sm-6" name="invoice_type">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+              </select>
+            </div>
+            <label>#:</label>
+            <div class="form-group row">
+              <input type="text" class="form-control col-sm-2" id="prefix_number" name="prefix_number" value=""> - <input type="text" class="form-control col-sm-9" id="number" name="number" value="">
+            </div>
+
+            <div class="form-group">
+              <label>Fecha de emisión:</label>
+              <input type="date" class="form-control" id="emissions_date" name="emissions_date" value="">
+            </div>
+            <div class="form-group">
+              <label>Fecha de vencimiento:</label>
+              <input type="date" class="form-control" id="expiration_date" name="expiration_date" value="">
+            </div>
+
+            <div class="row">
+              {{-- <div class="col-6">
+                <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
+              </div> --}}
+              <div class="col-6">
+                <button type="submit" class="btn btn-success btn-block mb-2" style="display:none;">Generar factura</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
         <div class="card">
           <a class="btn btn-primary mb-1" href="{!! route('receipt-new',compact('sale')) !!}">Generar remito</a>
-          <a class="btn btn-danger mb-1" href="{!! route('invoice-new',compact('sale')) !!}">Facturar</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la venta #{{$sale->id}}</span>
             <div class="header-elements">
@@ -166,7 +219,6 @@
               </div>
             </div>
           </div>
-
           <div class="card-body">
             <form action="" method="post">
             {{ csrf_field() }}
@@ -232,9 +284,6 @@
 
 
             <div class="row">
-              <div class="col-12">
-                {{-- <a class="btn bg-teal btn-block mb-2" href="{!! route('sale-remito-new',compact('sale')) !!}">Generar remito</a> --}}
-              </div>
               <div class="col-6">
                 <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
               </div>
@@ -335,6 +384,9 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         cache: true
       }
 
+    });
+    $('#facturar').on('click',function (e){
+      $('#formFacturacion').submit();
     });
 
     $('#clients').on('select2:select', function (e) {

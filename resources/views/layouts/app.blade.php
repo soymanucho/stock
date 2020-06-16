@@ -101,7 +101,7 @@
 						Inicio
 					</a>
 				</li>
-				
+
 				{{-- <li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 						<i class="icon-bell2"></i>
@@ -517,7 +517,7 @@
 	$(document).ready( function () {
 
 		$('#myTable').DataTable( {
-					// "scrollX": true,
+					"scrollX": true,
 					"select": true,
 					"responsive": true,
 					 "order": [],
