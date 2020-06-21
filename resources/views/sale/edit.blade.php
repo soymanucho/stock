@@ -177,7 +177,7 @@
             <label>Tipo:</label>
             <div class="form-group row">
 
-              <select class="form-control col-sm-6" name="invoice_type">
+              <select class="form-control col-sm-6" name="type">
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
@@ -185,16 +185,16 @@
             </div>
             <label>#:</label>
             <div class="form-group row">
-              <input type="text" class="form-control col-sm-2" id="prefix_number" name="prefix_number" value=""> - <input type="text" class="form-control col-sm-9" id="number" name="number" value="">
+              <input type="text" class="form-control col-sm-2" id="prefix_number" name="prefix_number" value="{{old('prefix_number',"0001")}}"> - <input type="text" class="form-control col-sm-9" id="number" name="number" value="{{old('number')}}">
             </div>
 
             <div class="form-group">
               <label>Fecha de emisión:</label>
-              <input type="date" class="form-control" id="emissions_date" name="emissions_date" value="">
+              <input type="date" class="form-control" id="emissions_date" name="emissions_date" value="{{old('emissions_date')}}">
             </div>
             <div class="form-group">
               <label>Fecha de vencimiento:</label>
-              <input type="date" class="form-control" id="expiration_date" name="expiration_date" value="">
+              <input type="date" class="form-control" id="expiration_date" name="expiration_date" value="{{old('expiration_date')}}">
             </div>
 
             <div class="row">

@@ -25,19 +25,19 @@
   				<div class="col-sm-6">
   					<div class="mb-4">
   						<div class="text-sm-right">
-  							<h4 class="text-primary mb-2 mt-md-2">Remito #{{$receipt->id}}</h4>
+  							<h4 class="text-primary mb-2 mt-md-2">Factura {{$invoice->type}}{{$invoice->prefix_number}}-{{$invoice->number}}</h4>
   							<ul class="list list-unstyled mb-0">
-  								<li>Fecha: <span class="font-weight-semibold">{{$receipt->created_at->format('M d, y')}}</span></li>
-  								<li>Fecha de vencimiento: <span class="font-weight-semibold">{{$receipt->created_at->addMonths(1)->format('M d, y')}}</span></li>
+  								<li>Fecha: <span class="font-weight-semibold">{{$invoice->emissions_date->format('M d, y')}}</span></li>
+  								<li>Fecha de vencimiento: <span class="font-weight-semibold">{{$invoice->expiration_date->format('M d, y')}}</span></li>
   							</ul>
   						</div>
   					</div>
   				</div>
   			</div>
 
-  			<div class="d-md-flex flex-md-wrap">
-  				<div class="mb-4 mb-md-2">
-  					<span class="text-muted">Remito para:</span>
+  			<div class="d-md-flex flex-md-wrap row">
+  				<div class="mb-4 mb-md-2 col-sm-6">
+  					<span class="text-muted">Factura para:</span>
   					<ul class="list list-unstyled mb-0">
   						<li><h5 class="my-2">{{$sale->client->name ?? ''}}</h5></li>
   						<li><span class="font-weight-semibold">{{$sale->client->cuit ?? ''}}</span></li>
@@ -49,7 +49,7 @@
   					</ul>
   				</div>
 
-  				<div class="mb-2 ml-auto">
+  				<div class="mb-2 ml-auto col-sm-6">
   					<span class="text-muted">Detalles del remito:</span>
   					<div class="d-flex flex-wrap wmin-md-400">
   						<ul class="list list-unstyled mb-0">
@@ -63,13 +63,13 @@
   						</ul>
 
   						<ul class="list list-unstyled text-right mb-0 ml-auto">
-  							<li><h5 class="font-weight-semibold my-2">${{$receipt->totalAmount()}}</h5></li>
+  							<li><h5 class="font-weight-semibold my-2">${{$invoice->totalAmount()}}</h5></li>
   							{{-- <li><span class="font-weight-semibold">Profit Bank Europe</span></li> --}}
   							<li>Argentina</li>
   							<li>{{$sale->client->address->location->name ?? ''}}</li>
   							<li>Calle {{$sale->client->address->street ?? ''}} n°{{$sale->client->address->number ?? ''}}, piso{{$sale->client->address->floor ?? ''}}</li>
   							<li><span class="font-weight-semibold">{{$sale->client->cuit ?? ''}}</span></li>
-  							<li><span class="font-weight-semibold">{{$receipt->id}}</span></li>
+  							<li><span class="font-weight-semibold">{{$invoice->id}}</span></li>
   						</ul>
   					</div>
   				</div>
@@ -87,7 +87,7 @@
   								</tr>
   						</thead>
   						<tbody>
-  							@foreach ($receipt->productSales as $productSale)
+  							@foreach ($invoice->productSales as $productSale)
   								<tr>
   										<td>
   											<h6 class="mb-0">{{$productSale->product->name}}</h6>
@@ -113,15 +113,15 @@
   							<tbody>
   								<tr>
   									<th>Subtotal:</th>
-  									<td class="text-right">${{number_format($receipt->subtotal(),2,',','.')}}</td>
+  									<td class="text-right">${{number_format($invoice->subtotal(),2,',','.')}}</td>
   								</tr>
   								<tr>
   									<th>IVA: <span class="font-weight-normal">(21%)</span></th>
-  									<td class="text-right">${{number_format($receipt->totalIVA(),2,',','.')}}</td>
+  									<td class="text-right">${{number_format($invoice->totalIVA(),2,',','.')}}</td>
   								</tr>
   								<tr>
   									<th>Total:</th>
-  									<td class="text-right text-primary"><h5 class="font-weight-semibold">${{number_format($receipt->totalAmount(),2,',','.')}}</h5></td>
+  									<td class="text-right text-primary"><h5 class="font-weight-semibold">${{number_format($invoice->totalAmount(),2,',','.')}}</h5></td>
   								</tr>
   							</tbody>
   						</table>

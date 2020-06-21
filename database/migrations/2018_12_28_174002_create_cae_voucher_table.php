@@ -19,6 +19,7 @@ class CreateCaeVoucherTable extends Migration
             $table->datetime('ini_date');
             $table->datetime('fin_date');
             $table->timestamps();;
+            $table->softDeletes();
         });
     }
 

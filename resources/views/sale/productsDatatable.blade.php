@@ -13,7 +13,7 @@
     {{-- <th># Compras</th>
     <th>Total Gastado</th> --}}
     <th>Estado</th>
-    <th>Quitar</th>
+    {{-- <th>Quitar</th> --}}
     {{-- <th>Historial</th> --}}
 
 
@@ -45,7 +45,7 @@
           	<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-38px, 36px, 0px);">
 
                 @foreach ($productStatuses as $productStatus)
-                  @if ($productStatus == $productSale->status || in_array($productStatus->name,["Recibido","Facturado"]))
+                  @if ($productStatus == $productSale->status || in_array($productStatus->name,["Recibido","Entregado","Facturado"]))
                     @php
                       continue;
                     @endphp
@@ -60,7 +60,7 @@
 
         {{-- <td>  {{ $client->totalPurchases() }} </td> --}}
         {{-- <td>  ${{ $client->totalSpent() }} </td> --}}
-        <td class="text-center">  <a href={!! route('sale-product-delete',compact('sale','productSale')) !!} ><i class="fas fa-trash"></i></a> </td>
+        {{-- <td class="text-center">  <a href={!! route('sale-product-delete',compact('sale','productSale')) !!} ><i class="fas fa-trash"></i></a> </td> --}}
         {{-- <td class="text-center fancybox" href="{{ route('detail-client', compact('client')) }}"> <a><b class="fa fa-eye "></b></a> </td> --}}
       </tr>
     @endforeach

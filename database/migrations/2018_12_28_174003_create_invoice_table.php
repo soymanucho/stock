@@ -15,8 +15,9 @@ class CreateInvoiceTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('prefix_number')->nullable();
-            $table->bigInteger('number')->nullable();
+            $table->string('type')->nullable();
+            $table->string('prefix_number')->nullable();
+            $table->string('number')->nullable();
             $table->datetime('emissions_date')->nullable();
             $table->datetime('expiration_date')->nullable();
 

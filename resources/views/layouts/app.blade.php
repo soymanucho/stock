@@ -517,7 +517,7 @@
 	$(document).ready( function () {
 
 		$('#myTable').DataTable( {
-					"scrollX": true,
+					// "scrollX": true,
 					"select": true,
 					"responsive": true,
 					 "order": [],
@@ -541,29 +541,26 @@
 					}
 			} );
 
+			$(".fancybox").fancybox({
+	  		maxWidth	: 1600,
+	      minWidth	: 1000,
+	  		maxHeight	: 300,
+	  		fitToView	: true,
+	  		width		: '100%',
+	  		height		: '50%',
+	  		autoSize	: true,
+	  		closeClick	: false,
+	  		openEffect	: 'none',
+	  		closeEffect	: 'none',
+	      type: 'ajax',
+				afterClose : function() {
+	        window.location.reload();
+	    	}
+	  	});
+
 
 
 	} );
-</script>
-<script type="text/javascript">
-  window.addEventListener('load',function() {
-  	$(".fancybox").fancybox({
-  		maxWidth	: 1600,
-      minWidth	: 1000,
-  		maxHeight	: 300,
-  		fitToView	: true,
-  		width		: '100%',
-  		height		: '50%',
-  		autoSize	: true,
-  		closeClick	: false,
-  		openEffect	: 'none',
-  		closeEffect	: 'none',
-      type: 'ajax',
-			afterClose : function() {
-        window.location.reload();
-    	}
-  	});
-
 </script>
 @notifyJs
 </body>

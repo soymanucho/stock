@@ -32,7 +32,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{!! route('configuration-show') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'configuration') === false ? ' active' : ''}}">
+      <a href="{!! route('configuration-cae-show') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'configuration') === false ? ' active' : ''}}">
         <i class="fas fa-cogs"></i>
         <span>Configuración</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}

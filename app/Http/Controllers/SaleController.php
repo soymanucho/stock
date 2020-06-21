@@ -159,6 +159,7 @@ class SaleController extends Controller
     $outOfStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',2)->get()->count();
     $inStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',3)->get()->count();
     $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
+    $invoicedProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',6)->get()->count();
     $saleProductsCount = $sale->products()->where('product_status_id','<>',1)->get()->count();
     if ($outOfStockProducts > 0) {
       if ($sale->latestStatus()->first()->id <> 1) {
@@ -170,6 +171,9 @@ class SaleController extends Controller
       $sale->statuses()->attach([$status->id]);
     }elseif ($deliveredProducts > 0 && $deliveredProducts = $saleProductsCount && $sale->latestStatus()->first()->id <> 3) {
       $status = Status::where('id',3)->first();
+      $sale->statuses()->attach([$status->id]);
+    }elseif($invoicedProducts > 0 && $invoicedProducts = $saleProductsCount && $sale->latestStatus()->first()->id <> 4){
+      $status = Status::where('id',4)->first();
       $sale->statuses()->attach([$status->id]);
     }
 

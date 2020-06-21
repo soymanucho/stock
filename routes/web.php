@@ -36,7 +36,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/configuracion', 'ConfigurationController@show')->name('configuration-show');
+
+//CONFIGURACION
+Route::get('/configuracion', 'ConfigurationController@showCae')->name('configuration-cae-show');
+Route::get('/configuracion/cae/nuevo', 'ConfigurationController@newCae')->name('configuration-cae-new');
+Route::post('/configuracion/cae/nuevo', 'ConfigurationController@saveCae')->name('configuration-cae-save');
+Route::get('/configuracion/cae/{caeVoucher}/eliminar', 'ConfigurationController@deleteCae')->name('configuration-cae-delete');
 
 //ORDENES
 Route::get('/ordenes/', 'OrderController@show')->name('order-show');

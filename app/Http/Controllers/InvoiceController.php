@@ -31,7 +31,6 @@ class InvoiceController extends Controller
   public function detail(Sale $sale, Invoice $invoice)
   {
     $invoice = Invoice::where('id',$invoice->id)->with('productSales')->with('sale')->with('sale.client')->with('sale.client.address')->with('sale.client.address.location')->with('sale.client.address.location.province')->first();
-
     return view('invoice.printFancyBox',compact('sale','invoice'));
   }
   public function new(Sale $sale,Request $request)
@@ -40,9 +39,9 @@ class InvoiceController extends Controller
       $request,
       [
           'prefix_number' => 'required|string|max:4',
-          'number' => 'required|string|max:8',
+          'number' => 'required|string|max:8|unique:invoices,number',
           'emissions_date' => 'required|date',
-          'expiration_date'=> 'required|date',
+          'expiration_date'=> 'required|date|after_or_equal:emissions_date',
       ],
       [
 
@@ -55,19 +54,18 @@ class InvoiceController extends Controller
       ]
     );
     $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 4)->get();
-    $lastCae = CaeVoucher::latest('fin_date')->first();
+    $lastCae = CaeVoucher::where('ini_date','<=',Carbon::now())->where('fin_date','>=',Carbon::now())->latest('fin_date')->first();
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "Entregado" para poder generar una factura.']);
-    }elseif ($lastCae->fin_date < Carbon::now()) {
-      return Redirect::back()->withErrors(['Tiene el Cae vencido, revise el mismo para poder facturar.']);
     }
-
+    if (!isset($lastCae)){
+      return Redirect::back()->withErrors(['No hay ningún Cae vigente. Revise el mismo para poder factura.']);
+    }
     $invoice = new Invoice;
     $invoice->sale()->associate($sale);
     $invoice->caeVoucher()->associate($lastCae);
     $invoice->fill($request->all());
     $invoice->save();
-
 
     $statusFacturado = ProductStatus::where('name','Facturado')->first();
 
