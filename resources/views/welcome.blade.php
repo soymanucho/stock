@@ -70,18 +70,30 @@
                     @auth
                         <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}">Iniciar sesión</a>
+                        <a href="{{ route('login') }}">Ingresar</a>
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Registrarme</a>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Intemun
+                <h1 class="title m-b-md">intemun S.A.</h1>
+
+                <h2>división insumos</h2>
+
+                <div class="links">
+                    <a href="https://goo.gl/maps/RHxZPn1s49zZRGKi8">521bis Nº 1222 e/7 y 8(Tolosa)</a>
+                    <br>
+                    <a href="https://goo.gl/maps/RHxZPn1s49zZRGKi8">1900 La Plata - Argentina</a>
+                    <br>
+                    <a href="https://api.whatsapp.com/send?phone=5492215885867">+54 9 221-588-5867</a>
+                    <br>
+                    <a href="mailto:ventas@intemun.com.ar">ventas@intemun.com.ar</a>
+                    <br>
+                    <a href="http://www.intemun.com.ar">www.intemun.com.ar</a>
                 </div>
 
             </div>

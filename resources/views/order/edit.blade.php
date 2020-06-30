@@ -164,6 +164,7 @@
 
         <!-- Categories -->
         <div class="card">
+          <a class="btn btn-warning mb-1" href="{!! route('order-mail',compact('order')) !!}">Enviar pedido por mail</a>
           <a class="btn btn-primary" href="{!! route('order-receive',compact('order')) !!}">Recibir orden</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la orden #{{$order->id}}</span>

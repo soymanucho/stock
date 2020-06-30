@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 
 use App\ProductStatus;
 use App\Product;
@@ -33,13 +35,30 @@ class OrderController extends Controller
     return redirect()->route('order-edit',compact('order'));
   }
 
+  public function mailOrder(Order $order)
+  {
+
+    $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->with('supplier')->first();
+    // dd($order->supplier->email);
+    Mail::to($order->supplier->email)->send(new OrderShipped($order));
+
+    $productStatus = ProductStatus::where('name','Pedido por mail')->first();
+    foreach ($order->products as $productOrder) {
+      if ($productOrder->status->name == 'Pedido'){
+        $productOrder->status()->associate($productStatus);
+        $productOrder->save();
+      }
+    }
+
+    return redirect()->route('order-edit',compact('order'));
+  }
   public function receiveOrder(Order $order)
   {
 
     $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->first();
     $productStatus = ProductStatus::where('name','Recibido')->first();
     foreach ($order->products as $productOrder) {
-      if ($productOrder->status->name == 'Pedido'){
+      if ($productOrder->status->name == 'Pedido por mail' || $productOrder->status->name == 'Pedido' ){
         $productOrder->status()->associate($productStatus);
         $productOrder->save();
         $product = Product::where('id',$productOrder->product->id)->first();
