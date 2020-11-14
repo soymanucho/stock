@@ -18,13 +18,16 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->integer('number')->nullable();
             $table->string('floor')->nullable();
+            $table->string('cp')->nullable();
             $table->double('latitude')->nullable()->index();
             $table->double('longitude')->nullable()->index();
             $table->bigInteger('location_id')->unsigned();
+            $table->bigInteger('client_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('client_id')->references('id')->on('clients');
         });
-
         Schema::table('addresses', function (Blueprint $table) {
 
             $table->foreign('location_id')->references('id')->on('locations');

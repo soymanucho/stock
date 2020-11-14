@@ -1,16 +1,40 @@
 <fieldset class="mb-3">
   <legend class="text-uppercase font-size-sm font-weight-bold">Datos</legend>
 
+  @isset($client->id)
+    <div class="form-group row">
+      <label class="col-form-label col-lg-2" for="id">Nro. de cliente</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control rounded-round" disabled="disabled" name="id" placeholder="Nro. de cliente" value="{{ old('id',$client->id)}}">
+      </div>
+    </div>
+  @endisset
   <div class="form-group row">
-    <label class="col-form-label col-lg-2" for="name">Nombre</label>
+    <label class="col-form-label col-lg-2" for="name">Institución</label>
     <div class="col-lg-10">
-      <input type="text" class="form-control rounded-round" name="name" placeholder="Nombre del cliente" value="{{ old('name',$client->name)}}">
+      <input type="text" class="form-control rounded-round" name="name" placeholder="Institución" value="{{ old('name',$client->name)}}">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-form-label col-lg-2" for="cuit">CUIT</label>
     <div class="col-lg-10">
       <input type="text" class="form-control rounded-round" name="cuit" placeholder="CUIT del cliente" value="{{ old('cuit',$client->cuit)}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-lg-2" for="payment_day_id">Condición de pago</label>
+    <div class="col-lg-10">
+      <select id="paymentDays" class="form-control" name="payment_day_id">
+        @foreach ($paymentDays as $paymentDay)
+          <option value="{{ old('payment_day_id',$paymentDay->id)}}"
+          @isset($client->paymentDay)
+            @if ($client->paymentDay->id == $paymentDay->id)
+              selected="selected"
+            @endif
+          @endisset
+          >{{$paymentDay->name}}</option>
+        @endforeach
+      </select>
     </div>
   </div>
   <div class="form-group row">
@@ -47,6 +71,17 @@
     </div>
   </div>
   <div class="form-group row">
+    <label class="col-form-label col-lg-2" for="cp">Código Postal</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control rounded-round" name="cp" placeholder="Código Postal"
+      @isset($client->address)
+        value="{{ old('cp',$client->address->cp)}}"
+      @else
+        value="{{ old('cp','')}}"
+      @endisset >
+    </div>
+  </div>
+  <div class="form-group row">
     <label class="col-form-label col-lg-2" for="location_id">Localidad</label>
     <div class="col-lg-10">
       <select id="locations" class="form-control" name="location_id">
@@ -77,7 +112,8 @@
 
                 <div class="media-body">
                   <div class="font-weight-semibold">{{$contact->name}}</div>
-                  <span class="text-muted">{{$contact->position}}</span>
+                  <span class="text-muted">{{$contact->position}}</span><br>
+                  <span class="text-muted">Horario: {{$contact->schedule}}</span>
                 </div>
 
                 <div class="ml-3 align-self-center">

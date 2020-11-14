@@ -49,6 +49,7 @@ class ContactController extends Controller
       [
           'name' => 'required|string|max:100',
           'position' => 'nullable|string|max:20',
+          'schedule' => 'nullable|string|max:50',
           'email' => 'nullable|email|string|max:60',
           'prefix'=> 'nullable|numeric',
           'phone'=> 'nullable|numeric',
@@ -59,11 +60,11 @@ class ContactController extends Controller
       ],
       [
         'name' => 'Nombre',
-        'cuit' => 'CUIT',
-        'street' => 'Calle',
-        'number'=> 'Número',
-        'floor'=> 'Piso',
-        'location_id'=> 'Localidad',
+        'position' => 'Posición',
+        'schedule' => 'Horarios',
+        'email' => 'Correo electrónico',
+        'prefix'=> 'Prefijo',
+        'phone'=> 'Teléfono',
       ]
     );
     $modelClass = $model;
@@ -96,6 +97,7 @@ class ContactController extends Controller
       [
           'name' => 'required|string|max:100',
           'position' => 'nullable|string|max:20',
+          'schedule' => 'nullable|string|max:50',
           'email' => 'nullable|email|string|max:60',
           'prefix'=> 'nullable|numeric',
           'phone'=> 'nullable|numeric',
@@ -106,11 +108,11 @@ class ContactController extends Controller
       ],
       [
         'name' => 'Nombre',
-        'cuit' => 'CUIT',
-        'street' => 'Calle',
-        'number'=> 'Número',
-        'floor'=> 'Piso',
-        'location_id'=> 'Localidad',
+        'position' => 'Posición',
+        'schedule' => 'Horarios',
+        'email' => 'Correo electrónico',
+        'prefix'=> 'Prefijo',
+        'phone'=> 'Teléfono',
       ]
     );
     $modelClass = $model;

@@ -248,6 +248,10 @@
               <input type="text" class="form-control" placeholder="CUIT" id="client-cuit" readonly name="cuit" value="@isset($sale->client) {{$sale->client->cuit}} @endisset">
             </div>
             <div class="form-group">
+              <label>Condición de pago:</label>
+              <input type="text" class="form-control" placeholder="Condición de pago" id="client-paymentDay" readonly name="paymentDay" value="@isset($sale->client->paymentDay) {{$sale->client->paymentDay->name}} @endisset">
+            </div>
+            <div class="form-group">
               <label>Dirección:</label>
               <input type="text" class="form-control" placeholder="Dirección del cliente" id="client-address" readonly name="address" value="@isset($sale->client->address){{$sale->client->fullAddress()}} @endisset">
             </div>
@@ -393,6 +397,7 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       var data = e.params.data;
       $('#client-name').val(data.name);
       $('#client-cuit').val(data.cuit);
+      $('#client-paymentDay').val(data.paymentDay);
       $('#client-address').val(data.address);
     });
 

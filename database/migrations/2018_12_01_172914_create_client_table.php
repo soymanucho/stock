@@ -17,11 +17,11 @@ class CreateClientTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('cuit')->nullable();
-            $table->bigInteger('address_id')->unsigned()->nullable();
+            $table->bigInteger('payment_day_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-           $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('payment_day_id')->references('id')->on('payment_days');
         });
     }
 

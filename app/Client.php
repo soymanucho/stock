@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Sale;
 use App\Address;
+use App\PaymentDay;
 
 class Client extends Model
 {
@@ -16,7 +17,7 @@ class Client extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['name','address_id','cuit'];
+  protected $fillable = ['name','cuit','payment_day_id'];
 
   public static function totalAmountOfClients(){
      return  DB::table('clients')->count();
@@ -24,12 +25,17 @@ class Client extends Model
 
   public function address()
   {
-    return $this->belongsTo(Address::class);
+    return $this->hasOne(Address::class);
+  }
+
+  public function paymentDay()
+  {
+    return $this->belongsTo(PaymentDay::class);
   }
 
   public function fullAddress()
   {
-    return $this->address->street.' nº '.$this->address->number.' '.$this->address->floor.', '.$this->address->location->name.', '.$this->address->location->province->name;
+    return $this->address->street.' nº '.$this->address->number.' piso'.$this->address->floor.' CP:'.$this->address->cp.', '.$this->address->location->name.', '.$this->address->location->province->name;
   }
 
   public function contacts()

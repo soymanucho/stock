@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-form-label col-lg-2" for="location_id">Marca</label>
+    <label class="col-form-label col-lg-2" for="brand_id">Marca</label>
     <div class="col-lg-10">
       <select id="brands" class="form-control" name="brand_id">
         @foreach ($brands as $brand)
