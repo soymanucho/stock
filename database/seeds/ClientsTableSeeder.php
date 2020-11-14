@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 
+use App\PaymentDay;
+
 class ClientsTableSeeder extends Seeder
 {
     /**
@@ -19,7 +21,7 @@ class ClientsTableSeeder extends Seeder
 	        DB::table('clients')->insert([
 	            'name' => $faker->firstName,
 	            'cuit' => $faker->ssn,
-	            'address_id' => rand(1,20),
+	            'payment_day_id'=> PaymentDay::inRandomOrder()->first()->id,
               'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 	        ]);
 	    }

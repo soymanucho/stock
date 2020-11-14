@@ -16,7 +16,7 @@ class ClientController extends Controller
   }
   public function show()
   {
-    $clients = Client::orderby('name')->with('address')->with('sales')->with('lastSale')->with('address.location')->with('address.location.province')->get();
+    $clients = Client::orderby('name')->with('address')->with('sales')->with('paymentDay')->with('lastSale')->with('address.location')->with('address.location.province')->get();
     return view('client.show',compact('clients'));
   }
 

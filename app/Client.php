@@ -33,9 +33,13 @@ class Client extends Model
     return $this->belongsTo(PaymentDay::class);
   }
 
+  public function midAddress()
+  {
+    return $this->address->street.' nº '.$this->address->number.' piso '.$this->address->floor;
+  }
   public function fullAddress()
   {
-    return $this->address->street.' nº '.$this->address->number.' piso'.$this->address->floor.' CP:'.$this->address->cp.', '.$this->address->location->name.', '.$this->address->location->province->name;
+    return $this->address->street.' nº '.$this->address->number.' piso '.$this->address->floor.' CP:'.$this->address->cp.', '.$this->address->location->name.', '.$this->address->location->province->name;
   }
 
   public function contacts()
