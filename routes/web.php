@@ -29,7 +29,7 @@ Route::get('/invoice_archive', function () {
     return view('support.invoice_archive');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
