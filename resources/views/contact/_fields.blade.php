@@ -32,3 +32,10 @@
     {{-- <span class="form-text text-muted">+999-9999</span> --}}
   </div>
 </div>
+<div class="form-group row">
+  <label class="col-form-label col-sm-3" for="schedule">Horario</label>
+  <div class="col-sm-9">
+    <input type="text" placeholder="Horario" class="form-control" name="schedule" value="{{ old('schedule',$contact->schedule)}}">
+    {{-- <span class="form-text text-muted">+999-9999</span> --}}
+  </div>
+</div>

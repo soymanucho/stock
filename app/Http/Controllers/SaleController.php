@@ -156,10 +156,10 @@ class SaleController extends Controller
 
       ]
     );
-    $outOfStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',2)->get()->count();
-    $inStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',3)->get()->count();
-    $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
-    $invoicedProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',6)->get()->count();
+    $outOfStockProducts = ProductSale::where('sale_id',$sale->id)->whereIn('product_status_id',[2,3])->get()->count();
+    $inStockProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',4)->get()->count();
+    $deliveredProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',5)->get()->count();
+    $invoicedProducts = ProductSale::where('sale_id',$sale->id)->where('product_status_id',7)->get()->count();
     $saleProductsCount = $sale->products()->where('product_status_id','<>',1)->get()->count();
     if ($outOfStockProducts > 0) {
       if ($sale->latestStatus()->first()->id <> 1) {

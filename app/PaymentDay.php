@@ -5,18 +5,18 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends Model
+use App\Client;
+
+class PaymentDay extends Model
 {
   use SoftDeletes;
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['name','prefix','phone','email','name','position','schedule'];
+  protected $fillable = ['name','days'];
 
-  public function contactable()
+  public function client()
   {
-      return $this->morphTo();
+    return $this->hasOne(Client::class);
   }
-
-
 }

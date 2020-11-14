@@ -35,7 +35,7 @@ class ReceiptController extends Controller
   }
   public function new(Sale $sale)
   {
-    $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 3)->get();
+    $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 4)->get();
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "En stock" para poder generar un remito.']);
     }elseif ($sale->client == null) {

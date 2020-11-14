@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Client;
 use App\Address;
+use App\PaymentDay;
 
 class ClientController extends Controller
 {
@@ -22,13 +23,14 @@ class ClientController extends Controller
   public function new()
   {
     $client = new Client();
-    return view('client.new',compact('client'));
+    $paymentDays = PaymentDay::all();
+    return view('client.new',compact('client','paymentDays'));
   }
 
   public function edit(Client $client)
   {
-
-    return view('client.edit',compact('client'));
+    $paymentDays = PaymentDay::all();
+    return view('client.edit',compact('client','paymentDays'));
   }
 
   public function save(Request $request)
@@ -45,7 +47,9 @@ class ClientController extends Controller
           'street' => 'required|string|max:60',
           'number'=> 'required|string|max:10',
           'floor'=> 'nullable|string|max:10',
+          'cp'=> 'nullable|string|max:15',
           'location_id'=> 'required|exists:locations,id',
+          'payment_day_id'=> 'required|exists:payment_days,id',
 
       ],
       [
@@ -58,6 +62,7 @@ class ClientController extends Controller
         'number'=> 'Número',
         'floor'=> 'Piso',
         'location_id'=> 'Localidad',
+        'payment_day_id'=> 'Condición de pago',
       ]
     );
     $client = new Client;
@@ -68,7 +73,7 @@ class ClientController extends Controller
     $address->fill($request->all());
     $address->save();
 
-    $client->address()->associate($address)->save();
+    $client->address()->save($address);
     notify()->success('Cliente creado con éxito!','Intemun');
     return redirect()->route('client-show');
   }
@@ -83,7 +88,9 @@ class ClientController extends Controller
           'street' => 'required|string|max:60',
           'number'=> 'required|string|max:10',
           'floor'=> 'nullable|string|max:10',
+          'cp'=> 'nullable|string|max:15',
           'location_id'=> 'required|exists:locations,id',
+          'payment_day_id'=> 'required|exists:payment_days,id',
 
       ],
       [
@@ -96,6 +103,7 @@ class ClientController extends Controller
         'number'=> 'Número',
         'floor'=> 'Piso',
         'location_id'=> 'Localidad',
+        'payment_day_id'=> 'Condición de pago',
       ]
     );
 
@@ -123,15 +131,17 @@ class ClientController extends Controller
        $clients = Client::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')
           ->orWhere('cuil','like','%' .$search . '%')
+          ->orWhere('id','like','%' .$search . '%')
           ->limit(5)->get();
     }
     $response = array();
     foreach($clients as $client){
        $response[] = array(
             "id"=>$client->id,
-            "text"=>$client->name.' ('.$client->cuit.')',
+            "text"=>'#'.$client->id.' - '.$client->name.' ('.$client->cuit.')',
             "name"=>$client->name,
             "cuit"=>$client->cuit,
+            "paymentDay"=>$client->paymentDay->name,
             "address"=>$client->fullAddress()
        );
     }

@@ -132,13 +132,13 @@
 							Iniciar sesión
 						</a>
 					</li>
-					@if (Route::has('register'))
+					{{-- @if (Route::has('register'))
 						<li class="nav-item">
 							<a href="{{ route('register') }}" class="navbar-nav-link">
 								Registrarme
 							</a>
 						</li>
-					@endif
+					@endif --}}
 				@else
 
 					<li class="nav-item dropdown dropdown-user">

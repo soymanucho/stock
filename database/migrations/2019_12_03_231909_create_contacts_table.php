@@ -20,6 +20,7 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('name');
             $table->string('position');
+            $table->string('schedule');
             $table->bigInteger('contactable_id')->nullable();
             $table->string('contactable_type')->nullable();
 

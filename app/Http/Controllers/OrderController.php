@@ -40,6 +40,10 @@ class OrderController extends Controller
 
     $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->with('supplier')->first();
     // dd($order->supplier->email);
+    $productOrders = ProductOrder::where('sale_id',$sale->id)->with('product')->where('product_status_id', 2)->get();
+    if ($productOrders->count() <= 0) {
+      return Redirect::back()->withErrors(['Debe haber algún producto en estado "En stock" para poder generar un remito.']);
+    }
     Mail::to($order->supplier->email)->send(new OrderShipped($order));
 
     $productStatus = ProductStatus::where('name','Pedido por mail')->first();
@@ -49,7 +53,7 @@ class OrderController extends Controller
         $productOrder->save();
       }
     }
-
+    notify()->success('Mail enviado con éxito!','Intemun');
     return redirect()->route('order-edit',compact('order'));
   }
   public function receiveOrder(Order $order)

@@ -15,11 +15,16 @@ class Address extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['street','number','floor','location_id','latitude','longitude'];
+  protected $fillable = ['street','number','floor','location_id','latitude','longitude','cp','client_id'];
 
   public function location()
   {
     return $this->belongsTo(Location::class)->withTrashed();
+  }
+
+  public function client()
+  {
+    return $this->belongsTo(Client::class);
   }
 
   public function province()
@@ -27,10 +32,6 @@ class Address extends Model
     return $this->location->province();
   }
 
-  public function clients()
-  {
-    return $this->hasMany(Client::class);
-  }
 
   public function suppliers()
   {
