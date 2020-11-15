@@ -25,7 +25,7 @@
         {{-- <td class="text-center">  {{ $productSale->product->id ?? ''}} </td> --}}
         <td class="text-center">  {{ $productSale->product->name ?? '' }} </td>
         @isset($productSale->receipt->id )
-          <td class="text-center">  {{ $productSale->receipt->id }} </td>
+          <td class="text-center" data-toggle="tooltip" data-placement="top" title="{{$productSale->receipt->created_at}}">  {{ $productSale->receipt->id }} </td>
         @else
           <td class="text-center"> <span class="badge badge-primary">Sin remitir</span> </td>
         @endisset

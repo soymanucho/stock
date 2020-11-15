@@ -53,13 +53,13 @@ class InvoiceController extends Controller
         'expiration_date'=> 'Fecha de vencimiento',
       ]
     );
-    $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 4)->get();
+    $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 5)->get();
     $lastCae = CaeVoucher::where('ini_date','<=',Carbon::now())->where('fin_date','>=',Carbon::now())->latest('fin_date')->first();
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "Entregado" para poder generar una factura.']);
     }
     if (!isset($lastCae)){
-      return Redirect::back()->withErrors(['No hay ningún Cae vigente. Revise el mismo para poder factura.']);
+      return Redirect::back()->withErrors(['No hay ningún Cae vigente. Revise el mismo para poder facturar.']);
     }
     $invoice = new Invoice;
     $invoice->sale()->associate($sale);

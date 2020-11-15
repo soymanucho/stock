@@ -118,7 +118,8 @@ class ClientController extends Controller
   }
   public function detail(Client $client)
   {
-    return view('client.detail',compact('client'));
+    $paymentDays = PaymentDay::all();
+    return view('client.detail',compact('client','paymentDays'));
   }
 
   public function selectApi(Request $request)

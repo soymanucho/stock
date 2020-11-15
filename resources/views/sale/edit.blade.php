@@ -107,13 +107,13 @@
           {{ method_field('post') }}
           <div class="row">
 
-              <div class="form-group col-lg-5 col-md-12 col-sm-12">
+              <div class="form-group col-lg-6 col-md-12 col-sm-12">
                 <label for="product_id" class="control-label">Producto</label>
                 <select id="products" class="form-control" name="product_id"></select>
               </div>
 
 
-              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+              <div class="form-group col-lg-2 col-md-12 col-sm-12">
                 <label for="amount" class="control-label">Cantidad</label>
                 <input id="amount" name="amount" type="number" class="form-control" value="1">
               </div>

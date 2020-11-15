@@ -13,21 +13,21 @@
     <li class="nav-item">
       <a href="{!! route('sale-show') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'client') === false || !stristr(request()->route()->getName(),'sale') === false) ? ' active' : ''}}">
         <i class="icon-users2"></i>
-        <span>Clientes</span>
+        <span>Ventas - Clientes</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>
     <li class="nav-item">
       <a href="{!! route('product-show') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'product') === false || !stristr(request()->route()->getName(),'brand') === false) ? ' active' : ''}}">
         <i class="icon-grid"></i>
-        <span>Productos</span>
+        <span>Productos - Marcas</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>
     <li class="nav-item">
       <a href="{!! route('order-show') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'supplier') === false || !stristr(request()->route()->getName(),'order') === false) ? ' active' : ''}}">
         <i class="fas fa-user-tie"></i>
-        <span>Proveedores</span>
+        <span>Órdenes - Proveedores</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>

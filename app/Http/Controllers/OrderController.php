@@ -42,7 +42,7 @@ class OrderController extends Controller
     // dd($order->supplier->email);
     $productOrders = ProductOrder::where('sale_id',$sale->id)->with('product')->where('product_status_id', 2)->get();
     if ($productOrders->count() <= 0) {
-      return Redirect::back()->withErrors(['Debe haber algún producto en estado "En stock" para poder generar un remito.']);
+      return Redirect::back()->withErrors(['Debe haber algún producto en estado "Pedido" para poder generar un remito.']);
     }
     Mail::to($order->supplier->email)->send(new OrderShipped($order));
 

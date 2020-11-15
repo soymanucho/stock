@@ -31,8 +31,7 @@ class Address extends Model
   {
     return $this->location->province();
   }
-
-
+  
   public function suppliers()
   {
     return $this->hasMany(Supplier::class);

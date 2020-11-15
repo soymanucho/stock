@@ -31,11 +31,10 @@ Route::get('/invoice_archive', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+//DASHBOARD
+Route::get('/home', 'DashboardController@historicSales')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 //CONFIGURACION
 Route::get('/configuracion', 'ConfigurationController@showCae')->name('configuration-cae-show');

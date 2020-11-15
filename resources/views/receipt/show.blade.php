@@ -79,7 +79,7 @@
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
       <a href="{!! route('client-show') !!}" class="breadcrumb-item">Clientes</a>
       <a href="{!! route('sale-show') !!}" class="breadcrumb-item">Ventas</a>
-      <a href="{!! route('sale-edit',compact('sale')) !!}" class="breadcrumb-item">Venta</a>
+      <a href="{!! route('sale-edit',compact('sale')) !!}" class="breadcrumb-item">Venta #{{$sale->id}}</a>
       <span class="breadcrumb-item active">Remitos</span>
     </div>
 
