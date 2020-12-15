@@ -80,7 +80,7 @@
             @endif
 
             <div class="content">
-                <h1 class="title m-b-md">intemun S.A.</h1>
+                <h1 class="title m-b-md">intemun S.A. prueba</h1>
 
                 <h2>división insumos</h2>
 
