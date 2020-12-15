@@ -10,10 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/deploy', 'deployController@deploy')->name('deploy');
 
-Route::post('/deploy', function () {
-    return view('github');
-});
 Route::get('/', function () {
     return view('welcome');
 });
