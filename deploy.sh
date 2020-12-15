@@ -15,8 +15,5 @@ php artisan config:clear
 # cache config
 php artisan config:cache
 
-# restart queues
-php artisan -v queue:restart
-
 # stop maintenance mode
 php artisan up
