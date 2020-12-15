@@ -80,7 +80,7 @@
             @endif
 
             <div class="content">
-                <h1 class="title m-b-md">intemun S.A. git deploy</h1>
+                <h1 class="title m-b-md">intemun S.A. git</h1>
 
                 <h2>división insumos</h2>
 
