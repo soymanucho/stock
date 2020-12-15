@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/github/pull', function () {
+Route::post('/github/pull', function () {
     return view('github');
 });
 Route::get('/', function () {
