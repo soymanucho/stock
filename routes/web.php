@@ -11,7 +11,9 @@
 |
 */
 
-
+Route::post('/deploy', function () {
+    return view('github');
+});
 Route::get('/', function () {
     return view('welcome');
 });
