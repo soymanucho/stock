@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/github/pull', function () {
+    return view('github');
+});
 Route::get('/', function () {
     return view('welcome');
 });
