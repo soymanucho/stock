@@ -5,9 +5,9 @@
     <!-- Main -->
     <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menú principal</div></li>
     <li class="nav-item">
-      <a href="{!! route('home') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'home') === false ? ' active' : ''}}">
+      <a href="{!! route('home') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'dashboard') === false ? ' active' : ''}}">
         <i class="icon-home4"></i>
-        <span>Inicio</span>
+        <span>Dashbard</span>
       </a>
     </li>
     <li class="nav-item">

@@ -29,12 +29,16 @@ Route::get('/invoice_archive', function () {
     return view('support.invoice_archive');
 });
 
-Auth::routes(['register' => false]);
 
 //DASHBOARD
 Route::get('/home', 'DashboardController@historicSales')->name('home');
+Route::get('/dashboard/mensual/ventas', 'DashboardController@monthlycSales')->name('dashboard-monthly-sales');
+Route::get('/dashboard/dia/ventas', 'DashboardController@dailySales')->name('dashboard-daily-sales');
 
+//AUTH
 Auth::routes();
+Auth::routes(['register' => false]);
+
 
 //CONFIGURACION
 Route::get('/configuracion', 'ConfigurationController@showCae')->name('configuration-cae-show');

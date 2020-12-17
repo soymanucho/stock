@@ -3,7 +3,7 @@
 
 @section('secondary-sidebar')
   <!-- Secondary sidebar -->
-  {{-- <div class="sidebar sidebar-light sidebar-secondary sidebar-expand-md">
+  <div class="sidebar sidebar-light sidebar-secondary sidebar-expand-md">
 
     <!-- Sidebar mobile toggler -->
     <div class="sidebar-mobile-toggler text-center">
@@ -23,7 +23,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Gráficos</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Histórico</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
@@ -34,7 +34,7 @@
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="{!! route('product-show') !!}" class="nav-link"><i class="icon-list3"></i> Ventas</a>
+              <a href="{!! route('home') !!}" class="nav-link active"><i class="icon-list3"></i> Ventas</a>
             </li>
             <li class="nav-item">
               <a href="{!! route('product-new') !!}" class="nav-link"><i class="icon-list2"></i> Órdenes</a>
@@ -59,7 +59,7 @@
               <a href="{!! route('brand-show') !!}" class="nav-link"><i class="icon-list3"></i>Ventas</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('brand-new') !!}" class="nav-link active"><i class="icon-list2"></i> Órdenes</a>
+              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-list2"></i> Órdenes</a>
             </li>
             <li class="nav-item-divider"></li>
           </ul>
@@ -81,7 +81,7 @@
               <a href="{!! route('brand-show') !!}" class="nav-link"><i class="icon-list3"></i>Ventas</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('brand-new') !!}" class="nav-link active"><i class="icon-list2"></i> Órdenes</a>
+              <a href="{!! route('brand-new') !!}" class="nav-link"><i class="icon-list2"></i> Órdenes</a>
             </li>
             <li class="nav-item-divider"></li>
           </ul>
@@ -89,7 +89,7 @@
       </div>
         <!-- /sub navigation -->
     </div>
-  </div> --}}
+  </div>
 @endsection
 @section('actions')
   <a href="#" class="btn btn-success btn-disabled">Nueva marca</a>
