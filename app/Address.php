@@ -22,6 +22,11 @@ class Address extends Model
     return $this->belongsTo(Location::class)->withTrashed();
   }
 
+  public function FunctionName($value='')
+  {
+    
+  }
+
   public function client()
   {
     return $this->belongsTo(Client::class);
@@ -31,7 +36,7 @@ class Address extends Model
   {
     return $this->location->province();
   }
-  
+
   public function suppliers()
   {
     return $this->hasMany(Supplier::class);
