@@ -190,11 +190,11 @@
 
             <div class="form-group">
               <label>Fecha de emisión:</label>
-              <input type="date" class="form-control" id="emissions_date" name="emissions_date" value="{{old('emissions_date')}}">
+              <input type="text" class="form-control datepicker" id="emissions_date" name="emissions_date" value="{{old('emissions_date')}}">
             </div>
             <div class="form-group">
               <label>Fecha de vencimiento:</label>
-              <input type="date" class="form-control" id="expiration_date" name="expiration_date" value="{{old('expiration_date')}}">
+              <input type="text" class="form-control datepicker" id="expiration_date" name="expiration_date" value="{{old('expiration_date')}}">
             </div>
 
             <div class="row">
@@ -401,6 +401,17 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       $('#client-address').val(data.address);
     });
 
+    var date = new Date();
+    var newDate = new Date(date.setMonth(date.getMonth()+1));
+    $('.emissions_date').datepicker({
+     dateFormat: 'dd-mm-yy'
+     }).datepicker("setDate", date);
+    $('.expiration_date').datepicker({
+     dateFormat: 'dd-mm-yy'
+     }).datepicker("setDate", new Date(newDate));
+
+    // $('#emissions_date').val(date);
+    // $('#expiration_date').val(newDate);
 </script>
 
 @endsection

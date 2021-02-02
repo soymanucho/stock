@@ -20,7 +20,7 @@ class ClientsTableSeeder extends Seeder
       {
 	        DB::table('clients')->insert([
 	            'name' => $faker->firstName,
-	            'cuit' => $faker->ssn,
+	            'cuit' => rand(20,27).'-'.rand(10000000,99999999).'-'.rand(0,9),
 	            'payment_day_id'=> PaymentDay::inRandomOrder()->first()->id,
               'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 	        ]);

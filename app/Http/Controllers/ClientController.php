@@ -16,7 +16,7 @@ class ClientController extends Controller
   }
   public function show()
   {
-    $clients = Client::orderby('name')->with('address')->with('sales')->with('paymentDay')->with('lastSale')->with('address.location')->with('address.location.province')->get();
+    $clients = Client::orderby('created_at','desc')->with('address')->with('sales')->with('paymentDay')->with('lastSale')->with('address.location')->with('address.location.province')->get();
     return view('client.show',compact('clients'));
   }
 
@@ -127,11 +127,11 @@ class ClientController extends Controller
     $search = $request->search;
 
     if($search == ''){
-       $clients = Client::orderby('name','asc')->limit(5)->with('address')->with('address.location')->with('address.location.province')->get();
+       $clients = Client::orderby('created_at','desc')->limit(5)->with('address')->with('address.location')->with('address.location.province')->get();
     }else{
        $clients = Client::orderby('name','asc')
           ->where('name', 'like', '%' .$search . '%')
-          ->orWhere('cuil','like','%' .$search . '%')
+          ->orWhere('cuit','like','%' .$search . '%')
           ->orWhere('id','like','%' .$search . '%')
           ->limit(5)->get();
     }

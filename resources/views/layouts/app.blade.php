@@ -9,7 +9,7 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<link href="{{ asset('/css/icomoonstyles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css">
@@ -17,12 +17,16 @@
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
 	@notifyCss
-
+	<!-- Bootstrap Date-Picker Plugin -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-
+	datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-
+	datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 	<!-- /global stylesheets -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	{{-- <script src="{{ asset('/js/jquery.min.js') }}" defer></script> --}}
 	<!-- Core JS files -->
 	<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" defer></script>
