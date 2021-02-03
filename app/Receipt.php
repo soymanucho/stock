@@ -31,7 +31,7 @@ class Receipt extends Model
     $products = $this->productSales;
     foreach ($products as $product) {
       if ($product->status->name <> 'Cancelado') {
-        $totalAmount = $totalAmount + ($product->price*$product->amount);
+        $totalAmount = $totalAmount + ($product->amount);
       }
     }
     return $totalAmount;
@@ -42,14 +42,14 @@ class Receipt extends Model
     //                     ->where('receipt_id', $this->id)->where('product_statuses.name','<>','Cancelado')->sum(DB::raw('product_sale.amount * product_sale.price'));
   }
 
-  public function totalIVA()
-  {
-    return ($this->totalAmount()*21)/100;
-  }
-  public function subtotal()
-  {
-    $total = $this->totalAmount();
-    $IVA = $this->totalIVA();
-    return $total-$IVA;
-  }
+  // public function totalIVA()
+  // {
+  //   return ($this->totalAmount()*21)/100;
+  // }
+  // public function subtotal()
+  // {
+  //   $total = $this->totalAmount();
+  //   $IVA = $this->totalIVA();
+  //   return $total-$IVA;
+  // }
 }

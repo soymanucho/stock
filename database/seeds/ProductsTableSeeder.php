@@ -20,8 +20,8 @@ use Carbon\Carbon;
         {
             DB::table('products')->insert([
                 'name' => $faker->word(),
-                'code' => $faker->lexify('?????????????'),
-                'description' => $faker->sentence(6,true),
+                'code' => $faker->randomNumber(6),
+                'description' => $faker->words(4,true),
                 'brand_id' =>  rand(1,12),
                 'stock' =>  rand(1,10),
             ]);

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Redirect;
 use Barryvdh\DomPDF\Facade as PDF;
 
-use App\CaeVoucher;
 
 use App\Sale;
 use App\Receipt;
@@ -41,8 +40,7 @@ class ReceiptController extends Controller
     }elseif ($sale->client == null) {
       return Redirect::back()->withErrors(['Debe asignar un cliente y guardar la venta para poder generar un remito.']);
     }
-    // $lastCae = CaeVoucher::where('')
-    // if
+
     $receipt = new Receipt;
 
     $receipt->sale()->associate($sale);

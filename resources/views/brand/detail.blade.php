@@ -24,7 +24,7 @@
              <th>Stock</th>
              <th># Ventas</th>
              <th># Pedidos</th>
-             <th>Proveedores</th>
+             {{-- <th>Proveedores</th> --}}
            </tr>
            </thead>
            <tbody>

@@ -58,9 +58,11 @@ class Product extends Model
     return $this->belongsTo(Brand::class,'brand_id')->withTrashed();
   }
 
-  public function suppliers()
+  public function getSuppliersAttribute()
   {
-    return $this->orders()->pluck('suppliers');
+    $suppliers_ids = $this->orders()->pluck('supplier_id')->unique();
+    $suppliers = Supplier::findMany($suppliers_ids);
+    return $suppliers;
     // return $this->belongsToMany(Supplier::class,'product_supplier')->withPivot('price');
   }
 

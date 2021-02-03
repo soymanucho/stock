@@ -15,7 +15,7 @@
 @section('body')
     @foreach ($invoices as $invoice)
       <tr>
-        <td>#{{$invoice->id}}</td>
+        <td>{{$invoice->type}}{{$invoice->prefix_number}}-{{$invoice->number}}</td>
         <td>
           <h6 class="mb-0">
             @php

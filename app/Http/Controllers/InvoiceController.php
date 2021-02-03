@@ -7,7 +7,6 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Redirect;
 
-use App\CaeVoucher;
 use App\Sale;
 use App\Invoice;
 use App\Receipt;
@@ -53,17 +52,15 @@ class InvoiceController extends Controller
         'expiration_date'=> 'Fecha de vencimiento',
       ]
     );
+
     $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 5)->get();
-    $lastCae = CaeVoucher::where('ini_date','<=',Carbon::now())->where('fin_date','>=',Carbon::now())->latest('fin_date')->first();
     if ($productSales->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "Entregado" para poder generar una factura.']);
     }
-    if (!isset($lastCae)){
-      return Redirect::back()->withErrors(['No hay ningún Cae vigente. Revise el mismo para poder facturar.']);
-    }
+
     $invoice = new Invoice;
     $invoice->sale()->associate($sale);
-    $invoice->caeVoucher()->associate($lastCae);
+    $request->merge(['expiration_date'=>Carbon::parse($request->input('expiration_date')),'emissions_date'=>Carbon::parse($request->input('emissions_date')),]);
     $invoice->fill($request->all());
     $invoice->save();
 

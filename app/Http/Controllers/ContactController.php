@@ -51,8 +51,8 @@ class ContactController extends Controller
           'position' => 'nullable|string|max:20',
           'schedule' => 'nullable|string|max:50',
           'email' => 'nullable|email|string|max:60',
-          'prefix'=> 'nullable|numeric',
-          'phone'=> 'nullable|numeric',
+          'prefix'=> 'nullable|digits:5',
+          'phone'=> 'nullable|digits:12',
 
       ],
       [
@@ -99,8 +99,8 @@ class ContactController extends Controller
           'position' => 'nullable|string|max:20',
           'schedule' => 'nullable|string|max:50',
           'email' => 'nullable|email|string|max:60',
-          'prefix'=> 'nullable|numeric',
-          'phone'=> 'nullable|numeric',
+          'prefix'=> 'nullable|digits:5',
+          'phone'=> 'nullable|digits:12',
 
       ],
       [

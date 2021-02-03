@@ -31,13 +31,6 @@
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
     </li>
-    <li class="nav-item">
-      <a href="{!! route('configuration-cae-show') !!}" class="nav-link {{ !stristr(request()->route()->getName(),'configuration') === false ? ' active' : ''}}">
-        <i class="fas fa-cogs"></i>
-        <span>Configuración</span>
-        {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
-      </a>
-    </li>
     {{-- <li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
       <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Ventas</span></a>
 

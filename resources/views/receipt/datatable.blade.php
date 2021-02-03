@@ -2,11 +2,11 @@
 
 @section('header')
 
-    <th>#</th>
-    <th>Cliente</th>
-    <th>Fecha del recibo</th>
-    <th>Fecha de pago</th>
-    <th>Total</th>
+    <th class="text-center">#</th>
+    <th class="text-center">Cliente</th>
+    <th class="text-center">Fecha del recibo</th>
+    <th class="text-center">Fecha de pago</th>
+    <th class="text-center">Cant. de productos</th>
     <th class="text-center">Acciones</th>
 
 
@@ -15,8 +15,8 @@
 @section('body')
     @foreach ($receipts as $receipt)
       <tr>
-        <td>#{{$receipt->id}}</td>
-        <td>
+        <td class="text-center">#{{$receipt->id}}</td>
+        <td class="text-center"
           <h6 class="mb-0">
             @php
               $client = $receipt->sale->client;
@@ -25,14 +25,14 @@
             <span class="d-block font-size-sm text-muted">Módo de pago: {{$receipt->sale->paymentType->name ?? ''}}</span>
           </h6>
         </td>
-        <td>
+        <td class="text-center">
           {{$receipt->created_at->format('M d, y')}}
         </td>
-        <td>
+        <td class="text-center">
           <span class="badge badge-success">Pago el 16 Mar 2015</span>
         </td>
-        <td>
-          <h6 class="mb-0 font-weight-bold">${{$receipt->totalAmount()}} <span class="d-block font-size-sm text-muted font-weight-normal">IVA {{$receipt->totalIVA()}}</span></h6>
+        <td class="text-center">
+          <h6 class="mb-0 font-weight-bold">{{$receipt->totalAmount()}} <span class="d-block font-size-sm text-muted font-weight-normal"></span></h6>
         </td>
         <td class="text-center">
           <div class="list-icons list-icons-extended">

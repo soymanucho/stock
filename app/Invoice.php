@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 use App\Sale;
-use App\CaeVoucher;
 use App\ProductSale;
 
 class Invoice extends Model
@@ -16,15 +15,11 @@ class Invoice extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at','emissions_date','expiration_date'];
 
-  protected $fillable = ['number','type','prefix_number','cae_voucher_id','sale_id','emissions_date','expiration_date'];
+  protected $fillable = ['number','type','prefix_number','sale_id','emissions_date','expiration_date'];
 
   public function sale()
   {
     return $this->belongsTo(Sale::class);
-  }
-  public function caeVoucher()
-  {
-    return $this->belongsTo(CaeVoucher::class);
   }
   public function productSales()
   {
