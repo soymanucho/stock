@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<!-- Invoice template -->
 	<div class="card">
 		<div class="card-header bg-transparent header-elements-inline">
@@ -66,7 +66,7 @@
 						</ul>
 
 						<ul class="list list-unstyled text-right mb-0 ml-auto">
-							<li><h5 class="font-weight-semibold my-2">${{$receipt->totalAmount()}}</h5></li>
+							{{-- <li><h5 class="font-weight-semibold my-2">${{$receipt->totalAmount()}}</h5></li> --}}
 							<li><span class="font-weight-semibold">Profit Bank Europe</span></li>
 							<li>Argentina</li>
 							<li>{{$sale->client->address->location->name ?? ''}}</li>
@@ -93,12 +93,12 @@
 							@foreach ($receipt->productSales as $productSale)
 								<tr>
 										<td>
-											<h6 class="mb-0">{{$productSale->product->name}}</h6>
-											<span class="text-muted">{{$productSale->product->description}}</span>
+											{{-- <h6 class="mb-0">{{$productSale->product->name}}</h6>
+											<span class="text-muted">{{$productSale->product->description}}</span> --}}
 										</td>
-										<td>${{number_format($productSale->price,2,',','.')}}</td>
+										{{-- <td>${{number_format($productSale->price,2,',','.')}}</td> --}}
 										<td>{{$productSale->amount}}</td>
-										<td><span class="font-weight-semibold">${{number_format($productSale->amount*$productSale->price,2,',','.')}}</span></td>
+										{{-- <td><span class="font-weight-semibold">${{number_format($productSale->amount*$productSale->price,2,',','.')}}</span></td> --}}
 								</tr>
 							@endforeach
 						</tbody>
@@ -128,15 +128,15 @@
 							<tbody>
 								<tr>
 									<th>Subtotal:</th>
-									<td class="text-right">${{number_format($receipt->totalAmount() - $receipt->totalIVA(),2,',','.')}}</td>
+									{{-- <td class="text-right">${{number_format($receipt->totalAmount() - $receipt->totalIVA(),2,',','.')}}</td> --}}
 								</tr>
 								<tr>
 									<th>IVA: <span class="font-weight-normal">(21%)</span></th>
-									<td class="text-right">${{number_format($receipt->totalIVA(),2,',','.')}}</td>
+									{{-- <td class="text-right">${{number_format($receipt->totalIVA(),2,',','.')}}</td> --}}
 								</tr>
 								<tr>
 									<th>Total:</th>
-									<td class="text-right text-primary"><h5 class="font-weight-semibold">${{number_format($receipt->totalAmount(),2,',','.')}}</h5></td>
+									{{-- <td class="text-right text-primary"><h5 class="font-weight-semibold">${{number_format($receipt->totalAmount(),2,',','.')}}</h5></td> --}}
 								</tr>
 							</tbody>
 						</table>

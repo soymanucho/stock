@@ -403,11 +403,11 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     var date = new Date();
     var newDate = new Date(date.setMonth(date.getMonth()+1));
-    $('.emissions_date').datepicker({
-     dateFormat: 'dd-mm-yy'
-     }).datepicker("setDate", date);
-    $('.expiration_date').datepicker({
-     dateFormat: 'dd-mm-yy'
+    $('#emissions_date').datepicker({
+     dateFormat: 'dd-MM-yy'
+     }).datepicker("setDate", new Date());
+    $('#expiration_date').datepicker({
+     dateFormat: 'dd-MM-yy'
      }).datepicker("setDate", new Date(newDate));
 
     // $('#emissions_date').val(date);

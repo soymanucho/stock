@@ -21,14 +21,12 @@ class CreateInvoiceTable extends Migration
             $table->datetime('emissions_date')->nullable();
             $table->datetime('expiration_date')->nullable();
 
-            $table->unsignedBigInteger('cae_voucher_id');
             $table->unsignedBigInteger('sale_id');
 
             $table->softDeletes();
 
             $table->foreign('sale_id')->references('id')->on('sales');
-            $table->foreign('cae_voucher_id')->references('id')->on('cae_vouchers');
-
+            
             $table->timestamps();
 
         });
