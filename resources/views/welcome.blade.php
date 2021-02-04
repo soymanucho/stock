@@ -80,7 +80,7 @@
             @endif
 
             <div class="content">
-                <h1 class="title m-b-md">Intemun S.A.</h1>
+                <h1 class="title m-b-md">intemun S.A.</h1>
 
                 <h2>división insumos</h2>
 
@@ -94,6 +94,7 @@
                     <a href="mailto:ventas@intemun.com.ar">ventas@intemun.com.ar</a>
                     <br>
                     <a href="http://www.intemun.com.ar">www.intemun.com.ar</a>
+                    <a href="http://www.intemun.com.ar">Prueba</a>
                 </div>
 
             </div>
