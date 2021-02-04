@@ -56,9 +56,25 @@ class OrderController extends Controller
     notify()->success('Mail enviado con éxito!','Intemun');
     return redirect()->route('order-edit',compact('order'));
   }
-  public function receiveOrder(Order $order)
+  public function receiveOrder(Request $request,Order $order)
   {
+    $this->validate(
+      $request,
+    [
+        'invoice' => 'required|string',
+        'checks' => 'required|string',
+        'checks_expiration_date' => 'required|string',
+    ],
+    [
 
+    ],
+    [
+      'invoice' => 'facturas',
+      'checks' => 'cheques',
+      'checks_expiration_date' => 'fecha de vencimiento de los cheques',
+
+    ]
+    );
     $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->first();
     $productStatus = ProductStatus::where('name','Recibido')->first();
     foreach ($order->products as $productOrder) {
@@ -70,6 +86,10 @@ class OrderController extends Controller
         $product->save();
       }
     }
+    $order->invoice=$request->invoice;
+    $order->checks=$request->checks;
+    $order->checks_expiration_date=$request->checks_expiration_date;
+    $order->save();
     return redirect()->route('order-edit',compact('order'));
   }
   public function edit(Order $order)

@@ -80,6 +80,7 @@ class ClientController extends Controller
 
   public function update(Client $client, Request $request)
   {
+    dd($request);
     $this->validate(
       $request,
       [

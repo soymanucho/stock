@@ -17,6 +17,9 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
+            $table->string('invoice')->nullable();
+            $table->string('checks')->nullable();
+            $table->string('checks_expiration_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

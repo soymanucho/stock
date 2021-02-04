@@ -50,7 +50,7 @@ Route::get('/ordenes/{order}/eliminar/', 'OrderController@delete')->name('order-
 Route::get('/ordenes/{order}','OrderController@detail')->name('order-detail');
 Route::get('/ordenes/{order}/producto/{productOrder}/eliminar','OrderController@deleteProduct')->name('order-product-delete');
 Route::post('/ordenes/{order}/producto/nuevo','OrderController@newProduct')->name('order-product-new');
-Route::get('/ordenes/{order}/confirmar/','OrderController@receiveOrder')->name('order-receive');
+Route::post('/ordenes/{order}/confirmar/','OrderController@receiveOrder')->name('order-receive');
 Route::get('/ordenes/{order}/enviar/','OrderController@mailOrder')->name('order-mail');
 
 //VENTAS

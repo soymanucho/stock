@@ -15,7 +15,7 @@ class Invoice extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at','emissions_date','expiration_date'];
 
-  protected $fillable = ['number','type','prefix_number','sale_id','emissions_date','expiration_date'];
+  protected $fillable = ['number','type','prefix_number','sale_id','emissions_date','expiration_date','invoice_iva_condition'];
 
   public function sale()
   {
@@ -43,8 +43,11 @@ class Invoice extends Model
   }
 
   public function totalIVA()
-  {
+  { if ($this->invoice_iva_condition=0 or is_null($this->invoice_iva_condition)) {
+    return 0;
+  }else {
     return ($this->totalAmount()*21)/100;
+  }
   }
   public function subtotal()
   {

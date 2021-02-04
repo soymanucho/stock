@@ -16,7 +16,7 @@ class Order extends Model
 
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  protected $fillable = ['supplier_id','user_id'];
+  protected $fillable = ['supplier_id','user_id','invoice','checks','checks_expiration_date'];
 
   public function supplier()
   {

@@ -20,13 +20,13 @@ class CreateInvoiceTable extends Migration
             $table->string('number')->nullable();
             $table->datetime('emissions_date')->nullable();
             $table->datetime('expiration_date')->nullable();
-
+            $table->boolean('invoice_iva_condition')->nullable();
             $table->unsignedBigInteger('sale_id');
 
             $table->softDeletes();
 
             $table->foreign('sale_id')->references('id')->on('sales');
-            
+
             $table->timestamps();
 
         });

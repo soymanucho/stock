@@ -41,6 +41,7 @@ class InvoiceController extends Controller
           'number' => 'required|string|max:8|unique:invoices,number',
           'emissions_date' => 'required|date',
           'expiration_date'=> 'required|date|after_or_equal:emissions_date',
+          'invoice_iva_condition'=> 'nullable|integer',
       ],
       [
 
@@ -50,6 +51,7 @@ class InvoiceController extends Controller
         'number' => 'Número de factura',
         'emissions_date' => 'Fecha de emisión',
         'expiration_date'=> 'Fecha de vencimiento',
+        'invoice_iva_condition'=> 'Incluye IVA',
       ]
     );
 

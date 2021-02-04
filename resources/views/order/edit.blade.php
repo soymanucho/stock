@@ -161,11 +161,56 @@
 
       <!-- Sidebar content -->
       <div class="sidebar-content">
+        <div class="card card-collapsed">
+          <a class="btn btn-danger mb-1" style="color:white;" id="recibir">Recibir orden</a>
+          <div class="card-header bg-transparent header-elements-inline">
+            <span class="text-uppercase font-size-sm font-weight-semibold">COMPLETAR PARA RECIBIR</span>
+            <div class="header-elements">
+              <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="{!! route('order-receive',compact('order')) !!}" method="post" id="formReceive">
+            {{ csrf_field() }}
+            {{ method_field('post') }}
+            {{-- <div class="form-group">
 
+              <label>TOTAL:</label>
+              <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
+            </div> --}}
+
+
+            <label>Facturas:</label>
+            <div class="form-group row">
+              <input type="text" class="form-control col-sm-9" id="invoice" name="invoice" value="{{old('invoice',$order->invoice)}}">
+            </div>
+
+            <div class="form-group">
+              <label>Cheques</label>
+              <input type="text" class="form-control" id="checks" name="checks" value="{{old('checks',$order->checks)}}">
+            </div>
+            <div class="form-group">
+              <label>Fechas de vencimiento de los cheques:</label>
+              <input type="text" class="form-control" id="checks_expiration_date" name="checks_expiration_date" value="{{old('checks_expiration_date',$order->checks_expiration_date)}}">
+            </div>
+
+            <div class="row">
+              {{-- <div class="col-6">
+                <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
+              </div> --}}
+              <div class="col-6">
+                <button type="submit" class="btn btn-success btn-block mb-2" style="display:none;">Recibir</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
         <!-- Categories -->
         <div class="card">
-          <a class="btn btn-warning mb-1" href="{!! route('order-mail',compact('order')) !!}">Enviar pedido por mail</a>
-          <a class="btn btn-primary" href="{!! route('order-receive',compact('order')) !!}">Recibir orden</a>
+          <a class="btn btn-primary mb-1" href="{!! route('order-mail',compact('order')) !!}">Enviar pedido por mail</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">Detalle de la orden #{{$order->id}}</span>
             <div class="header-elements">
@@ -322,6 +367,11 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       $('#supplier-name').val(data.name);
       $('#supplier-address').val(data.address);
     });
+
+    $('#recibir').on('click',function (e){
+      $('#formReceive').submit();
+    });
+
 
 </script>
 

@@ -169,11 +169,18 @@
             <form action="{!! route('invoice-new',compact('sale')) !!}" method="post" id="formFacturacion">
             {{ csrf_field() }}
             {{ method_field('post') }}
-            {{-- <div class="form-group">
 
-              <label>TOTAL:</label>
-              <input type="text" class="form-control bg-violet border-violet border-1 rounded-round text-center" id="totalAmount" placeholder="Total venta" name="totalAmount" value="${{number_format($sale->totalAmount(), 2, ',', '.')}}">
-            </div> --}}
+            <label>IVA:</label>
+            <div class="form-group row">
+              <div class="custom-control custom-radio custom-control-inline">
+  							<input type="radio" class="custom-control-input" name="invoice_iva_condition" id="invoice_iva_condition_yes" value = "1">
+  							<label class="custom-control-label" for="invoice_iva_condition_yes">Si</label>
+							</div>
+              <div class="custom-control custom-radio custom-control-inline">
+  							<input type="radio" class="custom-control-input" name="invoice_iva_condition" id="invoice_iva_condition_no" value = "0">
+  							<label class="custom-control-label" for="invoice_iva_condition_no">No</label>
+							</div>
+            </div>
             <label>Tipo:</label>
             <div class="form-group row">
 
