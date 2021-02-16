@@ -13,6 +13,7 @@ use App\Status;
 use App\Product;
 use App\Receipt;
 use App\Invoice;
+use App\Budget;
 use App\User;
 
 class Sale extends Model
@@ -42,6 +43,10 @@ class Sale extends Model
   public function invoices()
   {
     return $this->hasMany(Invoice::class);
+  }
+  public function budgets()
+  {
+    return $this->hasMany(Budget::class);
   }
   public function statuses()
   {

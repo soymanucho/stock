@@ -156,6 +156,54 @@
 
         <!-- Categories -->
         <div class="card card-collapsed">
+          <a class="btn  mb-1 bg-purple" style="color:white;" id="facturar">Presupuestar</a>
+          <div class="card-header bg-transparent header-elements-inline">
+            <span class="text-uppercase font-size-sm font-weight-semibold">COMPLETAR PARA PRESUPUESTAR</span>
+            <div class="header-elements">
+              <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="{!! route('budget-new',compact('sale')) !!}" method="post" id="formPresupuesto">
+            {{ csrf_field() }}
+            {{ method_field('post') }}
+
+            <label>IVA:</label>
+            <div class="form-group row">
+              <div class="custom-control custom-radio custom-control-inline">
+  							<input type="radio" class="custom-control-input" name="budget_iva_condition" id="budget_iva_condition_yes" value = "1">
+  							<label class="custom-control-label" for="budget_iva_condition_yes">Si</label>
+							</div>
+              <div class="custom-control custom-radio custom-control-inline">
+  							<input type="radio" class="custom-control-input" name="budget_iva_condition" id="budget_iva_condition_no" value = "0">
+  							<label class="custom-control-label" for="budget_iva_condition_no">No</label>
+							</div>
+            </div>
+            <div class="form-group">
+              <label>Fecha de emisión:</label>
+              <input type="text" class="form-control datepicker" id="emissions_date" name="emissions_date" value="{{old('emissions_date')}}">
+            </div>
+            <div class="form-group">
+              <label>Fecha de vencimiento:</label>
+              <input type="text" class="form-control datepicker" id="expiration_date" name="expiration_date" value="{{old('expiration_date')}}">
+            </div>
+
+            <div class="row">
+              {{-- <div class="col-6">
+                <a class="btn btn-secondary btn-block mb-2" href="{{ URL::previous()}}">Volver</a>
+              </div> --}}
+              <div class="col-6">
+                <button type="submit" class="btn btn-success btn-block mb-2" style="display:none;">Generar presupuesto</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
+        {{-- presupuestar --}}
+        <div class="card card-collapsed">
           <a class="btn btn-danger mb-1" style="color:white;" id="facturar">Facturar</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">COMPLETAR PARA FACTURAR</span>

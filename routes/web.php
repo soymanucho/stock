@@ -72,6 +72,14 @@ Route::get('/ventas/{sale}/remitos/{receipt}/descargar/','ReceiptController@down
 Route::get('/ventas/{sale}/remitos/{receipt}/imprimir/','ReceiptController@print')->name('receipt-print');
 Route::get('/ventas/{sale}/remitos/{receipt}/detalle/','ReceiptController@detail')->name('receipt-detail');
 
+//PRESUPUESTOS
+Route::get('/ventas/{sale}/presupuestos/','BudgetController@show')->name('budget-show');
+Route::post('/ventas/{sale}/presupuestos/nuevo/','BudgetController@new')->name('budget-new');
+Route::get('/ventas/{sale}/presupuestos/{budget}/eliminar/','BudgetController@delete')->name('budget-delete');
+Route::get('/ventas/{sale}/presupuestos/{budget}/descargar/','BudgetController@download')->name('budget-download');
+Route::get('/ventas/{sale}/presupuestos/{budget}/imprimir/','BudgetController@print')->name('budget-print');
+Route::get('/ventas/{sale}/presupuestos/{budget}/detalle/','BudgetController@detail')->name('budget-detail');
+
 //FACTURAS
 Route::get('/ventas/{sale}/facturas/','InvoiceController@show')->name('invoice-show');
 Route::post('/ventas/{sale}/facturas/nuevo/','InvoiceController@new')->name('invoice-new');
