@@ -174,7 +174,7 @@
             <label>IVA:</label>
             <div class="form-group row">
               <div class="custom-control custom-radio custom-control-inline">
-  							<input type="radio" class="custom-control-input" name="budget_iva_condition" id="budget_iva_condition_yes" value = "1">
+  							<input type="radio" class="custom-control-input" name="budget_iva_condition" id="budget_iva_condition_yes" value = "1" checked="checked">
   							<label class="custom-control-label" for="budget_iva_condition_yes">Si</label>
 							</div>
               <div class="custom-control custom-radio custom-control-inline">

@@ -5,7 +5,7 @@
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
-    <title>Factura</title>
+    <title>Presupuesto</title>
   </head>
   <body>
 
@@ -35,7 +35,7 @@
   				<div class="col-sm-6">
   					<div class="mb-4">
   						<div class="text-sm-right">
-  							<h4 class="text-primary mb-2 mt-md-2">Factura #{{$budget->id}}</h4>
+  							<h4 class="text-primary mb-2 mt-md-2">Presupuesto #{{$budget->id}}</h4>
   							<ul class="list list-unstyled mb-0">
   								<li>Fecha: <span class="font-weight-semibold">{{$budget->created_at->format('M d, y')}}</span></li>
   								<li>Fecha de vencimiento: <span class="font-weight-semibold">{{$budget->created_at->addMonths(1)->format('M d, y')}}</span></li>
@@ -47,7 +47,7 @@
 
   			<div class="d-md-flex flex-md-wrap">
   				<div class="mb-4 mb-md-2">
-  					<span class="text-muted">Factura para:</span>
+  					<span class="text-muted">Presupuesto para:</span>
   					<ul class="list list-unstyled mb-0">
   						<li><h5 class="my-2">{{$sale->client->name ?? ''}}</h5></li>
   						<li><span class="font-weight-semibold">{{$sale->client->cuit ?? ''}}</span></li>
@@ -60,7 +60,7 @@
   				</div>
 
   				<div class="mb-2 ml-auto">
-  					<span class="text-muted">Detalles de la factura:</span>
+  					<span class="text-muted">Detalles del presupuesto:</span>
   					<div class="d-flex flex-wrap wmin-md-400">
   						<ul class="list list-unstyled mb-0">
   							<li><h5 class="my-2">Monto total:</h5></li>
