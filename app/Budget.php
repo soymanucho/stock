@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+use App\Sale;
+use App\ProductSale;
+
+
 class Budget extends Model
 {
   use SoftDeletes;

@@ -25,7 +25,7 @@
   				<div class="col-sm-6">
   					<div class="mb-4">
   						<div class="text-sm-right">
-  							<h4 class="text-primary mb-2 mt-md-2">Factura {{$budget->type}}{{$budget->prefix_number}}-{{$budget->number}}</h4>
+  							<h4 class="text-primary mb-2 mt-md-2">Presupuesto {{$budget->type}}{{$budget->prefix_number}}-{{$budget->number}}</h4>
   							<ul class="list list-unstyled mb-0">
   								<li>Fecha: <span class="font-weight-semibold">{{$budget->emissions_date->format('M d, y')}}</span></li>
   								<li>Fecha de vencimiento: <span class="font-weight-semibold">{{$budget->expiration_date->format('M d, y')}}</span></li>
@@ -37,7 +37,7 @@
 
   			<div class="d-md-flex flex-md-wrap row">
   				<div class="mb-4 mb-md-2 col-sm-6">
-  					<span class="text-muted">Factura para:</span>
+  					<span class="text-muted">Presupuesto para:</span>
   					<ul class="list list-unstyled mb-0">
   						<li><h5 class="my-2">{{$sale->client->name ?? ''}}</h5></li>
   						<li><span class="font-weight-semibold">{{$sale->client->cuit ?? ''}}</span></li>

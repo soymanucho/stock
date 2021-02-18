@@ -18,7 +18,7 @@ class BudgetController extends Controller
 
     public function show(Sale $sale)
     {
-      $budgets = Budget::where('sale_id',$sale->id)->with('productSales')->with('sale')->with('sale.paymentType')->with('productSales.status')->orderbydesc('created_at')->get();
+      $budgets = Budget::where('sale_id',$sale->id)->with('productSales')->with('sale')->with('sale.paymentType')->with('sale.client')->with('productSales.status')->orderbydesc('created_at')->get();
 
       return view('budget.show',compact('sale','budgets'));
     }
@@ -51,8 +51,11 @@ class BudgetController extends Controller
           'budget_iva_condition'=> 'Incluye IVA',
         ]
       );
-
-      // $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 5)->get();
+      
+      if ($sale->client == null) {
+        return Redirect::back()->withErrors(['Debe asignar un cliente y guardar la venta para poder generar un presupuesto.']);
+      }
+      $productSales = ProductSale::where('sale_id',$sale->id)->with('product')->where('product_status_id', 4)->get();
       // if ($productSales->count() <= 0) {
       //   return Redirect::back()->withErrors(['Debe haber algún producto en estado "Entregado" para poder generar una factura.']);
       // }
@@ -63,7 +66,7 @@ class BudgetController extends Controller
       $budget->fill($request->all());
       $budget->save();
 
-      $statusFacturado = ProductStatus::where('name','Presupuestado')->first();
+      $statusFacturado = ProductStatus::where('name','En stock')->first();
 
       foreach ($productSales as $productSale) {
         $productSale->budget()->associate($budget)->save();

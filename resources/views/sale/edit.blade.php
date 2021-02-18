@@ -69,6 +69,7 @@
 @section('actions')
   {{-- <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
   <a href="{!! route('sale-new') !!}" class="btn bg-teal-800 ml-2">Nueva venta</a> --}}
+  <a href="{!! route('budget-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver presupuestos</a>
   <a href="{!! route('receipt-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver remitos</a>
   <a href="{!! route('invoice-show',compact('sale')) !!}" class="btn bg-teal-600 ml-2">Ver facturas</a>
 @endsection
@@ -156,7 +157,7 @@
 
         <!-- Categories -->
         <div class="card card-collapsed">
-          <a class="btn  mb-1 bg-purple" style="color:white;" id="facturar">Presupuestar</a>
+          <a class="btn  mb-1 bg-purple" style="color:white;" id="presupuestar">Presupuestar</a>
           <div class="card-header bg-transparent header-elements-inline">
             <span class="text-uppercase font-size-sm font-weight-semibold">COMPLETAR PARA PRESUPUESTAR</span>
             <div class="header-elements">
@@ -446,6 +447,9 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     });
     $('#facturar').on('click',function (e){
       $('#formFacturacion').submit();
+    });
+    $('#presupuestar').on('click',function (e){
+      $('#formPresupuesto').submit();
     });
 
     $('#clients').on('select2:select', function (e) {

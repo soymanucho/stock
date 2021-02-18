@@ -20,6 +20,7 @@ class CreateProductSaleTable extends Migration
             $table->unsignedBigInteger('product_status_id');
             $table->unsignedBigInteger('receipt_id')->nullable();
             $table->unsignedBigInteger('invoice_id')->nullable();
+            $table->unsignedBigInteger('budget_id')->nullable();
             $table->float('price');
             $table->integer('amount');
             $table->integer('accepted_amount')->nullable();
@@ -31,6 +32,7 @@ class CreateProductSaleTable extends Migration
             $table->foreign('sale_id')->references('id')->on('sales');
             $table->foreign('receipt_id')->references('id')->on('receipts');
             $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('budget_id')->references('id')->on('budgets');
         });
 
 

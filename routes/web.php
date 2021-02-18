@@ -94,7 +94,7 @@ Route::get('/clientes/nuevo/', 'ClientController@new')->name('client-new');
 Route::post('/clientes/nuevo/', 'ClientController@save')->name('client-save');
 Route::get('/clientes/{client}/editar/', 'ClientController@edit')->name('client-edit');
 Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('client-update');
-Route::get('/clientes/{client}','ClientController@detail')->name('client-detail');
+Route::get('/clientes/{client}/detalle/','ClientController@detail')->name('client-detail');
 
 Route::get('/clientesApi/', 'ClientController@datatableApi')->name('client-api');
 Route::post('/clientesSelectApi/', 'ClientController@selectApi')->name('client-select-api');

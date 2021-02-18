@@ -10,6 +10,7 @@ use App\Product;
 use App\ProductStatus;
 use App\Receipt;
 use App\Invoice;
+use App\Budget;
 
 class ProductSale extends Model
 {
@@ -32,6 +33,10 @@ class ProductSale extends Model
   public function invoice()
   {
     return $this->belongsTo(Invoice::class);
+  }
+  public function budget()
+  {
+    return $this->belongsTo(Budget::class);
   }
   public function product()
   {
