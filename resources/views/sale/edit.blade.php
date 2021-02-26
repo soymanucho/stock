@@ -481,11 +481,16 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       $('#cost').prop('disabled',true);
       $('#amount').val(data.amount);
       $('#margin').val(data.margin);
+      if (data.cost==0) {
+        $('#margin').prop('disabled',true);
+      }else{
+        $('#margin').prop('disabled',false);
+      }
       $('#price').val(data.price);
       $('#total-price').val(data.totalPrice);
     });
 
-    $('#margin').change(function(){
+    $('#margin').focusout(function(){
         var costo = $('#cost').val();
         var cantidad= $('#amount').val();
         var margen = $('#margin').val();
@@ -493,28 +498,33 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         var precio_total =  $('#total-price').val();
         $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
         $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
+        $('#total-price').prop('disabled',true);
     });
-    $('#amount').change(function(){
+    $('#amount').focusout(function(){
         var costo = $('#cost').val();
         var cantidad= $('#amount').val();
         var margen = $('#margin').val();
         var precio_unit = $('#price').val(); 
         var precio_total =  $('#total-price').val();
-        $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
-        $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
-    });
-    $('#price').change(function(){
+        if (costo==0) {
+          $('#total-price').val((((((margen)/100)+1)*precio_unit)*cantidad).toFixed(2));
+        }else{
+          $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
+          $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
+        }
+        $('#total-price').prop('disabled',true);
+      });
+      $('#price').focusout(function(){
         var costo = $('#cost').val();
         var cantidad= $('#amount').val();
         var margen = $('#margin').val();
         var precio_unit = $('#price').val(); 
         var precio_total =  $('#total-price').val();
-
-        if (costo=0) {
+        if (costo==0) {
           $('#total-price').val((((((margen)/100)+1)*precio_unit)*cantidad).toFixed(2));
         }
-    });
-
+      });
+      
     var date = new Date();
     var newDate = new Date(date.setMonth(date.getMonth()+1));
     $('#emissions_date').datepicker({
