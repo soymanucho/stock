@@ -503,6 +503,17 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
         $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
     });
+    $('#price').change(function(){
+        var costo = $('#cost').val();
+        var cantidad= $('#amount').val();
+        var margen = $('#margin').val();
+        var precio_unit = $('#price').val(); 
+        var precio_total =  $('#total-price').val();
+
+        if (costo=0) {
+          $('#total-price').val((((((margen)/100)+1)*precio_unit)*cantidad).toFixed(2));
+        }
+    });
 
     var date = new Date();
     var newDate = new Date(date.setMonth(date.getMonth()+1));
