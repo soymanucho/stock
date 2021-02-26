@@ -117,7 +117,12 @@ class ProductController extends Controller
     foreach($products as $product){
        $response[] = array(
             "id"=>$product->id,
-            "text"=>$product->name.' - '.$product->brand->name.' (quedan '.$product->stock.' unidades)'
+            "text"=>$product->name.' - '.$product->brand->name.' (quedan '.$product->stock.' unidades)',
+            "cost"=>$product->cost,
+            "amount"=>'1',
+            "margin"=>'0',
+            "price"=>$product->cost,
+            "totalPrice"=>$product->cost
        );
     }
 

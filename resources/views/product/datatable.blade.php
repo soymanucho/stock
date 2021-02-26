@@ -6,7 +6,7 @@
     <th>Código</th>
     <th>Nombre</th>
     <th>Stock</th>
-    {{-- <th>Precios (Mín./Máx.)</th> --}}
+    <th>Último costo</th>
     <th>Descripción</th>
     <th>Marca</th>
     <th>Acciones</th>
@@ -29,6 +29,9 @@
           >{{ $product->stock }}</span>
         </td>
         {{-- <td>  ${{ number_format($product->suppliers->min('pivot.price'),2,',','.') }} / ${{ number_format($product->suppliers->max('pivot.price'),2,',','.') }} </td> --}}
+        <td>  @isset($product->cost)
+            {{$product->cost}}
+        @endisset<td>
         <td>  {{ $product->description }} </td>
         <td>
           {{ $product->brand->name }}

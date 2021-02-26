@@ -108,21 +108,36 @@
           {{ method_field('post') }}
           <div class="row">
 
-              <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group col-xl-4 col-lg-6 col-md-12 col-sm-12">
                 <label for="product_id" class="control-label">Producto</label>
                 <select id="products" class="form-control" name="product_id"></select>
               </div>
 
 
-              <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="form-group col-xl-2 col-lg-6 col-md-12 col-sm-12">
+                <label for="cost" class="control-label">Costo últ. compra</label>
+                <input id="cost" name="cost" type="number" class="form-control" value="">
+              </div>
+
+              <div class="form-group col-xl-1 col-lg-6 col-md-12 col-sm-12">
                 <label for="amount" class="control-label">Cantidad</label>
                 <input id="amount" name="amount" type="number" class="form-control" value="1">
               </div>
 
+              <div class="form-group col-xl-1 col-lg-6 col-md-12 col-sm-12">
+                <label for="margin" class="control-label">Margen</label>
+                <input id="margin" name="margin" type="number" class="form-control" value="1">
+              </div>
 
-              <div class="form-group col-lg-4 col-md-12 col-sm-12">
+
+              <div class="form-group col-xl-2 col-lg-6 col-md-12 col-sm-12">
                 <label for="price" class="control-label">Precio unitario</label>
                 <input id="price" name="price" type="number" class="form-control" step="any" value="">
+              </div>
+
+              <div class="form-group col-xl-2 col-lg-6 col-md-12 col-sm-12">
+                <label for="total-price" class="control-label">Precio total</label>
+                <input id="total-price" name="total-price" type="number" class="form-control" step="any" value="">
               </div>
 
 
@@ -458,6 +473,35 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       $('#client-cuit').val(data.cuit);
       $('#client-paymentDay').val(data.paymentDay);
       $('#client-address').val(data.address);
+    });
+
+    $('#products').on('select2:select', function (e) {
+      var data = e.params.data;
+      $('#cost').val(data.cost);
+      $('#cost').prop('disabled',true);
+      $('#amount').val(data.amount);
+      $('#margin').val(data.margin);
+      $('#price').val(data.price);
+      $('#total-price').val(data.totalPrice);
+    });
+
+    $('#margin').change(function(){
+        var costo = $('#cost').val();
+        var cantidad= $('#amount').val();
+        var margen = $('#margin').val();
+        var precio_unit = $('#price').val(); 
+        var precio_total =  $('#total-price').val();
+        $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
+        $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
+    });
+    $('#amount').change(function(){
+        var costo = $('#cost').val();
+        var cantidad= $('#amount').val();
+        var margen = $('#margin').val();
+        var precio_unit = $('#price').val(); 
+        var precio_total =  $('#total-price').val();
+        $('#price').val(((((margen)/100)+1)*costo).toFixed(2));
+        $('#total-price').val((((((margen)/100)+1)*costo)*cantidad).toFixed(2));
     });
 
     var date = new Date();

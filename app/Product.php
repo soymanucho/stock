@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Sale;
 use App\Brand;
 use App\Order;
+use App\ProductOrder;
 use App\Supplier;
 
 
@@ -64,6 +65,14 @@ class Product extends Model
     $suppliers = Supplier::findMany($suppliers_ids);
     return $suppliers;
     // return $this->belongsToMany(Supplier::class,'product_supplier')->withPivot('price');
+  }
+
+  public function getCostAttribute()
+  {
+    $productOrder = ProductOrder::where('product_id','=',$this->id)->latest()->first();
+    $cost = isset($productOrder->price)? $productOrder->price : 0;
+    return $cost;
+    
   }
 
   // public function prices()
