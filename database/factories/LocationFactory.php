@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Factories;
+
 use Faker\Generator as Faker;
-use App\Province;
-use App\Location;
+use \App\Province;
+use \App\Location;
 
 $factory->define(Location::class, function (Faker $faker) {
     return [

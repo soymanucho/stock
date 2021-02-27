@@ -1,9 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use App\Sale;
 use App\Status;
+use DB;
 
 class SalesTableSeeder extends Seeder
 {

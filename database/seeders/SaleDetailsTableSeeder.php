@@ -1,10 +1,13 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 use App\Product;
 use App\ProductStatus;
+use DB;
 
 class SaleDetailsTableSeeder extends Seeder
 {

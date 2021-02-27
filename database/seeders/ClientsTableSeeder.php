@@ -1,10 +1,13 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 
 use App\PaymentDay;
+use DB;
 
 class ClientsTableSeeder extends Seeder
 {

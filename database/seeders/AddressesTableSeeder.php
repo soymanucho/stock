@@ -1,7 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Address;
+use DB;
 
 class AddressesTableSeeder extends Seeder
 {
@@ -12,6 +15,6 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Address::class, 50)->create();
+      $addresses = Address::factory()->count(50)->make();
     }
 }

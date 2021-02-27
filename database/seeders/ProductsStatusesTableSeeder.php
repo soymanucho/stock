@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-
+use DB;
 
   class ProductsStatusesTableSeeder extends Seeder
 {

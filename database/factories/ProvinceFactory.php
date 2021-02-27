@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Factories;
+
 use Faker\Generator as Faker;
 
-$factory->define(App\Province::class, function (Faker $faker) {
+$factory->define(\App\Province::class, function (Faker $faker) {
     return [
       'name' => $faker->state()
     ];
