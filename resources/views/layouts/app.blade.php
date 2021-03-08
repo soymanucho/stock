@@ -566,6 +566,7 @@
 
 	} );
 </script>
+<x:notify-messages />
 @notifyJs
 </body>
 </html>
