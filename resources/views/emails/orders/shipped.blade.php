@@ -6,21 +6,13 @@
 | # | Producto | Cantidad |
 |---|----------|----------|
 @foreach ($order->products as $i=>$productOrder)
-
-  @if ($productOrder->status->name == 'Pedido')
-    | {{$aux}} | {{$productOrder->product->name ?? ''}} | {{ $productOrder->accepted_amount ?? '' }} |
-    @php
-      $aux++;
-    @endphp
-  @endif
+@if ($productOrder->status->name == 'Pedido')
+| {!!$aux!!} | {!!$productOrder->product->name ?? ''!!} | {!! $productOrder->accepted_amount ?? '' !!} |
+@php
+$aux++;
+@endphp
+@endif
 @endforeach
-
-
-
-{{-- @component('mail::button', ['url' => ''])
-Button Text
-@endcomponent --}}
-
 Gracias,<br>
-{{ config('app.name') }}
+{!! config('app.name') !!}
 @endcomponent
