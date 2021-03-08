@@ -58,7 +58,7 @@ class OrderController extends Controller
         $productOrder->save();
       }
     }
-    flash()->overlay('Mail enviado exitosamente!','Intemun')->success();
+    flash('Mail enviado exitosamente!')->success();
     return redirect()->route('order-edit',compact('order'));
   }
   public function receiveOrder(Request $request,Order $order)
