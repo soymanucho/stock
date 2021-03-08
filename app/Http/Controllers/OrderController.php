@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Mail;
+use Redirect;
 
 use App\ProductStatus;
 use App\Product;
@@ -42,9 +43,13 @@ class OrderController extends Controller
     // dd($order->supplier->email);
     $productOrders = ProductOrder::where('order_id',$order->id)->with('product')->where('product_status_id', 2)->get();
     if ($productOrders->count() <= 0) {
-      return Redirect::back()->withErrors(['Debe haber algún producto en estado "Pedido" para poder generar un remito.']);
+      return Redirect::back()->withErrors(['Debe haber algún producto en estado "Pedido" para poder enviar un mail.']);
     }
-    Mail::to($order->supplier->email)->send(new OrderShipped($order));
+    if (!isnull($order->supplier)){
+      Mail::to($order->supplier->email)->send(new OrderShipped($order));
+    }else {
+      return Redirect::back()->withErrors(['Debe seleccionar un proveedor para poder enviarle el mail.']);
+    }
 
     $productStatus = ProductStatus::where('name','Pedido por mail')->first();
     foreach ($order->products as $productOrder) {
