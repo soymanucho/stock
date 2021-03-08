@@ -11,11 +11,11 @@
 @endphp
 @component('mail::table')
 
-| # | Producto | Cantidad |
+|#|Producto|Cantidad|
 |---|----------|----------|
 @foreach ($order->products as $i=>$productOrder)
 @if ($productOrder->status->name == 'Pedido')
-| {!!$aux!!} | {!!$productOrder->product->name ?? ''!!} | {!! $productOrder->accepted_amount ?? '' !!} |
+|{!!$aux!!}|{!!$productOrder->product->name ?? ''!!}|{!! $productOrder->accepted_amount ?? '' !!}|
 @php
 $aux++;
 @endphp

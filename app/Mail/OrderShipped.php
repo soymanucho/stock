@@ -33,6 +33,6 @@ class OrderShipped extends Mailable
     {
         return $this->from('pedidos@intemun.com.ar')
                     ->markdown('emails.orders.shipped')
-                    ->subject('Nueva orden de Intemun');
+                    ->subject('Nueva orden n° '.$this->order->id.' de Intemun');
     }
 }
