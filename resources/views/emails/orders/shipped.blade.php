@@ -1,10 +1,5 @@
 @component('mail::message')
 
-@slot('header')
-  @component('mail::header', ['url' => config('app.url')])
-      {{ config('app.name') }}
-  @endcomponent
-@endslot
 # Hola, quería pedirte:
 @php
   $aux = 1;
