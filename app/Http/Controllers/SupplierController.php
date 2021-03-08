@@ -66,7 +66,7 @@ class SupplierController extends Controller
     $address->save();
 
     $supplier->address()->associate($address)->save();
-  //  notify()->success('Proveedor creado con éxito!','Intemun');
+    flash('Proveedor creado exitosamente!')->success();
     return redirect()->route('supplier-show');
   }
 
@@ -102,7 +102,7 @@ class SupplierController extends Controller
     $address = $supplier->address;
     $address->fill($request->all());
     $address->save();
-  //  notify()->warning('Proveedor editado con éxito!','Intemun');
+    flash('Se ha editado al proveedor')->warning();
     return redirect()->route('supplier-show');
   }
   public function detail(Supplier $supplier)
