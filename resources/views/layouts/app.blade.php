@@ -265,7 +265,7 @@
 
 			<!-- Content area -->
 			<div class="content">
-				@include('flash-message')
+				@include('layouts.flash-message')
 				@yield('content')
 			</div>
 			<!-- /content area -->

@@ -101,7 +101,7 @@ class SupplierController extends Controller
     $address = $supplier->address;
     $address->fill($request->all());
     $address->save();
-    return redirect()->route('supplier-show')->wiht('warning','Se ha editado al proveedor');
+    return redirect()->route('supplier-show')->with('warning','Se ha editado al proveedor');
   }
   public function detail(Supplier $supplier)
   {
