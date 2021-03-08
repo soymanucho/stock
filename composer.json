@@ -17,7 +17,6 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5|dev-develop",
         "laraveles/spanish": "^1.4",
-        "mckenziearts/laravel-notify": "^2.1",
         "spatie/laravel-permission": "^3.3"
     },
     "require-dev": {

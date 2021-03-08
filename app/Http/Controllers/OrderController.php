@@ -58,7 +58,7 @@ class OrderController extends Controller
         $productOrder->save();
       }
     }
-    notify()->success('Mail enviado con éxito!','Intemun');
+    // notify()->success('Mail enviado con éxito!','Intemun');
     return redirect()->route('order-edit',compact('order'));
   }
   public function receiveOrder(Request $request,Order $order)
