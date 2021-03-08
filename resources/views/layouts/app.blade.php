@@ -8,7 +8,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<link href="{{ asset('/css/icomoonstyles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
@@ -16,7 +16,6 @@
 	<link href="{{ asset('/css/layout.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/components.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('/css/colors.min.css') }}" rel="stylesheet" type="text/css">
-	@notifyCss
 	<!-- Bootstrap Date-Picker Plugin -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-
 	datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -53,6 +52,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
 	<!-- /Extra files -->
 
+	@notifyCss
 </head>
 
 <body class="sidebar-xs">
