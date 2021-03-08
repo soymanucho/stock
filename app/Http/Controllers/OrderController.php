@@ -40,7 +40,7 @@ class OrderController extends Controller
 
     $order = Order::where('id',$order->id)->with('products.product')->with('products.status')->with('products')->with('supplier')->first();
     // dd($order->supplier->email);
-    $productOrders = ProductOrder::where('sale_id',$sale->id)->with('product')->where('product_status_id', 2)->get();
+    $productOrders = ProductOrder::where('order_id',$order->id)->with('product')->where('product_status_id', 2)->get();
     if ($productOrders->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "Pedido" para poder generar un remito.']);
     }
