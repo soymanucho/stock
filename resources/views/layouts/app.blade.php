@@ -267,7 +267,7 @@
 
 			<!-- Content area -->
 			<div class="content">
-				@include('notify::messages')
+				
 				@yield('content')
 				{{-- <!-- Basic card -->
 				<div class="card">
