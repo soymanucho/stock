@@ -267,7 +267,7 @@
 			<div class="content">
 
 				@yield('content')
-				@include('notify::messages')
+				@include('flash::message')
 			</div>
 			<!-- /content area -->
 
@@ -356,7 +356,7 @@
 	    	}
 	  	});
 
-
+			$('#flash-overlay-modal').modal();
 
 	} );
 </script>
