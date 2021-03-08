@@ -31,6 +31,8 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->from('pedidos@intemun.com.ar')->markdown('emails.orders.shipped');
+        return $this->from('pedidos@intemun.com.ar')
+                    ->markdown('emails.orders.shipped')
+                    ->subject('Nueva orden de Intemun');
     }
 }
