@@ -267,7 +267,6 @@
 			<div class="content">
 
 				@yield('content')
-				@include('notify::messages')
 			</div>
 			<!-- /content area -->
 
