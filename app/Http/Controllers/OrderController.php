@@ -45,7 +45,7 @@ class OrderController extends Controller
     if ($productOrders->count() <= 0) {
       return Redirect::back()->withErrors(['Debe haber algún producto en estado "Pedido" para poder enviar un mail.']);
     }
-    if (!isnull($order->supplier)){
+    if (!is_null($order->supplier)){
       Mail::to($order->supplier->email)->send(new OrderShipped($order));
     }else {
       return Redirect::back()->withErrors(['Debe seleccionar un proveedor para poder enviarle el mail.']);
