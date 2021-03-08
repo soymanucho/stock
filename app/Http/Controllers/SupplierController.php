@@ -66,8 +66,7 @@ class SupplierController extends Controller
     $address->save();
 
     $supplier->address()->associate($address)->save();
-    flash('Proveedor creado exitosamente!')->success();
-    return redirect()->route('supplier-show');
+    return redirect()->route('supplier-show')->with('success','Proveedor creado exitosamente!');
   }
 
   public function update(Supplier $supplier, Request $request)
@@ -102,8 +101,7 @@ class SupplierController extends Controller
     $address = $supplier->address;
     $address->fill($request->all());
     $address->save();
-    flash('Se ha editado al proveedor')->warning();
-    return redirect()->route('supplier-show');
+    return redirect()->route('supplier-show')->wiht('warning','Se ha editado al proveedor');
   }
   public function detail(Supplier $supplier)
   {

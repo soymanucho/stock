@@ -60,8 +60,7 @@ class ProductController extends Controller
     $product = new Product;
     $product->fill($request->all());
     $product->save();
-    flash('Producto creado exitosamente!')->success();
-    return redirect()->route('product-show');
+    return redirect()->route('product-show')->with('success','Producto creado exitosamente!');
   }
 
   public function update(Product $product, Request $request)
@@ -90,8 +89,7 @@ class ProductController extends Controller
 
     $product->fill($request->all());
     $product->save();
-    flash('Se ha editado al producto')->warning();
-    return redirect()->route('product-show');
+    return redirect()->route('product-show')->with('warning','Se ha editado el producto');
   }
   public function detail(Product $product)
   {

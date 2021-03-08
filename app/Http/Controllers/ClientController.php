@@ -74,8 +74,7 @@ class ClientController extends Controller
     $address->save();
 
     $client->address()->save($address);
-    flash('Cliente creado con éxito!')->success();
-    return redirect()->route('client-show');
+    return redirect()->route('client-show')->with('success','Cliente creado exitosamente!');
   }
 
   public function update(Client $client, Request $request)
@@ -114,8 +113,7 @@ class ClientController extends Controller
     $address = $client->address;
     $address->fill($request->all());
     $address->save();
-    flash('Se ha editao al cliente.')->warning();
-    return redirect()->route('client-show');
+    return redirect()->route('client-show')->with('warning','Se ha editao al cliente.');
   }
   public function detail(Client $client)
   {
