@@ -6,15 +6,6 @@ sudo php artisan down
 # update source code
 sudo git pull
 
-# update PHP dependencies
-sudo yes | composer update --no-interaction
-sudo composer install --no-interaction
-	# --no-interaction	Do not ask any interactive question
-	# --no-dev		Disables installation of require-dev packages.
-	# --prefer-dist		Forces installation from package dist even for dev versions.
-sudo composer dump-autoload
-
-sudo composer cc
 # update database
 sudo php artisan migrate --force
 # --force		Required to run when in production.
