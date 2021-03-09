@@ -7,7 +7,7 @@ sudo php artisan down
 sudo git pull
 
 # update PHP dependencies
-sudo composer update --no-interaction
+sudo yes | composer update --no-interaction
 sudo composer install --no-interaction
 	# --no-interaction	Do not ask any interactive question
 	# --no-dev		Disables installation of require-dev packages.
