@@ -23,7 +23,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Históricosss</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Histórico</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
