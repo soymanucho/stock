@@ -15,26 +15,7 @@ Route::post('/deploy', 'deployController@deploy')->name('deploy');
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/ecommerce_customers', function () {
-    return view('support.ecommerce_customers');
-});
-Route::get('/ecommerce_orders', function () {
-    return view('support.ecommerce_orders_history');
-});
-Route::get('/invoice_template', function () {
-    $receipt = App\Receipt::where('id',1)->get()->first();
-    $sale = $receipt->sale;
-    return view('support.invoice_template',compact('receipt','sale'));
-});
-Route::get('/invoice_archive', function () {
-    return view('support.invoice_archive');
-});
 
-
-//DASHBOARD
-Route::get('/home', 'DashboardController@historicSales')->name('home');
-Route::get('/dashboard/mensual/ventas', 'DashboardController@monthlycSales')->name('dashboard-monthly-sales');
-Route::get('/dashboard/dia/ventas', 'DashboardController@dailySales')->name('dashboard-daily-sales');
 
 //AUTH
 Auth::routes();
@@ -42,6 +23,12 @@ Auth::routes(['register' => false]);
 
 
 Route::group(['middleware' => ['role:Administrador|Vendedor']], function () {
+    //DASHBOARD
+    Route::get('/home', 'DashboardController@historicSales')->name('home');
+    Route::get('/dashboard/ordenes', 'DashboardController@historicOrders')->name('dashboard');
+
+    Route::get('/dashboard/mensual/ventas', 'DashboardController@monthlySales')->name('dashboard-monthly-sales');
+    Route::get('/dashboard/dia/ventas', 'DashboardController@dailySales')->name('dashboard-daily-sales');
     //ORDENES
     Route::get('/ordenes/', 'OrderController@show')->name('order-show');
     Route::get('/ordenes/nueva/', 'OrderController@new')->name('order-new');
