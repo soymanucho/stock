@@ -13,14 +13,14 @@ composer install --no-interaction --no-dev --prefer-dist
 	# --no-dev		Disables installation of require-dev packages.
 	# --prefer-dist		Forces installation from package dist even for dev versions.
 
-# clear cache
-php artisan cache:clear
-
-# clear config cache
-php artisan config:clear
-
-# cache config
-php artisan config:cache
+# # clear cache
+# php artisan cache:clear
+#
+# # clear config cache
+# php artisan config:clear
+#
+# # cache config
+# php artisan config:cache
 
 # restart queues
 php artisan -v queue:restart
