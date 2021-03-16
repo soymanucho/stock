@@ -9,7 +9,7 @@
                   <div class="card-header">{{ __('Solicitud de registro') }}</div>
 
                   <div class="card-body">
-                      <form method="POST" action="{{ route('storeInvitation') }}">
+                      <form method="POST" action="{{ route('invite-store') }}">
                           @csrf
 
                           <div class="form-group row">

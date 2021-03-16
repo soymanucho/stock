@@ -79,7 +79,6 @@ class ClientController extends Controller
 
   public function update(Client $client, Request $request)
   {
-    dd($request);
     $this->validate(
       $request,
       [
@@ -113,7 +112,7 @@ class ClientController extends Controller
     $address = $client->address;
     $address->fill($request->all());
     $address->save();
-    return redirect()->route('client-show')->with('warning','Se ha editao al cliente.');
+    return redirect()->route('client-show')->with('warning','Se ha editado al cliente.');
   }
   public function detail(Client $client)
   {

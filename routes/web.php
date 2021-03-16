@@ -20,12 +20,15 @@ Route::get('/', function () {
 //AUTH
 Auth::routes();
 // Auth::routes(['register' => false]);
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->middleware('HasInvitation')->name('register');
-Route::get('register/request', 'Auth\RegisterController@requestInvitation')->name('requestInvitation');
-Route::post('invitations', 'InviteController@store')->middleware('guest')->name('storeInvitation');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->middleware('HasInvitation')->name('register');
+Route::get('/register/request', 'Auth\RegisterController@invite-request')->name('invite-request');
+Route::post('/invitations', 'InviteController@store')->middleware('guest')->name('invite-store');
 
 Route::group(['middleware' => ['role:Administrador']], function () {
-  Route::get('invitaciones/', 'InviteController@index')->name('showInvitations');
+  Route::get('/invitaciones/', 'InviteController@index')->name('invite-show');
+  Route::get('/usuarios/', 'UserController@show')->name('user-show');
+  Route::get('/usuarios/{user}/editar/rol', 'UserController@edit')->name('user-edit');
+  Route::put('/usuarios/{user}/editar/rol', 'UserController@update')->name('user-update');
 
 
   // Route::post('invite', 'InviteController@process')->name('process');

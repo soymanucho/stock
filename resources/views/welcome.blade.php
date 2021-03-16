@@ -72,8 +72,8 @@
                     @else
                         <a href="{{ route('login') }}">Ingresar</a>
 
-                        @if (Route::has('requestInvitation'))
-                            <a href="{{ route('requestInvitation') }}">Registrarme</a>
+                        @if (Route::has('invite-request'))
+                            <a href="{{ route('invite-request') }}">Registrarme</a>
                         @endif
                     @endauth
                 </div>

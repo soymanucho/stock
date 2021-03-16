@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    public function requestInvitation() {
+    public function invite-request() {
         return view('auth.request');
     }
 

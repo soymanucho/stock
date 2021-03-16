@@ -134,9 +134,9 @@
 							Iniciar sesión
 						</a>
 					</li>
-					@if (Route::has('requestInvitation'))
+					@if (Route::has('invite-request'))
 						<li class="nav-item">
-							<a href="{{ route('requestInvitation') }}" class="navbar-nav-link">
+							<a href="{{ route('invite-request') }}" class="navbar-nav-link">
 								Registrarme
 							</a>
 						</li>

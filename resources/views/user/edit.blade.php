@@ -22,7 +22,7 @@
       <!-- Sub navigation -->
       <div class="card mb-2">
         <div class="card-header bg-transparent header-elements-inline">
-          <span class="text-uppercase font-size-sm font-weight-semibold">Invitaciones</span>
+          <span class="text-uppercase font-size-sm font-weight-semibold">Usuarios</span>
           <div class="header-elements">
             <div class="list-icons">
               <a class="list-icons-item" data-action="collapse"></a>
@@ -32,30 +32,30 @@
         <div class="card-body p-0">
           <ul class="nav nav-sidebar" data-nav-type="accordion">
             <li class="nav-item">
-              <a href="{!! route('user-show') !!}" class="nav-link"><i class="fas fa-users"></i> Listar usuarios</a>
+              <a href="{!! route('user-show') !!}" class="nav-link active"><i class="fas fa-users"></i> Listar usuarios</a>
             </li>
             <li class="nav-item">
-              <a href="{!! route('invite-show') !!}" class="nav-link active"><i class="fas fa-user-plus"></i> Listar invitaciones</a>
+              <a href="{!! route('invite-show') !!}" class="nav-link"><i class="fas fa-user-plus"></i> Listar invitaciones</a>
             </li>
           </ul>
         </div>
       </div>
+
         <!-- /sub navigation -->
     </div>
   </div>
 @endsection
 
 @section('actions')
-  {{-- <a href="{!! route('client-new') !!}" class="btn bg-teal-800">Nuevo cliente</a>
-  <a href="{!! route('sale-new') !!}" class="btn bg-teal-700 ml-2">Nueva venta</a> --}}
+
 @endsection
 
 @section('breadcrumbs')
   <div class="d-flex">
     <div class="breadcrumb">
       <a href="{!! route('home') !!}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-      <a href="" class="breadcrumb-item">Invitaciones</a>
-      <span class="breadcrumb-item active">Ver todas</span>
+      <a href="{!! route('user-show') !!}" class="breadcrumb-item">Usuarios</a>
+      <span class="breadcrumb-item active">Editando usuario #{{$user->id}}</span>
     </div>
 
     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -87,21 +87,26 @@
 
 <div class="card">
 	<div class="card-header header-elements-inline">
-		<h5 class="card-title">Invitaciones</h5>
+		<h5 class="card-title">Editar usuario</h5>
 		<div class="header-elements">
 			<div class="list-icons">
-            		<a class="list-icons-item" data-action="collapse"></a>
-            		{{-- <a class="list-icons-item" data-action="reload"></a> --}}
-            		{{-- <a class="list-icons-item" data-action="remove"></a> --}}
-            	</div>
-          	</div>
+    		<a class="list-icons-item" data-action="collapse"></a>
+    	</div>
+  	</div>
 	</div>
 
 	<div class="card-body">
-
-    @include('invites.datatable')
+    @include('errors.errors')
+		<form method="post">
+      {{ csrf_field() }}
+      {{ method_field('put') }}
+			@include('user._fields')
+			<div class="text-right">
+				<a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+				<button type="submit" class="btn btn-success">Editar usuario <i class="fas fa-user-edit"></i></button>
+			</div>
+		</form>
 	</div>
-
 </div>
 
 @endsection

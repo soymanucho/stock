@@ -37,4 +37,6 @@ class InviteController extends Controller
     $invitations = Invite::where('registered_at', null)->orderBy('created_at', 'desc')->get();
     return view('invites.show', compact('invitations'));
   }
+
+  
 }

@@ -54,8 +54,8 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{!! route('showInvitations') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'invite') === false) ? ' active' : ''}}">
-        <i class="fas fa-user-tie"></i>
+      <a href="{!! route('user-show') !!}" class="nav-link {{ (!stristr(request()->route()->getName(),'invite') === false || !stristr(request()->route()->getName(),'user') === false) ? ' active' : ''}}">
+        <i class="fas fa-users-cog"></i>
         <span>Usuarios</span>
         {{-- <span class="badge bg-blue-400 align-self-center ml-auto">2.0</span> --}}
       </a>
