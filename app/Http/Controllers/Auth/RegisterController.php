@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Invite;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -37,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -54,6 +56,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+    public function requestInvitation() {
+        return view('auth.request');
+    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -63,10 +68,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->assignRole('Vendedor');
+
+        $invitation = Invite::where('email', $user->email)->firstOrFail();
+        $invitation->registered_at = $user->created_at;
+        $invitation->save(); 
+        return $user;
+    }
+    public function showRegistrationForm(Request $request)
+    {
+        $invitation_token = $request->get('invitation_token');
+        $invitation = Invite::where('invitation_token', $invitation_token)->firstOrFail();
+        $email = $invitation->email;
+
+        return view('auth.register', compact('email'));
     }
 }

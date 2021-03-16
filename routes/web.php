@@ -19,8 +19,18 @@ Route::get('/', function () {
 
 //AUTH
 Auth::routes();
-Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->middleware('HasInvitation')->name('register');
+Route::get('register/request', 'Auth\RegisterController@requestInvitation')->name('requestInvitation');
+Route::post('invitations', 'InviteController@store')->middleware('guest')->name('storeInvitation');
 
+Route::group(['middleware' => ['role:Administrador']], function () {
+  Route::get('invitaciones/', 'InviteController@index')->name('showInvitations');
+
+
+  // Route::post('invite', 'InviteController@process')->name('process');
+  // Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+});
 
 Route::group(['middleware' => ['role:Administrador|Vendedor']], function () {
     //DASHBOARD
